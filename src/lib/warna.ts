@@ -260,6 +260,50 @@ export const MOLEKUL = daftar({
 });
 
 /* ------------------------------------------------------------------ *
+ * ISI INTI DAN KROMOSOM
+ * Dipakai mulai pelajaran 0.3. Kromosom memakai warna KROMATIN karena
+ * keduanya benda yang sama dalam dua keadaan — pelajaran 0.2 menegaskan itu.
+ *
+ * Pasangan homolog butuh dua warna agar pindah silang (crossing over)
+ * terlihat sebagai tukar warna. Kromosom dari IBU memakai warna kromatin
+ * (SEL.kromatin) — tidak dibuat entitas baru agar satu warna tetap satu
+ * entitas. Kromosom dari AYAH mendapat warna sendiri: toska.
+ * Aturan pengaman: toska ini dekat dengan RE kasar (#009898), tapi retikulum
+ * endoplasma tidak pernah tampil dalam adegan pembelahan sel — dan label
+ * "dari ayah" selalu menyertainya.
+ *
+ * Serat gelendong (spindle) TIDAK punya entitas sendiri: ia mikrotubulus,
+ * jadi memakai warna sitoskeleton dengan label "serat gelendong".
+ * ------------------------------------------------------------------ */
+
+export const INTI = daftar({
+  histon: {
+    nama: "Histon",
+    inggris: "histone",
+    warna: "#A0785A",
+    keterangan: "Protein gulungan tempat DNA melilit; delapan histon + DNA = satu nukleosom.",
+  },
+  kromosomAyah: {
+    nama: "Kromosom dari ayah",
+    inggris: "paternal chromosome",
+    warna: "#1EA7A0",
+    keterangan: "Pasangan homolog dari kromosom ibu (yang memakai warna kromatin); berbeda warna agar pindah silang terlihat.",
+  },
+  sentromer: {
+    nama: "Sentromer",
+    inggris: "centromere",
+    warna: "#3F2A6E",
+    keterangan: "Pinggang kromosom tempat dua kromatid saudara menempel dan serat gelendong menarik.",
+  },
+  telomer: {
+    nama: "Telomer",
+    inggris: "telomere",
+    warna: "#F48FB1",
+    keterangan: "Tudung pelindung di kedua ujung kromosom; memendek setiap kali sel membelah.",
+  },
+});
+
+/* ------------------------------------------------------------------ *
  * PERINGATAN: TIGA JINGGA YANG BERDEKATAN
  * Setelah dicerahkan, mitokondria (#F4511E), RNA (#FF8A1F), dan basa T
  * (#D55E00) berada di rona yang sama. Aturan pengamannya:
@@ -277,6 +321,7 @@ export const TIGA_JINGGA = [SEL.mitokondria, MOLEKUL.rna, BASA.T] as const;
 
 export const SEMUA_ENTITAS: Record<string, Entitas> = {
   ...SEL,
+  ...INTI,
   ...MOLEKUL,
   ...Object.fromEntries(
     Object.entries(BASA).map(([kode, e]) => [`basa${kode}`, e]),
@@ -327,6 +372,12 @@ export const KELOMPOK_WARNA = [
     catatan:
       "Dipakai di Level 0. Organel satu keluarga sengaja diberi warna bersaudara — retikulum endoplasma kasar dan halus, misalnya.",
     isi: Object.values(SEL),
+  },
+  {
+    judul: "Isi inti dan kromosom",
+    catatan:
+      "Dipakai mulai pelajaran 0.3. Kromosom memakai warna kromatin karena keduanya benda yang sama. Kromosom dari ayah diberi toska agar pindah silang terlihat sebagai tukar warna; retikulum endoplasma tidak pernah tampil di adegan yang sama.",
+    isi: Object.values(INTI),
   },
   {
     judul: "Basa nitrogen",

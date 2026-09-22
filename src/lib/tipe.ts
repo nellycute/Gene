@@ -8,6 +8,14 @@
 
 export type Tingkat = "Dasar" | "Menengah" | "Lanjut";
 
+/** Kunci animasi yang tersedia. Daftarnya (komponen datar + 3D) ada di src/animasi/daftar.ts. */
+export type KunciAnimasi =
+  | "sel-hewan"
+  | "perbesaran"
+  | "inti-sel"
+  | "kromosom"
+  | "pembelahan";
+
 export type Adegan = {
   /** Kunci unik di dalam pelajaran ini. */
   id: string;
@@ -31,6 +39,13 @@ export type Adegan = {
 
   /** Id entitas dari src/lib/warna.ts yang disorot pada adegan ini. */
   sorot?: string[];
+
+  /**
+   * Tahap gambar yang ditampilkan — kunci bebas yang dimengerti komponen
+   * animasi pelajaran ini (misal "jaringan", "metafase"). Kalau kosong,
+   * animasi menampilkan tahap bawaannya.
+   */
+  tahap?: string;
 
   /**
    * "3d" = adegan ini memakai tampilan tiga dimensi yang bisa diputar.
@@ -68,8 +83,8 @@ export type Pelajaran = {
   ringkas: string;
   tingkat: Tingkat;
 
-  /** Animasi mana yang dipakai pelajaran ini. */
-  animasi: "sel-hewan";
+  /** Animasi mana yang dipakai pelajaran ini — kuncinya ada di src/animasi/daftar.ts. */
+  animasi: KunciAnimasi;
 
   adegan: Adegan[];
 

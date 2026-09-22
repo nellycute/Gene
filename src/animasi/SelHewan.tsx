@@ -1,4 +1,5 @@
 import { SEL, ronaGelap, ronaTerang } from "@/lib/warna";
+import { bulat } from "./bagian";
 
 /**
  * SEL HEWAN — gambar utama pelajaran 0.2
@@ -238,8 +239,8 @@ export function SelHewan({ sorot = [], tampilkanLabel = true }: Props) {
         {/* Pori inti — gerbang keluar-masuknya RNA dan protein */}
         {PORI_INTI.map((sudut, i) => {
           const rad = (sudut * Math.PI) / 180;
-          const x = 290 + 108 * Math.cos(rad);
-          const y = 250 + 97 * Math.sin(rad);
+          const x = bulat(290 + 108 * Math.cos(rad));
+          const y = bulat(250 + 97 * Math.sin(rad));
           return (
             <circle
               key={i}

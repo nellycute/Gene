@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { SelHewan } from "@/animasi/SelHewan";
-import { Panggung3D, muatSel3D } from "@/animasi/tiga-dimensi/Panggung3D";
+import { ANIMASI } from "@/animasi/daftar";
+import { Panggung3D } from "@/animasi/tiga-dimensi/Panggung3D";
 import { Laci } from "./Laci";
-import { SEL, SEMUA_ENTITAS } from "@/lib/warna";
+import { SEMUA_ENTITAS } from "@/lib/warna";
 import { warnaTingkat } from "@/lib/tingkat";
 import { jam, totalDurasi, type Pelajaran } from "@/lib/tipe";
 
@@ -67,14 +67,18 @@ export function PemutarPelajaran({
   const sekarang = adegan[indeks];
   const pakaiSuara = suara !== "tanpa" && Boolean(sekarang.audio);
 
+  /* Gambar pelajaran ini, dari daftar animasi. */
+  const animasi = ANIMASI[pelajaran.animasi];
+  const Datar = animasi.Datar;
+
   /* Mesin 3D mulai diunduh begitu pelajaran dibuka — hanya kalau pelajaran ini
      memang punya adegan 3D — supaya sudah siap sebelum adegannya tiba. */
-  const ada3D = adegan.some((a) => a.tampilan === "3d");
+  const ada3D = adegan.some((a) => a.tampilan === "3d") && Boolean(animasi.muat3D);
   useEffect(() => {
     if (!ada3D) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    void muatSel3D();
-  }, [ada3D]);
+    void animasi.muat3D?.();
+  }, [ada3D, animasi]);
 
   /* ---------- jalannya waktu TANPA suara: pewaktu ----------
      Perpindahan adegan diputuskan di dalam detak, bukan lewat efek terpisah. */
@@ -255,7 +259,11 @@ export function PemutarPelajaran({
         {/* ---- panggung: selalu kertas terang, di kedua mode ---- */}
         <div className="relative overflow-hidden rounded-[13px] bg-panggung">
           <div className="aspect-[800/570] w-full">
-            {sekarang.tampilan === "3d" ? <Panggung3D /> : <SelHewan sorot={sorot} />}
+            {sekarang.tampilan === "3d" && animasi.Tiga ? (
+              <Panggung3D Tiga={animasi.Tiga} datar={<Datar tahap={sekarang.tahap} sorot={sorot} />} />
+            ) : (
+              <Datar tahap={sekarang.tahap} sorot={sorot} />
+            )}
           </div>
 
           <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-[13px] font-semibold text-[#1b2430] shadow-sm">
@@ -459,12 +467,7 @@ export function PemutarPelajaran({
               })}
             </ul>
           ) : (
-            <p className="mt-1.5 text-[14px] font-semibold">
-              {indeks === 0 ? "Seluruh sel" : "Semua bagian sekaligus"}
-              <span className="ml-1.5 text-[13px] font-normal text-teks-samar">
-                {Object.keys(SEL).length} bagian
-              </span>
-            </p>
+            <p className="mt-1.5 text-[14px] font-semibold">{sekarang.tajuk ?? pelajaran.judul}</p>
           )}
         </div>
 

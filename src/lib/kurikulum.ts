@@ -30,11 +30,11 @@ export const LEVEL: Level[] = [
     ringkas: "Di mana materi genetik berada sebelum kita tahu cara kerjanya.",
     tingkat: "Dasar",
     isi: [
-      { nomor: "0.1", judul: "Sel: unit terkecil kehidupan" },
+      { nomor: "0.1", judul: "Sel: unit terkecil kehidupan", slug: "sel-unit-terkecil-kehidupan" },
       { nomor: "0.2", judul: "Bagian-bagian sel dan fungsinya", slug: "bagian-bagian-sel" },
-      { nomor: "0.3", judul: "Inti sel: membran inti, kromatin, nukleolus" },
-      { nomor: "0.4", judul: "Kromosom, kariotipe, diploid dan haploid" },
-      { nomor: "0.5", judul: "Mitosis dan meiosis" },
+      { nomor: "0.3", judul: "Inti sel: membran inti, kromatin, nukleolus", slug: "inti-sel" },
+      { nomor: "0.4", judul: "Kromosom, kariotipe, diploid dan haploid", slug: "kromosom-kariotipe" },
+      { nomor: "0.5", judul: "Mitosis dan meiosis", slug: "mitosis-dan-meiosis" },
     ],
   },
   {

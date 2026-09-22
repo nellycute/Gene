@@ -1,14 +1,24 @@
 import type { Pelajaran } from "./tipe";
+import { selUnitKehidupan } from "@/konten/0-1-sel-unit-kehidupan";
 import { bagianBagianSel } from "@/konten/0-2-bagian-bagian-sel";
+import { intiSel } from "@/konten/0-3-inti-sel";
+import { kromosom } from "@/konten/0-4-kromosom";
+import { mitosisMeiosis } from "@/konten/0-5-mitosis-meiosis";
 
 /**
- * Pelajaran yang animasinya sudah jadi dan bisa ditonton.
+ * Pelajaran yang animasinya sudah jadi dan bisa ditonton, urut kurikulum.
  *
  * Berkas ini mengimpor naskah lengkap, jadi hanya boleh dipakai oleh halaman
  * yang memang membutuhkannya (halaman pelajaran). Untuk daftar tingkat dan
  * judul saja, pakai src/lib/kurikulum.ts yang jauh lebih ringan.
  */
-export const PELAJARAN_SIAP: Pelajaran[] = [bagianBagianSel];
+export const PELAJARAN_SIAP: Pelajaran[] = [
+  selUnitKehidupan,
+  bagianBagianSel,
+  intiSel,
+  kromosom,
+  mitosisMeiosis,
+];
 
 export function cariPelajaran(slug: string): Pelajaran | undefined {
   return PELAJARAN_SIAP.find((p) => p.slug === slug);
