@@ -78,7 +78,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col bg-latar text-teks">
         <a
           href="#isi-utama"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-aksen focus:px-4 focus:py-2 focus:text-white"
+          className="tombol-tinta sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:px-4 focus:py-2"
         >
           Lompat ke isi utama
         </a>

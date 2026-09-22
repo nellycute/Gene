@@ -3,67 +3,70 @@
 @tailwind utilities;
 
 /* ==================================================================
-   RUANG GENETIKA — warna antarmuka
+   RUANG GENETIKA — warna antarmuka: kertas dan tinta
    ==================================================================
-   Berkas ini hanya mengatur warna *halaman* (latar, teks, garis).
-   Warna entitas biologi (mitokondria, DNA, basa) ada di src/lib/warna.ts
-   dan tidak boleh ditulis di sini.
+   Antarmuka TIDAK punya warna sendiri. Tombol, bilah, garis, dan latar
+   semuanya netral. Setiap warna yang muncul di layar pasti punya arti
+   biologis (src/lib/warna.ts) — kecuali tujuh garis tingkat yang selalu
+   tipis dan selalu di pinggir (src/lib/tingkat.ts).
 
    Nama-nama di bawah dipakai sebagai kelas Tailwind lewat tailwind.config.ts:
-   --latar menjadi bg-latar, --teks-lembut menjadi text-teks-lembut, dan
-   seterusnya. Mengganti satu nilai di sini mengubah seluruh situs sekaligus.
+   --latar menjadi bg-latar, --teks-lembut menjadi text-teks-lembut, dst.
 
-   Latar terang memakai krem hangat, bukan putih menyala — lebih nyaman
-   untuk membaca lama dan membuat warna organel terlihat lebih jernih.
+   Sumber keputusan: KEPUTUSAN-DESAIN.md §1.
    ================================================================== */
 
 :root {
-  --latar: #faf7f2;
-  --latar-lembut: #f2ece2;
-  --permukaan: #ffffff;
-  --teks: #1b2430;
-  --teks-lembut: #5c6878;
-  --teks-samar: #8b97a6;
-  --garis: #e6ded1;
-  --garis-tegas: #d4c9b8;
-  --aksen: #177e89;
-  --aksen-lembut: #e0f0f1;
-  --aksen-teks: #0f5b64;
-  --sorot: #fff8e6;
+  --latar: #fbf9f5; /* kertas, latar utama seluruh halaman */
+  --latar-lembut: #f3efe7; /* bilah kendali, panel */
+  --permukaan: #ffffff; /* kartu, baris tingkat */
+  --garis: #ede6d9; /* garis pemisah biasa */
+  --garis-tegas: #ded6c7; /* garis tombol dan bingkai */
+  --teks: #1b2430; /* tinta — juga warna tombol utama */
+  --teks-lembut: #5c6878; /* keterangan, subtitel sekunder */
+  --teks-samar: #93897a; /* label kecil, satuan, jumlah */
+  --teks-pudar: #b3aa9b; /* status "Segera", nomor pelajaran mati */
+  --tombol-teks: #ffffff; /* tulisan di atas tombol utama */
   --bayang: 0 1px 2px rgb(27 36 48 / 0.06), 0 8px 24px rgb(27 36 48 / 0.06);
+
+  /* Panggung animasi. Nilainya SAMA di kedua mode — lihat aturan di bawah. */
+  --panggung: #f3efe7;
 }
 
+/* ------------------------------------------------------------------
+   MODE GELAP
+   Halaman boleh gelap, tapi --panggung TIDAK ikut berubah. Warna 30
+   entitas biologi dipilih dan diuji di atas latar terang; di atas hitam,
+   mata membaca warna yang sama secara berbeda, dan janji "satu bagian =
+   satu warna" rusak. (KEPUTUSAN-DESAIN.md §1.4)
+   ------------------------------------------------------------------ */
 @media (prefers-color-scheme: dark) {
   :root:not(.terang) {
-    --latar: #10151c;
-    --latar-lembut: #171e28;
-    --permukaan: #1a222d;
+    --latar: #11161d;
+    --latar-lembut: #1a212a;
+    --permukaan: #1b2430;
+    --garis: #2a3442;
+    --garis-tegas: #3a4757;
     --teks: #e9eef4;
     --teks-lembut: #a3b0be;
     --teks-samar: #7b8898;
-    --garis: #2a3442;
-    --garis-tegas: #3a4757;
-    --aksen: #4fc3d1;
-    --aksen-lembut: #14323a;
-    --aksen-teks: #8fdfe9;
-    --sorot: #2a2416;
+    --teks-pudar: #5e6b7a;
+    --tombol-teks: #11161d;
     --bayang: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
   }
 }
 
 :root.gelap {
-  --latar: #10151c;
-  --latar-lembut: #171e28;
-  --permukaan: #1a222d;
+  --latar: #11161d;
+  --latar-lembut: #1a212a;
+  --permukaan: #1b2430;
+  --garis: #2a3442;
+  --garis-tegas: #3a4757;
   --teks: #e9eef4;
   --teks-lembut: #a3b0be;
   --teks-samar: #7b8898;
-  --garis: #2a3442;
-  --garis-tegas: #3a4757;
-  --aksen: #4fc3d1;
-  --aksen-lembut: #14323a;
-  --aksen-teks: #8fdfe9;
-  --sorot: #2a2416;
+  --teks-pudar: #5e6b7a;
+  --tombol-teks: #11161d;
   --bayang: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
 }
 
@@ -82,10 +85,10 @@
   }
 
   /* Urutan keyboard harus selalu terlihat jelas — sebagian penonton
-     menjelajah tanpa tetikus. */
+     menjelajah tanpa tetikus. Warnanya tinta, bukan warna khusus. */
   :focus-visible {
-    outline: 3px solid var(--aksen);
-    outline-offset: 2px;
+    outline: 2px solid var(--teks);
+    outline-offset: 3px;
     border-radius: 4px;
   }
 }
@@ -100,8 +103,35 @@
   }
 
   .kaca-latar {
-    background: color-mix(in srgb, var(--latar) 86%, transparent);
+    background: color-mix(in srgb, var(--latar) 92%, transparent);
     backdrop-filter: blur(10px);
+  }
+
+  /* Tombol utama: tinta di atas kertas. Tidak ada tombol berwarna. */
+  .tombol-tinta {
+    background: var(--teks);
+    color: var(--tombol-teks);
+    transition: transform 80ms ease-out, opacity 120ms ease-out;
+  }
+  .tombol-tinta:hover {
+    opacity: 0.88;
+  }
+  .tombol-tinta:active {
+    transform: scale(0.97);
+  }
+
+  /* Tombol pinggir: bingkai tipis, tanpa isi. */
+  .tombol-garis {
+    border: 1px solid var(--garis-tegas);
+    color: var(--teks-lembut);
+    transition: transform 80ms ease-out, border-color 120ms, color 120ms;
+  }
+  .tombol-garis:hover {
+    border-color: var(--teks-lembut);
+    color: var(--teks);
+  }
+  .tombol-garis:active {
+    transform: scale(0.97);
   }
 
   /* Deret basa DNA/RNA selalu memakai huruf monospasi agar sejajar rapi. */
@@ -112,8 +142,103 @@
   }
 }
 
-/* Hormati penonton yang mematikan animasi di pengaturan perangkatnya.
-   Sebagian orang pusing atau mual melihat gerakan. */
+/* ==================================================================
+   GERAKAN (KEPUTUSAN-DESAIN.md §6)
+   Prinsip: gerakan menjelaskan perpindahan, bukan menghibur.
+   Semua ease-out, 140–200 ms, kecuali disebut lain.
+   ================================================================== */
+
+/* Halaman dibuka: isi naik 8 px + muncul perlahan. */
+@keyframes masuk-naik {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Daftar → menonton: halaman baru masuk dari +12 px. */
+@keyframes masuk-geser {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Menu dibuka: panel turun dari −8 px. */
+@keyframes turun {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes muncul {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Sel di halaman pertama: membesar 1 → 1,035 → 1, terus-menerus. */
+@keyframes denyut-sel {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+/* Cincin kecil saat menunggu suara. */
+@keyframes putar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.anim-masuk-naik {
+  animation: masuk-naik 180ms ease-out both;
+}
+.anim-masuk-geser {
+  animation: masuk-geser 200ms ease-out both;
+}
+.anim-turun {
+  animation: turun 180ms ease-out both;
+}
+.anim-muncul {
+  animation: muncul 180ms ease-out both;
+}
+.anim-denyut-sel {
+  animation: denyut-sel 4.5s ease-in-out infinite;
+  transform-origin: center;
+}
+.anim-putar {
+  animation: putar 900ms linear infinite;
+}
+
+/* ------------------------------------------------------------------
+   Hormati penonton yang mematikan animasi di pengaturan perangkatnya.
+   Sebagian orang pusing atau mual melihat gerakan.
+   - Semua perpindahan jadi seketika.
+   - Denyut sel BERHENTI TOTAL, bukan dipercepat.
+   - Peredupan organel tetap terjadi (informasinya tidak boleh hilang),
+     hanya tanpa transisi.
+   ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -122,5 +247,9 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .anim-denyut-sel {
+    animation: none !important;
   }
 }
