@@ -1,4 +1,4 @@
-import { SEL } from "@/lib/warna";
+import { SEL, ronaGelap, ronaTerang } from "@/lib/warna";
 
 /**
  * SEL HEWAN — gambar utama pelajaran 0.2
@@ -6,6 +6,11 @@ import { SEL } from "@/lib/warna";
  * Seluruh sel digambar sebagai satu SVG. Bagian yang sedang dibicarakan
  * menyala penuh dengan warna tetapnya, sisanya meredup jadi abu-abu.
  * Inilah wujud nyata prinsip "warna sebagai alat belajar".
+ *
+ * Gaya "datar berisi" (KEPUTUSAN-DESAIN.md §3): organel bervolume diberi
+ * gradasi lembut SATU RONA — warna asli, satu tingkat lebih terang, satu
+ * tingkat lebih gelap — plus bayangan tipis. Tidak pernah mendekati putih
+ * atau hitam, sehingga warnanya tetap terbaca persis.
  *
  * Bentuknya sengaja tidak simetris — sel sungguhan tidak pernah berupa
  * lingkaran sempurna.
@@ -38,15 +43,30 @@ const LABEL: Record<string, { x: number; y: number; arah: "kiri" | "kanan" }> = 
   sentriol: { x: 448, y: 146, arah: "kanan" },
 };
 
+/** Organel yang mendapat gradasi satu rona dan bayangan tipis. */
+const BERVOLUME = [
+  "inti",
+  "nukleolus",
+  "mitokondria",
+  "lisosom",
+  "peroksisom",
+  "vakuola",
+  "golgi",
+  "sentriol",
+] as const;
+
+const BAYANG_TIPIS = "drop-shadow(0 1.5px 1.5px rgb(27 36 48 / 0.14))";
+
 export function SelHewan({ sorot = [], tampilkanLabel = true }: Props) {
   const adaSorot = sorot.length > 0;
   const menyala = (id: string) => !adaSorot || sorot.includes(id);
+  const bervolume = (id: string) => (BERVOLUME as readonly string[]).includes(id);
 
-  /** Gaya tiap bagian: menyala penuh atau meredup jadi abu-abu. */
+  /** Gaya tiap bagian: menyala penuh (dengan bayangan tipis) atau meredup jadi abu-abu. */
   const gaya = (id: string): React.CSSProperties => ({
     transition: "opacity 600ms ease, filter 600ms ease",
     opacity: menyala(id) ? 1 : 0.16,
-    filter: menyala(id) ? "none" : "grayscale(1)",
+    filter: menyala(id) ? (bervolume(id) ? BAYANG_TIPIS : "none") : "grayscale(1)",
   });
 
   return (
@@ -65,13 +85,20 @@ export function SelHewan({ sorot = [], tampilkanLabel = true }: Props) {
       <defs>
         {/* Isi sitoplasma dibuat bergradasi tipis agar tidak terasa datar */}
         <radialGradient id="isiSitoplasma" cx="42%" cy="38%" r="78%">
-          <stop offset="0%" stopColor={SEL.sitoplasma.warna} stopOpacity="0.55" />
-          <stop offset="100%" stopColor={SEL.sitoplasma.warna} stopOpacity="0.95" />
+          <stop offset="0%" stopColor={ronaTerang(SEL.sitoplasma.warna, 0.35)} />
+          <stop offset="100%" stopColor={SEL.sitoplasma.warna} />
         </radialGradient>
-        <radialGradient id="isiInti" cx="40%" cy="35%" r="75%">
-          <stop offset="0%" stopColor={SEL.inti.warna} stopOpacity="0.28" />
-          <stop offset="100%" stopColor={SEL.inti.warna} stopOpacity="0.46" />
-        </radialGradient>
+
+        {/* Gradasi satu rona untuk tiap organel bervolume:
+            terang di kiri-atas, warna asli di tengah, sedikit gelap di tepi. */}
+        {BERVOLUME.map((id) => (
+          <radialGradient key={id} id={`isi-${id}`} cx="36%" cy="30%" r="80%">
+            <stop offset="0%" stopColor={ronaTerang(SEL[id].warna)} />
+            <stop offset="55%" stopColor={SEL[id].warna} />
+            <stop offset="100%" stopColor={ronaGelap(SEL[id].warna)} />
+          </radialGradient>
+        ))}
+
         <clipPath id="batasInti">
           <ellipse cx="290" cy="250" rx="112" ry="101" />
         </clipPath>
@@ -85,12 +112,7 @@ export function SelHewan({ sorot = [], tampilkanLabel = true }: Props) {
         <path d={BENTUK_SEL} fill="url(#isiSitoplasma)" />
       </g>
       <g style={gaya("membranSel")}>
-        <path
-          d={BENTUK_SEL}
-          fill="none"
-          stroke={SEL.membranSel.warna}
-          strokeWidth="9"
-        />
+        <path d={BENTUK_SEL} fill="none" stroke={SEL.membranSel.warna} strokeWidth="9" />
         {/* Lapisan dalam — membran sel itu dwilapis lemak, bukan garis tunggal */}
         <path
           d={BENTUK_SEL}
@@ -164,8 +186,8 @@ export function SelHewan({ sorot = [], tampilkanLabel = true }: Props) {
           cx="136"
           cy="388"
           r="33"
-          fill={SEL.vakuola.warna}
-          fillOpacity="0.45"
+          fill="url(#isi-vakuola)"
+          fillOpacity="0.55"
           stroke={SEL.vakuola.warna}
           strokeWidth="3.4"
         />
@@ -178,7 +200,7 @@ export function SelHewan({ sorot = [], tampilkanLabel = true }: Props) {
 
       {/* ---- INTI SEL ---- */}
       <g style={gaya("inti")}>
-        <ellipse cx="290" cy="250" rx="112" ry="101" fill="url(#isiInti)" />
+        <ellipse cx="290" cy="250" rx="112" ry="101" fill="url(#isi-inti)" fillOpacity="0.42" />
       </g>
 
       {/* Kromatin digunting agar tidak bocor keluar dari inti */}
@@ -197,27 +219,12 @@ export function SelHewan({ sorot = [], tampilkanLabel = true }: Props) {
       </g>
 
       <g style={gaya("nukleolus")}>
-        <circle
-          cx="262"
-          cy="232"
-          r="31"
-          fill={SEL.nukleolus.warna}
-          fillOpacity="0.85"
-        />
-        <circle cx="253" cy="223" r="9" fill="#ffffff" fillOpacity="0.18" />
+        <circle cx="262" cy="232" r="31" fill="url(#isi-nukleolus)" />
       </g>
 
       {/* Membran inti digambar terakhir agar garisnya bersih di atas isi inti */}
       <g style={gaya("membranInti")}>
-        <ellipse
-          cx="290"
-          cy="250"
-          rx="112"
-          ry="101"
-          fill="none"
-          stroke={SEL.membranInti.warna}
-          strokeWidth="7"
-        />
+        <ellipse cx="290" cy="250" rx="112" ry="101" fill="none" stroke={SEL.membranInti.warna} strokeWidth="7" />
         <ellipse
           cx="290"
           cy="250"
@@ -323,8 +330,8 @@ function Mitokondria({
       <path
         d="M -50 -8 C -53 -28, -28 -35, -6 -30 C 18 -25, 48 -28, 50 -5
            C 52 18, 27 32, 2 27 C -23 22, -47 14, -50 -8 Z"
-        fill={SEL.mitokondria.warna}
-        fillOpacity="0.28"
+        fill="url(#isi-mitokondria)"
+        fillOpacity="0.5"
         stroke={SEL.mitokondria.warna}
         strokeWidth="4"
       />
@@ -361,14 +368,7 @@ function REKasar() {
   return (
     <g>
       {lapisan.map((d, i) => (
-        <path
-          key={i}
-          d={d}
-          fill="none"
-          stroke={SEL.reKasar.warna}
-          strokeWidth="11"
-          strokeLinecap="round"
-        />
+        <path key={i} d={d} fill="none" stroke={SEL.reKasar.warna} strokeWidth="11" strokeLinecap="round" />
       ))}
       {titikRibosom.map(([x, y], i) => (
         <circle key={i} cx={x} cy={y} r="4.4" fill={SEL.ribosom.warna} />
@@ -388,14 +388,7 @@ function REHalus() {
   return (
     <g>
       {tabung.map((d, i) => (
-        <path
-          key={i}
-          d={d}
-          fill="none"
-          stroke={SEL.reHalus.warna}
-          strokeWidth="10"
-          strokeLinecap="round"
-        />
+        <path key={i} d={d} fill="none" stroke={SEL.reHalus.warna} strokeWidth="10" strokeLinecap="round" />
       ))}
     </g>
   );
@@ -421,14 +414,7 @@ function Golgi({ x, y }: { x: number; y: number }) {
         [70, 18],
         [14, 44],
       ].map(([gx, gy], i) => (
-        <circle
-          key={i}
-          cx={gx}
-          cy={gy}
-          r={7 - i}
-          fill={SEL.golgi.warna}
-          fillOpacity="0.75"
-        />
+        <circle key={i} cx={gx} cy={gy} r={7 - i} fill="url(#isi-golgi)" />
       ))}
     </g>
   );
@@ -437,13 +423,7 @@ function Golgi({ x, y }: { x: number; y: number }) {
 function Lisosom({ x, y, r }: { x: number; y: number; r: number }) {
   return (
     <g transform={`translate(${x} ${y})`}>
-      <circle
-        r={r}
-        fill={SEL.lisosom.warna}
-        fillOpacity="0.32"
-        stroke={SEL.lisosom.warna}
-        strokeWidth="3.6"
-      />
+      <circle r={r} fill="url(#isi-lisosom)" fillOpacity="0.5" stroke={SEL.lisosom.warna} strokeWidth="3.6" />
       {/* Butiran enzim pencerna di dalamnya */}
       {[
         [-7, -6],
@@ -451,13 +431,7 @@ function Lisosom({ x, y, r }: { x: number; y: number; r: number }) {
         [-2, 8],
         [9, 7],
       ].map(([bx, by], i) => (
-        <circle
-          key={i}
-          cx={bx * (r / 27)}
-          cy={by * (r / 27)}
-          r={3 * (r / 27)}
-          fill={SEL.lisosom.warna}
-        />
+        <circle key={i} cx={bx * (r / 27)} cy={by * (r / 27)} r={3 * (r / 27)} fill={SEL.lisosom.warna} />
       ))}
     </g>
   );
@@ -466,13 +440,7 @@ function Lisosom({ x, y, r }: { x: number; y: number; r: number }) {
 function Peroksisom({ x, y, r }: { x: number; y: number; r: number }) {
   return (
     <g transform={`translate(${x} ${y})`}>
-      <circle
-        r={r}
-        fill={SEL.peroksisom.warna}
-        fillOpacity="0.34"
-        stroke={SEL.peroksisom.warna}
-        strokeWidth="3.4"
-      />
+      <circle r={r} fill="url(#isi-peroksisom)" fillOpacity="0.5" stroke={SEL.peroksisom.warna} strokeWidth="3.4" />
       {/* Inti kristal yang khas pada peroksisom */}
       <rect
         x={-r * 0.36}
@@ -492,51 +460,15 @@ function Sentriol({ x, y }: { x: number; y: number }) {
     <g transform={`translate(${x} ${y})`}>
       {/* Dua silinder yang selalu tegak lurus satu sama lain */}
       <g transform="rotate(-12)">
-        <rect
-          x="-26"
-          y="-9"
-          width="52"
-          height="18"
-          rx="4"
-          fill={SEL.sentriol.warna}
-          fillOpacity="0.35"
-          stroke={SEL.sentriol.warna}
-          strokeWidth="3"
-        />
+        <rect x="-26" y="-9" width="52" height="18" rx="4" fill="url(#isi-sentriol)" fillOpacity="0.5" stroke={SEL.sentriol.warna} strokeWidth="3" />
         {[-18, -9, 0, 9, 18].map((lx) => (
-          <line
-            key={lx}
-            x1={lx}
-            y1="-9"
-            x2={lx}
-            y2="9"
-            stroke={SEL.sentriol.warna}
-            strokeWidth="2.2"
-          />
+          <line key={lx} x1={lx} y1="-9" x2={lx} y2="9" stroke={SEL.sentriol.warna} strokeWidth="2.2" />
         ))}
       </g>
       <g transform="translate(6 24) rotate(78)">
-        <rect
-          x="-24"
-          y="-8"
-          width="48"
-          height="16"
-          rx="4"
-          fill={SEL.sentriol.warna}
-          fillOpacity="0.35"
-          stroke={SEL.sentriol.warna}
-          strokeWidth="3"
-        />
+        <rect x="-24" y="-8" width="48" height="16" rx="4" fill="url(#isi-sentriol)" fillOpacity="0.5" stroke={SEL.sentriol.warna} strokeWidth="3" />
         {[-16, -8, 0, 8, 16].map((lx) => (
-          <line
-            key={lx}
-            x1={lx}
-            y1="-8"
-            x2={lx}
-            y2="8"
-            stroke={SEL.sentriol.warna}
-            strokeWidth="2.2"
-          />
+          <line key={lx} x1={lx} y1="-8" x2={lx} y2="8" stroke={SEL.sentriol.warna} strokeWidth="2.2" />
         ))}
       </g>
     </g>
@@ -562,22 +494,8 @@ function LabelBagian({
   return (
     <g style={{ pointerEvents: "none" }}>
       <circle cx={x} cy={y} r="5" fill={warna} />
-      <line
-        x1={x}
-        y1={y}
-        x2={arah === "kanan" ? tx : tx + lebar}
-        y2={y}
-        stroke={warna}
-        strokeWidth="2"
-      />
-      <rect
-        x={tx}
-        y={y - 15}
-        width={lebar}
-        height="30"
-        rx="15"
-        fill={warna}
-      />
+      <line x1={x} y1={y} x2={arah === "kanan" ? tx : tx + lebar} y2={y} stroke={warna} strokeWidth="2" />
+      <rect x={tx} y={y - 15} width={lebar} height="30" rx="15" fill={warna} />
       <text
         x={tx + lebar / 2}
         y={y + 5}

@@ -184,12 +184,33 @@
   }
 }
 
+/* Menu ditutup: kebalikannya, lebih singkat. */
+@keyframes naik-hilang {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
 @keyframes muncul {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes hilang {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 
@@ -220,8 +241,14 @@
 .anim-turun {
   animation: turun 180ms ease-out both;
 }
+.anim-naik-hilang {
+  animation: naik-hilang 140ms ease-out both;
+}
 .anim-muncul {
   animation: muncul 180ms ease-out both;
+}
+.anim-hilang {
+  animation: hilang 140ms ease-out both;
 }
 .anim-denyut-sel {
   animation: denyut-sel 4.5s ease-in-out infinite;

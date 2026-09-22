@@ -93,6 +93,13 @@ export function formatDurasi(detik: number): string {
   return `${menit} mnt ${sisa} dtk`;
 }
 
+/** Versi ringkas untuk baris daftar: "7 mnt", "12 mnt", "45 dtk". */
+export function formatDurasiRingkas(detik: number): string {
+  const menit = Math.round(detik / 60);
+  if (menit === 0) return `${Math.round(detik)} dtk`;
+  return `${menit} mnt`;
+}
+
 /** Ubah detik jadi penanda waktu 0:00 untuk pemutar. */
 export function jam(detik: number): string {
   const m = Math.floor(detik / 60);
