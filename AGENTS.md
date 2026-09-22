@@ -46,20 +46,53 @@ npx tsc --noEmit # periksa tipe
 Kalau `node` tidak dikenali di shell baru:
 `$env:Path = "$env:LOCALAPPDATA\Programs\nodejs;$env:APPDATA\npm;$env:Path"`
 
+## Desain: sumber kebenarannya KEPUTUSAN-DESAIN.md
+
+Seluruh keputusan tampilan ada di `KEPUTUSAN-DESAIN.md` (hasil brainstorming Nely
+dengan Claude Design, 22 Sep 2026). Kalau kode dan berkas itu bertentangan, berkas
+itu yang menang. Intinya:
+
+- **Antarmuka tanpa warna** — kertas dan tinta. Tidak ada tombol berwarna, tidak ada
+  aksen. Satu-satunya warna antarmuka adalah tujuh warna tingkat (`src/lib/tingkat.ts`),
+  dan itu pun hanya sebagai batang 4 px, bingkai 1,5 px, label mono, titik, dan logo.
+- **Panggung animasi selalu kertas terang** (`--panggung`) walau mode gelap.
+- **Halaman pertama muat satu layar HP**, tanpa paragraf. Tujuh baris tingkat membuka
+  di tempat. Alur: buka → pilih → tonton.
+- **3D hanya untuk enam pelajaran** yang bentuk ruangnya diajarkan (§3). Material
+  toon tanpa kilau, dimuat dinamis, ada tombol "Pakai gambar datar".
+- **Batas kata mengikat** (§8.1): subtitel ≤ 45 kata, judul pelajaran ≤ 8 kata, dst.
+- HP di atas laptop, selalu.
+
 ## Susunan berkas
 
 ```
 src/
-├── lib/warna.ts            SUMBER KEBENARAN warna entitas biologi
+├── lib/warna.ts            SUMBER KEBENARAN warna entitas biologi (30 entitas)
+├── lib/tingkat.ts          tujuh warna tingkat — satu-satunya warna antarmuka
 ├── lib/tipe.ts             bentuk data Pelajaran dan Adegan
-├── lib/daftar-pelajaran.ts daftar pelajaran siap + peta kurikulum Level 0-6
+├── lib/kurikulum.ts        peta Level 0-6, RINGAN (tanpa naskah) — dipakai bilah atas
+├── lib/daftar-pelajaran.ts pelajaran siap + naskah lengkap — hanya untuk halaman pelajaran
+├── lib/jendela.ts          membaca alamat/lebar layar/tema lewat useSyncExternalStore
+├── lib/tema.ts, tampilan3d.ts  pilihan penonton yang disimpan di perangkat
 ├── konten/                 naskah pelajaran (satu berkas per pelajaran)
 ├── animasi/                komponen SVG per topik
-├── components/             Pemutar Pelajaran, kepala, kaki, lencana
+├── animasi/tiga-dimensi/   SelHewan3D (three.js) + Panggung3D (pemuat dinamis)
+├── components/             Kepala, Logo, DaftarTingkat, PemutarPelajaran, Laci, ...
 └── app/                    halaman
+KEPUTUSAN-DESAIN.md         SUMBER KEBENARAN desain — yang menang kalau bertentangan
 KURIKULUM.md                peta seluruh materi — wilayah tinjauan Nely
 PROGRESS.md                 catatan progres untuk dibaca Nely
 ```
+
+## Pola React yang dipakai (lint `react-hooks/set-state-in-effect` aktif)
+
+- Jangan `setState` langsung di badan `useEffect`. Untuk membaca keadaan browser
+  (alamat, lebar layar, tema, localStorage) pakai hook di `src/lib/jendela.ts`
+  yang berbasis `useSyncExternalStore`.
+- Keadaan turunan dari props/alamat: simpan "pilihan pengguna" (`undefined` = belum
+  menyentuh) dan turunkan nilai akhirnya saat render — lihat `DaftarTingkat.tsx`.
+- Perpindahan adegan pemutar diputuskan di dalam detak `requestAnimationFrame`,
+  bukan lewat efek yang mengawasi `waktu`.
 
 ## Cara menambah pelajaran baru
 

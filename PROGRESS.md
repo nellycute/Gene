@@ -5,6 +5,56 @@ membingungkan, itu kesalahan penulisnya, bukan kesalahanmu.
 
 ---
 
+## 22 September 2026 — Desain baru diterapkan
+
+Seluruh sepuluh butir daftar kerja di `KEPUTUSAN-DESAIN.md` §10 sudah dikerjakan
+dan tersimpan. Website sekarang tampil persis mengikuti keputusan itu.
+
+### Yang berubah dan bisa kamu lihat
+
+| Bagian | Sekarang |
+|---|---|
+| Warna halaman | Kertas krem dan tinta. Tidak ada lagi tombol toska. |
+| Warna biologi | 25 warna dicerahkan; 5 basa nitrogen dibiarkan |
+| Logo | Tujuh strip pelangi + "Ruang Genetika"; heliks dihapus |
+| Halaman pertama | Muat satu layar HP: sel kecil berdenyut + tujuh baris tingkat |
+| Memilih materi | Baris tingkat membuka di tempat, bingkai warna tingkat |
+| Menu di HP | Tombol tiga garis → panel turun; halaman di belakang meredup |
+| Layar menonton | Dua kolom di laptop; subtitel di bawah panggung; tiga laci |
+| Mode gelap | Halaman gelap, **panggung tetap terang** |
+| Tombol kembali | `← Fondasi Sel` — kembali ke daftar dengan tingkatnya sudah terbuka |
+| Gambar sel | Gradasi lembut satu rona + bayangan tipis ("datar berisi") |
+| Adegan penutup 0.2 | **Sel 3D yang bisa diputar**, dengan tombol "Pakai gambar datar" |
+| Gerakan | Semua 140–200 ms; berhenti total kalau HP-mu menyalakan "kurangi gerakan" |
+
+### ⚠️ Yang butuh keputusanmu
+
+1. **Subtitel melebihi batas 45 kata.** Aturan §8.1 membatasi satu adegan ≤ 45 kata,
+   ≤ 3 baris di HP. Naskah 0.2 sekarang rata-rata 55–70 kata per adegan (di HP jadi
+   6–9 baris). Ini naskah biologi, jadi aku **tidak memotongnya sendiri**. Pilihan:
+   (a) kamu pangkas saat meninjau, (b) aku pecah adegan panjang jadi dua, atau
+   (c) batas 45 kata dilonggarkan.
+2. **Tiga jingga berdekatan** — mitokondria, RNA, dan basa T. Lihat kotak "Perlu
+   ditinjau" di halaman Peta Warna dan putuskan apakah jaraknya cukup.
+3. **43, bukan 42.** Kurikulum berisi 43 pelajaran. Angka itu tidak lagi ditulis di
+   halaman depan, jadi tidak ada yang salah tampil — tapi kalau kamu ingin
+   membulatkan ke 42, satu pelajaran harus dilebur.
+4. **Berkas `Tiga Layar.dc.html` tidak ada di komputermu.** Aku membangun dari
+   tulisan §5, yang untungnya sangat rinci. Kalau kamu masih punya berkasnya,
+   simpan ke folder project — aku cocokkan ulang detail yang mungkin meleset.
+
+### Yang sengaja belum / tidak bisa
+
+- **Animasi halaman lama "menggeser keluar"** (§6 baris "Daftar → menonton") tidak
+  aku buat. Teknologinya masih eksperimental di Next.js dan berisiko rusak; halaman
+  baru tetap masuk dari kanan seperti yang direncanakan. Kalau nanti stabil, ditambah.
+- **3D untuk lima pelajaran lain** (1.1, 0.4, 1.6, 4.6, 6.1) menunggu pelajarannya
+  sendiri dibuat. Kerangkanya sudah ada; tinggal dipakai.
+- **Narasi suara** masih menunggu naskah selesai kamu tinjau — alasannya sama seperti
+  sebelumnya: kalau naskah berubah setelah suara dibuat, pekerjaannya terbuang.
+
+---
+
 ## 22 September 2026 — Hari pertama
 
 ### Yang sudah jadi dan bisa kamu lihat
