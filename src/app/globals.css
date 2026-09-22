@@ -1,26 +1,126 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==================================================================
+   RUANG GENETIKA — warna antarmuka
+   ==================================================================
+   Berkas ini hanya mengatur warna *halaman* (latar, teks, garis).
+   Warna entitas biologi (mitokondria, DNA, basa) ada di src/lib/warna.ts
+   dan tidak boleh ditulis di sini.
+
+   Nama-nama di bawah dipakai sebagai kelas Tailwind lewat tailwind.config.ts:
+   --latar menjadi bg-latar, --teks-lembut menjadi text-teks-lembut, dan
+   seterusnya. Mengganti satu nilai di sini mengubah seluruh situs sekaligus.
+
+   Latar terang memakai krem hangat, bukan putih menyala — lebih nyaman
+   untuk membaca lama dan membuat warna organel terlihat lebih jernih.
+   ================================================================== */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --latar: #faf7f2;
+  --latar-lembut: #f2ece2;
+  --permukaan: #ffffff;
+  --teks: #1b2430;
+  --teks-lembut: #5c6878;
+  --teks-samar: #8b97a6;
+  --garis: #e6ded1;
+  --garis-tegas: #d4c9b8;
+  --aksen: #177e89;
+  --aksen-lembut: #e0f0f1;
+  --aksen-teks: #0f5b64;
+  --sorot: #fff8e6;
+  --bayang: 0 1px 2px rgb(27 36 48 / 0.06), 0 8px 24px rgb(27 36 48 / 0.06);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not(.terang) {
+    --latar: #10151c;
+    --latar-lembut: #171e28;
+    --permukaan: #1a222d;
+    --teks: #e9eef4;
+    --teks-lembut: #a3b0be;
+    --teks-samar: #7b8898;
+    --garis: #2a3442;
+    --garis-tegas: #3a4757;
+    --aksen: #4fc3d1;
+    --aksen-lembut: #14323a;
+    --aksen-teks: #8fdfe9;
+    --sorot: #2a2416;
+    --bayang: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root.gelap {
+  --latar: #10151c;
+  --latar-lembut: #171e28;
+  --permukaan: #1a222d;
+  --teks: #e9eef4;
+  --teks-lembut: #a3b0be;
+  --teks-samar: #7b8898;
+  --garis: #2a3442;
+  --garis-tegas: #3a4757;
+  --aksen: #4fc3d1;
+  --aksen-lembut: #14323a;
+  --aksen-teks: #8fdfe9;
+  --sorot: #2a2416;
+  --bayang: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
+}
+
+@layer base {
+  html {
+    color-scheme: light dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--latar);
+    color: var(--teks);
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Urutan keyboard harus selalu terlihat jelas — sebagian penonton
+     menjelajah tanpa tetikus. */
+  :focus-visible {
+    outline: 3px solid var(--aksen);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Panel buram tembus pandang. Dibuat sebagai kelas sendiri karena
+     warna kita berupa variabel CSS, sehingga penanda transparansi
+     bawaan Tailwind (misal bg-latar/85) tidak bisa dipakai. */
+  .kaca {
+    background: color-mix(in srgb, var(--permukaan) 90%, transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  .kaca-latar {
+    background: color-mix(in srgb, var(--latar) 86%, transparent);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Deret basa DNA/RNA selalu memakai huruf monospasi agar sejajar rapi. */
+  .urutan {
+    font-family: var(--font-mono-kode), ui-monospace, monospace;
+    letter-spacing: 0.08em;
+    font-variant-ligatures: none;
+  }
+}
+
+/* Hormati penonton yang mematikan animasi di pengaturan perangkatnya.
+   Sebagian orang pusing atau mual melihat gerakan. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
