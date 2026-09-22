@@ -5,6 +5,67 @@ membingungkan, itu kesalahan penulisnya, bukan kesalahanmu.
 
 ---
 
+## 22 September 2026 — Level 0 lengkap: lima pelajaran
+
+Empat pelajaran baru selesai beserta gambar animasinya masing-masing. Level 0
+sekarang utuh: **5 pelajaran, 52 adegan, ± 21 menit tayang.**
+
+| # | Pelajaran | Adegan | Gambar utama |
+|---|---|---|---|
+| 0.1 | Sel: Unit Terkecil Kehidupan | 9 · 3:46 | Perbesaran tubuh → jaringan → sel → inti → DNA |
+| 0.2 | Bagian-bagian Sel | 16 · 7:21 | (sudah ada) |
+| 0.3 | Inti Sel | 9 · 3:47 | Potongan inti, pori diperbesar, nukleosom |
+| 0.4 | Kromosom, Kariotipe, Diploid–Haploid | 10 · 4:22 | Lima tingkat pemadatan, kariotipe 23 pasang, **kromosom 3D** |
+| 0.5 | Mitosis dan Meiosis | 14 · 5:39 | Tiap fase digambar; pindah silang tampak sebagai tukar warna |
+
+Semua naskah baru sudah mengikuti batas **≤ 45 kata per adegan** (§8.1) — jadi
+hanya naskah 0.2 yang masih melebihi batas itu, menunggu keputusanmu.
+
+### ⚠️ Yang paling butuh matamu — angka dan klaim yang kupakai
+
+Aku menulis semuanya dari rujukan baku, tapi kamu ahlinya. Ini daftar hal yang
+paling mungkin perlu dikoreksi:
+
+**0.1**
+- 37 triliun sel (Bianconi 2013). Tebal rambut 80 µm (kisaran 50–120). Sel darah
+  merah 8 µm. Bakteri 2 µm. Sel hewan "umumnya 20 µm".
+- Perbandingan skala digambar **sesuai skala** (1 µm = 3 piksel) — tolong cek terasa
+  masuk akal atau tidak.
+
+**0.3**
+- Lebar inti 6 µm, DNA 2 meter, jadi "≈ 330.000 kali". Pori inti "ribuan".
+- Nukleosom: "DNA melilit ± 1,7 kali" (147 pasang basa).
+- Aku menyebut eukromatin "gennya aktif dibaca" dan heterokromatin "dibungkam" —
+  penyederhanaan yang lazim, tapi kalau menurutmu terlalu kasar, katakan.
+
+**0.4**
+- Lima tingkat pemadatan: 2 nm → 11 nm → 30 nm → 300 nm → 700 nm, total
+  "± 10.000 kali". **Catatan penting:** keberadaan serat 30 nm di dalam sel hidup
+  masih diperdebatkan. Aku tetap memakainya karena masih jadi model baku di buku
+  ajar — tapi ini tepat untuk laci "Pelajari lebih dalam" sebagai catatan perdebatan.
+- X "± 900 gen", Y "± 60 gen" (gen penyandi protein).
+- Kariotipe: pasangan 3 yang kusorot sebagai contoh homolog; ukuran relatif tiap
+  pasang hanya perkiraan kasar.
+
+**0.5**
+- Sel khayal 2n = 4 — dinyatakan terang-terangan di adegan pertama.
+- "Sejak detik ini masing-masing kromatid disebut kromosom" (anafase).
+- Interfase "± 90% waktu" siklus.
+- Aku menggambar pindah silang hanya pada kromatid dalam (bukan luar) — ini
+  penyederhanaan gambar, bukan klaim biologi.
+
+### Keputusan warna baru — boleh kamu batalkan
+
+Untuk menggambar pasangan homolog dan pindah silang sebagai **tukar warna**, aku
+perlu dua warna: kromosom dari **ibu memakai ungu kromatin** (karena kromosom
+memang kromatin), kromosom dari **ayah memakai toska** (`#1EA7A0`). Toska ini
+mirip retikulum endoplasma kasar, tapi keduanya tidak pernah tampil di adegan yang
+sama, dan label "dari ayah" selalu menyertainya. Ada juga tiga warna baru: histon
+(coklat), sentromer (ungu sangat tua), telomer (merah muda). Semuanya tampil di
+halaman Peta Warna.
+
+---
+
 ## 22 September 2026 — Desain baru diterapkan
 
 Seluruh sepuluh butir daftar kerja di `KEPUTUSAN-DESAIN.md` §10 sudah dikerjakan

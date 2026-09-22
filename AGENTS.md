@@ -97,11 +97,20 @@ PROGRESS.md                 catatan progres untuk dibaca Nely
 ## Cara menambah pelajaran baru
 
 1. Buat berkas naskah di `src/konten/<nomor>-<slug>.ts` mengikuti bentuk `Pelajaran`.
-2. Kalau butuh gambar baru, buat komponen di `src/animasi/`. Ambil semua warna dari
-   `src/lib/warna.ts`. Beri tiap bagian id yang sama dengan id entitasnya.
-3. Daftarkan di `src/lib/daftar-pelajaran.ts`: tambahkan ke `PELAJARAN_SIAP`, lalu isi
-   `slug` pada butir kurikulum yang sesuai.
-4. Biarkan `draf: true` sampai Nely selesai meninjau.
+   Tiap adegan ≤ 45 kata. Isi `tahap` untuk memilih gambar yang ditampilkan.
+2. Kalau butuh gambar baru, buat komponen di `src/animasi/` dengan props
+   `{ tahap?, sorot? }`, lalu daftarkan kuncinya di `KunciAnimasi` (`src/lib/tipe.ts`)
+   dan di `ANIMASI` (`src/animasi/daftar.tsx`). Komponen 3D (hanya enam pelajaran §3)
+   dibungkus `next/dynamic` di daftar yang sama. Ambil semua warna dari
+   `src/lib/warna.ts`; pakai potongan bersama di `src/animasi/bagian.tsx`.
+3. **Bulatkan semua koordinat hasil cos/sin/pembagian** dengan `bulat()` dari
+   `bagian.tsx` — kalau tidak, server dan browser berbeda di digit ke-13 dan React
+   melempar peringatan hidrasi.
+4. Daftarkan di `src/lib/daftar-pelajaran.ts` (`PELAJARAN_SIAP`) dan isi `slug` pada
+   butir yang sesuai di `src/lib/kurikulum.ts`.
+5. Biarkan `draf: true` sampai Nely selesai meninjau.
+6. Periksa tiap tahap gambar di browser: lencana panggung menutupi pojok kiri-atas
+   dan kanan-atas (± 250 × 70 satuan viewBox) — jangan taruh judul atau label di sana.
 
 ## Gaya penulisan kode
 
