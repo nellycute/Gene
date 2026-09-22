@@ -144,6 +144,7 @@ export const bagianBagianSel: Pelajaran = {
       tajuk: "Satu sel, satu sistem",
       durasi: 30,
       sorot: [],
+      tampilan: "3d",
       narasi:
         "Sekarang lihat semuanya sekaligus. Dari membran sel di tepi, sampai kromatin di dalam inti — semua bekerja sebagai satu sistem yang tersambung. Ingat baik-baik warnanya, karena warna-warna ini tidak akan berubah. Ungu akan selalu berarti inti sel, jingga akan selalu berarti mitokondria, sampai pelajaran terakhir nanti. Di pelajaran berikutnya kita masuk lebih dalam ke inti sel — dan mulai membuka benang DNA itu sendiri.",
     },

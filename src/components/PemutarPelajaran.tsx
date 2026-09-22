@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SelHewan } from "@/animasi/SelHewan";
+import { Panggung3D, muatSel3D } from "@/animasi/tiga-dimensi/Panggung3D";
 import { Laci } from "./Laci";
 import { SEL, SEMUA_ENTITAS } from "@/lib/warna";
 import { warnaTingkat } from "@/lib/tingkat";
@@ -65,6 +66,15 @@ export function PemutarPelajaran({
 
   const sekarang = adegan[indeks];
   const pakaiSuara = suara !== "tanpa" && Boolean(sekarang.audio);
+
+  /* Mesin 3D mulai diunduh begitu pelajaran dibuka — hanya kalau pelajaran ini
+     memang punya adegan 3D — supaya sudah siap sebelum adegannya tiba. */
+  const ada3D = adegan.some((a) => a.tampilan === "3d");
+  useEffect(() => {
+    if (!ada3D) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    void muatSel3D();
+  }, [ada3D]);
 
   /* ---------- jalannya waktu TANPA suara: pewaktu ----------
      Perpindahan adegan diputuskan di dalam detak, bukan lewat efek terpisah. */
@@ -245,7 +255,7 @@ export function PemutarPelajaran({
         {/* ---- panggung: selalu kertas terang, di kedua mode ---- */}
         <div className="relative overflow-hidden rounded-[13px] bg-panggung">
           <div className="aspect-[800/570] w-full">
-            <SelHewan sorot={sorot} />
+            {sekarang.tampilan === "3d" ? <Panggung3D /> : <SelHewan sorot={sorot} />}
           </div>
 
           <div className="pointer-events-none absolute left-3 top-3 flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-[13px] font-semibold text-[#1b2430] shadow-sm">

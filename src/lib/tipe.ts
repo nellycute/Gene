@@ -32,6 +32,13 @@ export type Adegan = {
   /** Id entitas dari src/lib/warna.ts yang disorot pada adegan ini. */
   sorot?: string[];
 
+  /**
+   * "3d" = adegan ini memakai tampilan tiga dimensi yang bisa diputar.
+   * Hanya untuk enam pelajaran yang bentuk ruangnya memang diajarkan
+   * (KEPUTUSAN-DESAIN.md §3). Mesin 3D dimuat hanya saat pelajaran dibuka.
+   */
+  tampilan?: "3d";
+
   /** Berkas narasi suara, relatif terhadap /public. Diisi menyusul. */
   audio?: string;
 };
