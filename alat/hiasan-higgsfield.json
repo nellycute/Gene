@@ -1,0 +1,79 @@
+{
+  "tanggal": "2026-09-25",
+  "referensi": "https://claude.ai/artifact/LJXKenTQGWHxwSzqNBC78f",
+  "model": "GPT Image 2.5",
+  "variant": "flare",
+  "quality": "low",
+  "resolution": "1k",
+  "background": "transparent",
+  "variasiPerGambar": 4,
+  "jumlahGenerasi": 12,
+  "kreditPerGenerasi": 0.25,
+  "totalKredit": 3,
+  "batasKredit": 30,
+  "saldoSebelum": 558.25,
+  "saldoSesudah": 555.25,
+  "catatan": "Hanya hiasan beranda; gambar materi tetap terprogram. Gambar dipilih secara visual, lalu dikemas menjadi WebP tanpa mengubah dimensi. Gerak menggunakan CSS, tanpa biaya video.",
+  "gambar": [
+    {
+      "berkas": "public/hiasan/sambutan.webp",
+      "index": 2,
+      "job_id": "06668f2a-8304-4347-adc8-69bd9f0ae57d",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FNjzSreW9dmxd9n9gCmjRUdCy1/hf_20260925_145605_06668f2a-8304-4347-adc8-69bd9f0ae57d.png",
+      "params": {
+        "model": "gpt_image_2_5",
+        "variant": "flare",
+        "quality": "low",
+        "resolution": "1k",
+        "background": "transparent",
+        "count": 1,
+        "use_unlim": false,
+        "aspect_ratio": "21:9",
+        "prompt": "Decorative illustration for the Indonesian genetics education website Ruang Genetika. Soft 3D cel shading: three flat tones per surface, each object outlined with a thin darker shade of its own color, clean modern biology-textbook illustration. Calm, friendly, generous negative space, no photorealism. All biological objects must be coherent. Fully transparent alpha background with no opaque canvas, no gradient, no vignette, designed to sit over warm off-white paper #FBF9F5. Subtle soft shadows directly under objects only. No text, letters, numbers, labels, logos, watermarks, people, hands, microscope, glow, neon. Wide 21:9 welcome banner. ALL objects are arranged on the RIGHT THIRD only, left two thirds completely empty and transparent for an existing headline. An animal cell cut open like a fruit with one wedge removed: purple nucleus (#8A2FD4), lighter nuclear envelope (#B569F0), dark purple nucleolus (#5E1FA3), orange mitochondria (#F4511E) with folded inner cristae, teal rough endoplasmic reticulum (#009898), golden Golgi (#FFB300), tiny pink ribosome dots (#E8197A), deep-blue cell membrane (#1565B8), pale-blue cytoplasm (#D6EDF7). A RIGHT-HANDED DNA double helix, front strands slope upward to the right like /; blue backbones (#1372D6), paired rungs green (#009E73) with orange (#D55E00), or amber (#E69F00) with blue (#0072B2). Two X-shaped chromosomes, purple (#A94FE8) and teal (#1EA7A0), each exactly two sister chromatids joined at one small centromere, four arms total, pink telomere tips (#F48FB1), no extra arms. Objects float as a cohesive small still life with plenty of clear margin."
+      }
+    },
+    {
+      "berkas": "public/hiasan/pita-kiri.webp",
+      "index": 6,
+      "job_id": "16cfa239-999f-441a-8283-4bc33adc0112",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FNjzSreW9dmxd9n9gCmjRUdCy1/hf_20260925_145606_16cfa239-999f-441a-8283-4bc33adc0112.png",
+      "params": {
+        "model": "gpt_image_2_5",
+        "variant": "flare",
+        "quality": "low",
+        "resolution": "1k",
+        "background": "transparent",
+        "count": 1,
+        "use_unlim": false,
+        "aspect_ratio": "9:16",
+        "prompt": "Decorative illustration for the Indonesian genetics education website Ruang Genetika. Soft 3D cel shading: three flat tones per surface, each object outlined with a thin darker shade of its own color, clean modern biology-textbook illustration. Calm, friendly, generous negative space, no photorealism. All biological objects must be coherent. Fully transparent alpha background with no opaque canvas, no gradient, no vignette, designed to sit over warm off-white paper #FBF9F5. Subtle soft shadows directly under objects only. No text, letters, numbers, labels, logos, watermarks, people, hands, microscope, glow, neon. Tall 9:16 left decorative side panel, generous clear space, 10% empty margin on ALL sides; objects never touch edges. Top: An animal cell cut open like a fruit with one wedge removed: purple nucleus (#8A2FD4), lighter nuclear envelope (#B569F0), dark purple nucleolus (#5E1FA3), orange mitochondria (#F4511E) with folded inner cristae, teal rough endoplasmic reticulum (#009898), golden Golgi (#FFB300), tiny pink ribosome dots (#E8197A), deep-blue cell membrane (#1565B8), pale-blue cytoplasm (#D6EDF7). Middle: two floating orange mitochondria (#F4511E) with folded inner cristae and a few pink ribosome dots. Bottom: blue DNA (#1372D6) visibly wrapped around brown histone beads (#A0785A), beads on a string. Balanced airy vertical arrangement."
+      }
+    },
+    {
+      "berkas": "public/hiasan/pita-kanan.webp",
+      "index": 10,
+      "job_id": "d3e2c804-ecab-43c9-b81b-523b2af3d7ca",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3FNjzSreW9dmxd9n9gCmjRUdCy1/hf_20260925_145617_d3e2c804-ecab-43c9-b81b-523b2af3d7ca.png",
+      "params": {
+        "model": "gpt_image_2_5",
+        "variant": "flare",
+        "quality": "low",
+        "resolution": "1k",
+        "background": "transparent",
+        "count": 1,
+        "use_unlim": false,
+        "aspect_ratio": "9:16",
+        "prompt": "Decorative illustration for the Indonesian genetics education website Ruang Genetika. Soft 3D cel shading: three flat tones per surface, each object outlined with a thin darker shade of its own color, clean modern biology-textbook illustration. Calm, friendly, generous negative space, no photorealism. All biological objects must be coherent. Fully transparent alpha background with no opaque canvas, no gradient, no vignette, designed to sit over warm off-white paper #FBF9F5. Subtle soft shadows directly under objects only. No text, letters, numbers, labels, logos, watermarks, people, hands, microscope, glow, neon. Tall 9:16 right decorative side panel, generous clear space, 10% empty margin on ALL sides; objects never touch edges. A RIGHT-HANDED DNA double helix, front strands slope upward to the right like /; blue backbones (#1372D6), paired rungs green (#009E73) with orange (#D55E00), or amber (#E69F00) with blue (#0072B2). This tall helix rises vertically. Around it float Two X-shaped chromosomes, purple (#A94FE8) and teal (#1EA7A0), each exactly two sister chromatids joined at one small centromere, four arms total, pink telomere tips (#F48FB1), no extra arms. Near bottom an open green pea pod with a few round yellow and green peas, a nod to Gregor Mendel. Balanced airy vertical arrangement."
+      }
+    }
+  ]
+}

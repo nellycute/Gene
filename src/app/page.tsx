@@ -14,12 +14,16 @@ import { RINGKASAN_SIAP } from "@/lib/daftar-pelajaran";
  */
 export default function Beranda() {
   return (
-    <div className="mx-auto max-w-4xl px-4 pb-6 pt-4 sm:px-6 sm:pt-8">
+    <div className="beranda relative mx-auto max-w-4xl px-4 pb-3 pt-4 sm:px-6">
+      {/* Hiasan di luar jalur baca; CSS baru mengunduh gambarnya di layar lebar. */}
+      <div aria-hidden="true" className="hiasan-sisi hiasan-kiri"><div /></div>
+      <div aria-hidden="true" className="hiasan-sisi hiasan-kanan"><div /></div>
       {/* ---------- blok sambutan ---------- */}
-      <section className="anim-masuk-naik mb-4 flex items-center gap-3.5 sm:mb-7 sm:gap-6">
+      <section className="sambutan-beranda anim-masuk-naik relative mb-4 flex items-center gap-3.5 sm:gap-6">
+        <div aria-hidden="true" className="hiasan-banner" />
         {/* bola sel yang melayang — gambar yang sama dengan ikon aplikasi (Nely, 25 Sep 2026).
             Gambar diam 23 KB, bukan mesin 3D: halaman pertama harus tetap ringan. */}
-        <div className="w-[84px] shrink-0 sm:w-[104px]" aria-hidden="true">
+        <div className="w-[84px] shrink-0 sm:w-[104px] md:hidden" aria-hidden="true">
           <Image
             src="/ikon/sel-melayang.webp"
             alt=""
@@ -31,13 +35,17 @@ export default function Beranda() {
           />
           <div className="anim-bayang-melayang mx-auto mt-1 h-2 w-[68%] rounded-[50%] bg-[radial-gradient(closest-side,rgb(27_36_48/0.3),transparent)]" />
         </div>
-        <div className="min-w-0">
+        <div className="teks-sambutan relative min-w-0">
           <h1 className="text-[16px] font-extrabold leading-[1.2] tracking-[-0.01em] sm:text-[26px] sm:leading-[1.15]">
             Genetika lewat warna yang tak berubah.
           </h1>
           <p className="mt-1 truncate text-[12.5px] text-teks-lembut sm:mt-2 sm:text-[14px]">
             Sel sampai sequencing. Gratis.
           </p>
+          <label className="kendali-hiasan mt-2 inline-flex cursor-pointer items-center gap-1.5 text-[11px] text-teks-lembut">
+            <input id="jeda-hiasan" type="checkbox" className="h-3 w-3 accent-[var(--teks)]" />
+            Jeda hiasan
+          </label>
         </div>
       </section>
 

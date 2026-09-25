@@ -79,7 +79,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: skripTema }} />
       </head>
-      <body className="min-h-full flex flex-col bg-latar text-teks">
+      <body className="isolate min-h-full flex flex-col bg-latar text-teks">
         {/* hiasan samar di bawah semua menu (Nely, 25 Sep 2026) */}
         <LatarGenetika />
         <a

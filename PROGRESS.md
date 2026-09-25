@@ -5,6 +5,35 @@ membingungkan, itu kesalahan penulisnya, bukan kesalahanmu.
 
 ---
 
+## 26 September 2026 — Pengiriman ke GitHub Arya
+
+Pembaruan ilustrasi dan latar bergerak disiapkan untuk dikirim ke repositori
+yang diminta: **github.com/AryaNyoman/genetic**. Pemeriksaan kode dan pembangunan
+website sebelumnya sudah lolos. Tujuan penerbitan sedang dikonfirmasi karena
+akun Vercel yang tersedia adalah akun Arya, sedangkan alamat lama milik akun Nely.
+
+---
+
+## 25 September 2026 — Ilustrasi Higgsfield dan latar bergerak
+
+- Tiga hiasan sudah dipasang di halaman depan: banner sambutan, pita kiri
+  berisi sel dan organel, serta pita kanan berisi DNA, kromosom, dan polong ercis.
+- Menggunakan **GPT Image 2.5 Flare, LOW, 1K**. Dibuat empat pilihan per hiasan,
+  lalu dipilih tiga gambar. Biaya seluruhnya **3 kredit dari batas 30 kredit**.
+- Hiasan bergaris yang sebelumnya bisa tertutup warna halaman sekarang terlihat.
+  Di halaman depan hiasan bergerak melayang perlahan; tersedia **Jeda hiasan**.
+  Pengaturan perangkat untuk mengurangi gerakan juga dihormati.
+- Gambar besar disembunyikan dan tidak diunduh di HP; kedua pita hanya muncul
+  saat sisi layar cukup lebar. Latar transparan menyatu dengan mode terang dan gelap.
+- Gambar pelajaran dan narasinya tetap sama. Hiasan AI hanya dipakai di beranda.
+- Sudah diperiksa di ukuran laptop 1268 × 668 dan HP 375 × 668: daftar tertutup
+  muat satu layar, menu pelajaran tetap bisa dibuka, tombol jeda berfungsi,
+  serta mode terang dan gelap menampilkan gambar dengan baik. Tiga gambar
+  bersama-sama sekitar 264 KB. Pemeriksaan kode dan pembangunan website lolos.
+- Perubahan tersimpan di folder proyek. Situs publik belum diterbitkan ulang.
+
+---
+
 ## 25 September 2026 (sore) — Tampilan tidak lagi polos, dan GitHub beres
 
 ### GitHub

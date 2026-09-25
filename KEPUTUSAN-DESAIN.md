@@ -68,6 +68,15 @@ polos, tetapi janji di atas tetap dijaga:
 - Gambar hiasan buatan AI (Higgsfield) boleh dipakai **hanya sebagai hiasan
   pinggir halaman depan**, tidak pernah sebagai gambar materi — gambar materi
   tetap dibuat dengan kode agar akurat.
+- **Hiasan beranda bergerak (25 Sep 2026):** banner sambutan pada layar ≥768 px,
+  pita kiri dan kanan pada layar ≥1200 px, mengikuti arahan
+  https://claude.ai/artifact/LJXKenTQGWHxwSzqNBC78f. Tiga gambar Higgsfield
+  GPT Image 2.5 Flare, LOW, 1K, disimpan sebagai WebP dengan latar transparan
+  agar menyatu dengan kertas dan mode gelap. Di HP gambar ini tidak diunduh.
+  Latar bergaris tetap dibuat dengan kode; lapisannya berada di atas warna
+  halaman dan di bawah isi. Di beranda hiasan melayang perlahan (16–32 detik),
+  bisa dihentikan lewat **Jeda hiasan**, dan berhenti otomatis pada
+  `prefers-reduced-motion`. Latar di halaman pelajaran tetap diam.
 
 ### 1.2 Warna antarmuka — mode terang
 

@@ -34,15 +34,25 @@ export function LatarGenetika() {
           patternUnits="userSpaceOnUse"
           patternTransform="rotate(-8)"
         >
-          <Heliks cx={84} y0={22} tinggi={256} />
-          <g transform="rotate(-14 256 110)">
-            <KromosomX x={238} y={110} warna={SEL.kromatin.warna} />
-            <KromosomX x={276} y={114} warna={INTI.kromosomAyah.warna} />
+          <g className="gerak-latar gerak-latar-dna">
+            <Heliks cx={84} y0={22} tinggi={256} />
           </g>
-          <Sel x={448} y={128} />
-          <Rna x0={178} y0={214} />
+          <g transform="rotate(-14 256 110)">
+            <g className="gerak-latar gerak-latar-kromosom">
+              <KromosomX x={238} y={110} warna={SEL.kromatin.warna} />
+              <KromosomX x={276} y={114} warna={INTI.kromosomAyah.warna} />
+            </g>
+          </g>
+          <g className="gerak-latar gerak-latar-sel">
+            <Sel x={448} y={128} />
+          </g>
+          <g className="gerak-latar gerak-latar-rna">
+            <Rna x0={178} y0={214} />
+          </g>
           <g transform="rotate(22 440 300)">
-            <Mitokondria x={440} y={300} panjang={84} tebal={34} />
+            <g className="gerak-latar gerak-latar-organel">
+              <Mitokondria x={440} y={300} panjang={84} tebal={34} />
+            </g>
           </g>
           <Silsilah x={130} y={330} />
           <Punnett x={292} y={318} />
