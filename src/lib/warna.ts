@@ -333,6 +333,34 @@ export function warnaDari(id: string, cadangan = "#8497A8"): string {
   return SEMUA_ENTITAS[id]?.warna ?? cadangan;
 }
 
+/* Istilah yang namanya tidak persis sama dengan nama entitasnya. */
+const ALIAS_ISTILAH: Record<string, string> = {
+  /* kromosom dan kromatin benda yang sama, jadi warnanya pun sama —
+     BUKAN toska "Kromosom dari ayah" walau awal namanya mirip */
+  kromosom: "kromatin",
+  "retikulum endoplasma": "reKasar",
+  sitosol: "sitoplasma",
+};
+
+/**
+ * Entitas yang dimaksud sebuah istilah di Catatan ("Vakuola pusat" → vakuola,
+ * "DNA mitokondria" → DNA). Dipakai untuk sorotan lembut di Catatan
+ * (25 Sep 2026): istilah organel dan molekul memakai warna tetapnya sendiri.
+ * Istilah yang bukan entitas (Gen, Genetika, Mikrometer) → undefined.
+ */
+export function entitasDariIstilah(istilah: string): Entitas | undefined {
+  const t = istilah.trim().toLowerCase();
+  const alias = ALIAS_ISTILAH[t];
+  if (alias) return SEMUA_ENTITAS[alias];
+  let terbaik: Entitas | undefined;
+  for (const e of Object.values(SEMUA_ENTITAS)) {
+    const nama = e.nama.toLowerCase();
+    if (t === nama) return e;
+    if (t.startsWith(`${nama} `) && (!terbaik || nama.length > terbaik.nama.length)) terbaik = e;
+  }
+  return terbaik;
+}
+
 /**
  * Turunan satu rona untuk ilustrasi "datar berisi" (KEPUTUSAN-DESAIN.md §3):
  * warna asli, satu tingkat lebih terang, satu tingkat lebih gelap.

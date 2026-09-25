@@ -5,6 +5,74 @@ membingungkan, itu kesalahan penulisnya, bukan kesalahanmu.
 
 ---
 
+## 25 September 2026 (sore) — Tampilan tidak lagi polos, dan GitHub beres
+
+### GitHub
+
+Setelah kamu mematikan Smart App Control dan login GitHub, seluruh proyek **sudah
+terkirim** ke **github.com/nellycute/Gene**. Buku dan gambar rujukanmu tidak ikut.
+Login GitHub-mu kini tersimpan di laptop, jadi pengiriman berikutnya tidak perlu login
+lagi.
+
+Satu hal yang perlu kamu tahu: Smart App Control **tidak bisa dinyalakan lagi** tanpa
+memasang ulang Windows. Laptopmu tetap dijaga Microsoft Defender.
+
+### Layar menonton di laptop: video ¾, Catatan ¼
+
+- **Video kini selebar ¾ layar**, dan **Catatan selalu tampil di kanannya** (¼ layar)
+  sejak halaman dibuka. Catatan tetap bisa ditutup dengan tombol ×. Kalau ditutup,
+  video pindah ke tengah.
+- Tinggi video tetap dibatasi tinggi layar, supaya halaman tidak perlu digulir. Jadi
+  bingkainya **melebar**, bukan meninggi. Gambar 3D menyesuaikan diri, dan bendanya
+  tetap sebesar sebelumnya.
+- Tombol **spasi** tetap memutar dan menjeda video walau Catatan terbuka.
+- **Layar penuh** kini benar-benar memenuhi layar laptop, tanpa pita hitam di kiri
+  dan kanan.
+- Di HP tidak ada yang berubah: Catatan tetap muncul dari bawah saat diketuk.
+
+### Warna lembut pada tulisan tebal
+
+Tulisan tebal kini diberi warna tipis seperti **stabilo**, tidak mencolok. Contohnya
+judul pelajaran, tab Catatan yang sedang terbuka, nomor di Ringkasan, adegan yang
+sedang diputar di Naskah, dan nama istilah.
+
+Warnanya **tidak asal**. Istilah organel dan molekul memakai warna tetapnya sendiri:
+"Mitokondria" jingga, "Membran sel" biru, "Inti sel" ungu, sama seperti di gambar.
+Istilah lain memakai hijau Tingkat 0.
+
+### Hiasan latar bernuansa genetika
+
+Di bawah semua menu kini ada **gambar-gambar kecil yang samar**, diulang seperti kertas
+dinding: heliks DNA (anak tangganya berwarna basa), sepasang kromosom ungu–toska, sel,
+mitokondria, RNA, silsilah keluarga, kotak Punnett, nukleosom, dan kariotipe mini.
+
+- Semuanya **kugambar sendiri dengan kode**, bukan diambil dari internet.
+- Setiap benda memakai **warna tetapnya dari Peta Warna**, jadi hiasan pun tidak
+  mengajarkan warna yang salah.
+- Heliks DNA-nya **berputar ke kanan**, seperti DNA sungguhan.
+- Di mode gelap hiasannya dibuat lebih samar lagi.
+
+### Halaman depan: menunggu gambar dari Higgsfield
+
+Sesuai permintaanmu, aku menyiapkan **prompt untuk Higgsfield**, dua gambar hiasan
+tegak untuk sisi kiri dan kanan halaman depan. Setelah kamu membuat gambarnya,
+kirimkan padaku, lalu aku pasang di kedua sisi. Di HP gambar itu tidak tampil, supaya
+halaman depan tetap muat satu layar.
+
+Gambar dari Higgsfield **hanya untuk hiasan pinggir**, bukan untuk materi. Gambar
+materi tetap kugambar dengan kode, karena gambar buatan AI sering keliru secara biologi
+(misalnya heliks DNA berputar ke kiri).
+
+### Yang perlu kamu periksa
+
+1. Buka satu pelajaran di laptop: **nyaman tidak** video lebar dengan Catatan di
+   sampingnya?
+2. **Hiasan latar**: terlalu samar, pas, atau terlalu ramai?
+3. **Website online belum berubah.** Perubahan ini (dan yang tadi pagi) baru ada di
+   laptop sampai kamu setuju aku menerbitkannya.
+
+---
+
 ## 25 September 2026 — Sembilan revisi, pelajaran 0.1, dan Tingkat 0 lengkap
 
 ### Sembilan revisimu
@@ -83,19 +151,10 @@ cukup tampil di subtitel.
    dimudakan, karena akrosom adalah kantong enzim sejenis lisosom.
 4. **Zigot 8 sel** digambar seperti gugus anggur di dalam zona.
 
-### Salinan di GitHub (tinggal satu langkah)
+### Salinan di GitHub
 
-Seluruh proyek sudah **dikemas dan siap dikirim** ke GitHub-mu,
-**github.com/nellycute/Gene**. Salinan itu jadi cadangan: kalau laptop rusak, tidak
-ada yang hilang. Buku dan gambar rujukanmu **tidak ikut**, karena milik penerbitnya.
-Repositori Gene bersifat publik, jadi aku sudah memastikan buku-buku itu juga tidak
-pernah tersimpan di riwayat lama.
-
-Kenapa belum terkirim: jalur kirim biasa milik Git diblokir **Smart App Control**,
-penjaga keamanan Windows yang sama seperti dulu. Aku menyiapkan jalur lain yang aman,
-yaitu sebuah **"kunci" khusus yang hanya berlaku untuk repositori Gene** (bisa dihapus
-kapan saja). Kunci itu perlu didaftarkan sekali di pengaturan repositori Gene, dan
-untuk itu aku butuh izinmu.
+Seluruh proyek sudah tersimpan di GitHub-mu, **github.com/nellycute/Gene** (lihat
+catatan di atas). Buku dan gambar rujukanmu **tidak ikut**, karena milik penerbitnya.
 
 ### Yang perlu kamu periksa
 
@@ -103,7 +162,6 @@ untuk itu aku butuh izinmu.
    nyaman dilihat?
 2. **Website online belum berubah.** Semua perubahan ini baru ada di laptop sampai
    kamu setuju aku menerbitkannya.
-3. **Izin untuk GitHub**, lihat bagian di atas.
 
 ---
 

@@ -1,16 +1,31 @@
 "use client";
 
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId, useRef, type CSSProperties } from "react";
 import type { Pelajaran } from "@/lib/tipe";
+import { entitasDariIstilah } from "@/lib/warna";
 
 /**
- * CATATAN — tempat semua tulisan panjang disimpan (KEPUTUSAN-DESAIN.md §8.2,
- * diubah 23 Sep 2026). Hanya muncul saat tombol Catatan diketuk: panel di
- * samping panggung di laptop, lembar dari bawah di HP. Isinya digulir di
+ * CATATAN — tempat semua tulisan panjang disimpan (KEPUTUSAN-DESAIN.md §8.2).
+ * Laptop: panel ¼ layar di kanan video, terbuka sejak awal (Nely, 25 Sep 2026).
+ * HP: lembar dari bawah, hanya saat tombol Catatan diketuk. Isinya digulir di
  * dalam kotaknya sendiri — halaman menonton tidak pernah memanjang.
+ *
+ * Tulisan tebal diberi sorotan lembut (25 Sep 2026): istilah organel/molekul
+ * memakai warna tetapnya sendiri (src/lib/warna.ts), sisanya warna tingkat.
  */
 
 export type TabCatatan = "istilah" | "ringkasan" | "naskah" | "rujukan";
+
+/** Variabel CSS untuk kelas .sorot-* di globals.css. */
+const sorot = (warna: string) => ({ "--warna-sorot": warna }) as CSSProperties;
+
+/** Seperti `sorot`, tetapi warna yang sangat muda (sitoplasma) dipertebal agar tetap tampak. */
+function sorotIstilah(warna: string): CSSProperties {
+  const h = warna.replace("#", "");
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const terang = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return { "--warna-sorot": warna, ...(terang > 0.8 ? { "--kadar-sorot": "75%" } : {}) } as CSSProperties;
+}
 
 export function Catatan({
   pelajaran,
@@ -20,6 +35,8 @@ export function Catatan({
   onLompat,
   onTutup,
   wujud,
+  warnaTingkat,
+  fokusAwal,
 }: {
   pelajaran: Pelajaran;
   tab: TabCatatan;
@@ -28,6 +45,10 @@ export function Catatan({
   onLompat: (i: number) => void;
   onTutup: () => void;
   wujud: "panel" | "lembar";
+  /** Warna batang tingkat pelajaran ini — untuk sorotan yang bukan entitas. */
+  warnaTingkat: string;
+  /** true bila penonton sendiri yang membuka Catatan. */
+  fokusAwal: boolean;
 }) {
   const id = useId();
   const isiRef = useRef<HTMLDivElement>(null);
@@ -41,11 +62,12 @@ export function Catatan({
     { id: "rujukan", label: "Rujukan", jumlah: pelajaran.rujukan.length },
   ];
 
-  /* Fokus pindah ke tab yang terbuka, supaya pembaca layar dan papan ketik
-     langsung berada di dalam Catatan. */
+  /* Dibuka penonton → fokus pindah ke tab yang terbuka, supaya pembaca layar dan
+     papan ketik langsung berada di dalam Catatan. Terbuka sendiri sejak awal
+     (laptop) → fokus dibiarkan, agar spasi tetap memutar/menjeda video. */
   useEffect(() => {
-    tabRef.current?.focus({ preventScroll: true });
-  }, []);
+    if (fokusAwal) tabRef.current?.focus({ preventScroll: true });
+  }, [fokusAwal]);
 
   /* Di tab Naskah, adegan yang sedang diputar selalu terlihat. Hanya kotak
      Catatan yang digulir — halamannya tidak. */
@@ -82,15 +104,14 @@ export function Catatan({
                 aria-selected={aktif}
                 aria-controls={`${id}-isi`}
                 onClick={() => onTab(t.id)}
+                style={aktif ? sorot(warnaTingkat) : undefined}
                 className={`h-8 shrink-0 whitespace-nowrap rounded-lg px-1.5 text-[12px] font-semibold transition active:scale-[0.97] ${
-                  aktif ? "bg-teks text-tombol-teks" : "text-teks-lembut hover:bg-latar-lembut hover:text-teks"
+                  aktif ? "sorot-tab text-teks" : "text-teks-lembut hover:bg-latar-lembut hover:text-teks"
                 }`}
               >
                 {t.label}
                 {t.jumlah !== undefined && (
-                  <span className={`ml-1 font-mono text-[10px] font-medium ${aktif ? "opacity-70" : "text-teks-samar"}`}>
-                    {t.jumlah}
-                  </span>
+                  <span className="ml-1 font-mono text-[10px] font-medium text-teks-samar">{t.jumlah}</span>
                 )}
               </button>
             );
@@ -121,7 +142,9 @@ export function Catatan({
             {pelajaran.istilah.map((it) => (
               <div key={it.id} className="text-[13.5px] leading-snug">
                 <dt className="font-semibold">
-                  {it.id}
+                  <span className="sorot-stabilo" style={sorotIstilah(entitasDariIstilah(it.id)?.warna ?? warnaTingkat)}>
+                    {it.id}
+                  </span>
                   <span className="ml-1.5 font-normal italic text-teks-samar">{it.en}</span>
                 </dt>
                 <dd className="mt-0.5 text-teks-lembut">{it.arti}</dd>
@@ -134,7 +157,12 @@ export function Catatan({
           <ol className="space-y-3">
             {pelajaran.poinKunci.map((poin, i) => (
               <li key={i} className="flex gap-2.5 text-[13.5px] leading-relaxed text-teks-lembut">
-                <span className="mt-[3px] font-mono text-[10px] font-semibold text-teks-samar">{i + 1}</span>
+                <span
+                  className="sorot-tab mt-[2px] grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full font-mono text-[10px] font-semibold text-teks"
+                  style={sorot(warnaTingkat)}
+                >
+                  {i + 1}
+                </span>
                 <span>{poin}</span>
               </li>
             ))}
@@ -151,11 +179,16 @@ export function Catatan({
                     type="button"
                     onClick={() => onLompat(i)}
                     aria-current={sekarang ? "step" : undefined}
-                    className={`w-full rounded-lg px-2.5 py-2 text-left transition hover:bg-latar-lembut ${
-                      sekarang ? "bg-latar-lembut" : ""
+                    style={sekarang ? sorot(warnaTingkat) : undefined}
+                    className={`w-full rounded-lg px-2.5 py-2 text-left transition ${
+                      sekarang ? "sorot-tipis" : "hover:bg-latar-lembut"
                     }`}
                   >
-                    <span className="block font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-teks-samar">
+                    <span
+                      className={`block font-mono text-[10px] font-semibold uppercase tracking-[0.08em] ${
+                        sekarang ? "text-teks" : "text-teks-samar"
+                      }`}
+                    >
                       {i + 1} · {a.tajuk ?? "Adegan"}
                     </span>
                     <span className={`mt-0.5 block text-[13.5px] leading-relaxed ${sekarang ? "text-teks" : "text-teks-lembut"}`}>

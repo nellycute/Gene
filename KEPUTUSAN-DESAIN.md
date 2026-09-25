@@ -11,6 +11,11 @@
 > memilih: gambar benda bergaya **3D bergaris** (§3) dan layar menonton
 > **"layar bioskop"** tanpa gulir (§5.3, §8.2, §8.3). Bagian yang berubah
 > ditandai *(diubah 23 Sep 2026)*.
+>
+> **Diubah 25 September 2026** — Nely kecewa tampilannya "polos banget": sisi
+> halaman kosong. Ia meminta **hiasan latar samar bernuansa genetika** di bawah
+> semua menu, **sorotan lembut** pada tulisan tebal, dan di laptop **video ¾
+> layar + Catatan ¼ di kanannya** (§1.1, §1.5, §5.3). Ditandai *(25 Sep 2026)*.
 
 ---
 
@@ -18,10 +23,10 @@
 
 | Hal | Keputusan |
 |---|---|
-| Warna halaman | Kertas krem tenang. Antarmuka **tanpa warna** — hitam tinta. Pelangi hanya sebagai penanda tingkat. |
+| Warna halaman | Kertas krem tenang. Antarmuka **tanpa warna** — hitam tinta. Pelangi hanya sebagai penanda tingkat. *(25 Sep 2026)* Ditambah hiasan latar samar bernuansa genetika dan stabilo lembut pada tulisan tebal — warnanya tetap warna entitas atau warna tingkat. |
 | Warna biologi | **Dicerahkan** dari palet lama. 5 basa nitrogen **tidak diubah**. |
 | Ilustrasi *(diubah 23 Sep 2026)* | Semua gambar benda (sel, organel, kromosom, DNA) **3D bergaris** seperti ilustrasi buku ajar. Diagram (Punnett, silsilah, grafik) tetap datar. |
-| Layar menonton *(diubah 23 Sep 2026)* | **Layar bioskop**: judul, panggung, subtitel, kendali — tidak pernah digulir. Tulisan panjang di **Catatan**, hanya saat diminta. |
+| Layar menonton *(diubah 23 Sep 2026)* | **Layar bioskop**: judul, panggung, subtitel, kendali — tidak pernah digulir. Tulisan panjang di **Catatan**. *(25 Sep 2026)* Laptop: video ¾ layar, Catatan ¼ di kanannya, terbuka sejak awal. HP: Catatan hanya saat diminta. |
 | Huruf | Plus Jakarta Sans (judul + isi), JetBrains Mono (deret basa & angka). |
 | Menemukan materi | 7 baris tingkat dalam satu layar; ketuk → isinya terbuka **di tempat**. |
 | Menu | Bilah atas tipis; di HP tombol tiga garis → panel turun. |
@@ -46,6 +51,23 @@ berwarna toska dan bilah berwarna hijau, penonton harus belajar dua bahasa
 warna sekaligus. Dengan antarmuka netral, **setiap warna yang muncul di layar
 pasti punya arti biologis** — kecuali tujuh garis tingkat yang selalu tipis dan
 selalu di pinggir.
+
+**Hiasan dan sorotan *(25 Sep 2026, permintaan Nely)*.** Halaman tidak lagi
+polos, tetapi janji di atas tetap dijaga:
+- **Hiasan latar** (`src/components/LatarGenetika.tsx`): gambar kecil bergaris
+  tipis — heliks DNA, sepasang kromosom, sel, mitokondria, RNA, silsilah, kotak
+  Punnett, nukleosom, kariotipe — diulang seperti kertas dinding di bawah semua
+  menu dan kartu, **samar** (opasitas 0,2; mode gelap 0,13). Tiap benda memakai
+  **warna tetapnya sendiri** dari `warna.ts`; silsilah dan Punnett bertinta.
+  Dibuat dengan kode, bukan gambar dari internet. Heliksnya putar kanan.
+- **Stabilo lembut** pada tulisan tebal (judul pelajaran, tab Catatan yang
+  terbuka, nomor Ringkasan, nama istilah, adegan yang sedang diputar di Naskah):
+  warna tipis seperti stabilo, **tidak mencolok**. Istilah organel/molekul
+  memakai warna entitasnya ("Mitokondria" jingga, "Membran sel" biru); selain
+  itu warna tingkat pelajaran.
+- Gambar hiasan buatan AI (Higgsfield) boleh dipakai **hanya sebagai hiasan
+  pinggir halaman depan**, tidak pernah sebagai gambar materi — gambar materi
+  tetap dibuat dengan kode agar akurat.
 
 ### 1.2 Warna antarmuka — mode terang
 
@@ -115,7 +137,9 @@ Inilah tempat gambar referensi Nely hidup: strip warna jenuh dan cerah.
    yang sedang terbuka (**1,5 px**), label mono kecil (`TINGKAT 3`), titik
    penanda pada tombol kembali, dan tujuh strip pada logo.
 2. **Tidak pernah** jadi latar blok besar, tidak pernah jadi warna tombol,
-   tidak pernah masuk ke dalam panggung animasi.
+   tidak pernah masuk ke dalam panggung animasi. *(25 Sep 2026)* Kecuali
+   sebagai stabilo lembut (± 20–30%, bukan warna penuh) pada tulisan tebal —
+   lihat §1.1.
 3. Kolom "warna teks" dipakai kalau warnanya jadi tulisan — versi batang
    terlalu terang untuk dibaca di atas kertas.
 4. Karena warnanya tipis dan selalu di pinggir, tidak ada satu pun yang bisa
@@ -323,7 +347,10 @@ digulir**, di HP maupun laptop. Kaki halaman disembunyikan di layar ini.
 2. **Satu baris judul**: nomor mono + judul pelajaran (terpotong kalau kepanjangan)
    + lencana "Draf" kalau belum ditinjau. Tanpa jumlah adegan dan durasi.
 3. **Panggung** — perbandingan 800:570, latar `--panggung`, sudut 13 px. Lebarnya
-   sebesar yang masih muat dalam tinggi layar. **Satu-satunya tulisan di dalam
+   sebesar yang masih muat dalam tinggi layar. *(25 Sep 2026)* Di laptop panggung
+   selebar kolom video (¾ layar) dan setinggi yang muat di layar — bingkainya
+   **melebar**, paling lebar 2,6 : 1; gambar 3D menyesuaikan diri, isinya tetap
+   sebesar semula. Di HP tetap 800:570. **Satu-satunya tulisan di dalam
    video:** lencana kiri atas berisi bagian yang sedang dibahas (titik warna +
    nama Indonesia + nama Inggris), tetap tampil selama bagian itu dibahas —
    dipilih Nely 25 Sep 2026. Nomor adegan ("4/13"), tombol gambar datar,
@@ -345,8 +372,9 @@ sekali di video = putar/jeda, klik dua kali = layar penuh. HP: **ketuk dua kali*
 di video = putar/jeda; satu ketukan hanya memunculkan kendali (di layar penuh).
 Menyeret video tetap memutar gambar 3D.
 
-**Layar penuh:** video sebesar layar dengan latar gelap di sekelilingnya
-(panggungnya tetap kertas); subtitel dan kendali melayang di bawah — satu-satunya
+**Layar penuh:** video sebesar layar — layar mendatar terisi penuh tanpa pita
+gelap *(25 Sep 2026)*, layar tegak tetap 800:570 dengan latar gelap di atas dan
+bawahnya (panggungnya tetap kertas); subtitel dan kendali melayang di bawah — satu-satunya
 tempat subtitel boleh menimpa video — dan kendali menghilang sendiri setelah ±2,6
 detik tanpa gerakan saat video berjalan. HP Android dimiringkan otomatis. iPhone
 tidak mengizinkan layar penuh selain untuk berkas video, jadi di sana pemutar
@@ -354,8 +382,11 @@ menutup seluruh layar peramban.
 
 **Catatan** berisi empat tab: Istilah · Ringkasan · Naskah (seluruh narasi,
 adegan yang sedang diputar ditandai, bisa diketuk untuk melompat) · Rujukan.
-- Laptop: **panel di samping panggung** (340 px), setinggi kolom menonton;
-  panggung bergeser ke kiri, tidak ada yang tertutup; pelajaran terus berjalan.
+- Laptop *(diubah 25 Sep 2026)*: **panel ¼ layar di kanan video** (paling sempit
+  312 px), setinggi kolom video, **terbuka sejak halaman dibuka** — video ¾ layar.
+  Bisa ditutup (×, Esc, tombol Catatan); video lalu di tengah. Terbuka sendiri
+  tidak merebut fokus, jadi spasi tetap memutar/menjeda. Tersembunyi selama
+  layar penuh.
 - HP: **lembar dari bawah** (≤ 58% tinggi layar); panggung tetap terlihat di
   atasnya; pelajaran dijeda karena subtitel dan tombol tertutup.
 - Isi Catatan digulir di dalam kotaknya sendiri. Ditutup dengan ×, Esc, atau
@@ -449,8 +480,9 @@ menjelaskan; halaman pertama tempat memilih.
 
 ### 8.2 Ke mana penjelasan panjang disembunyikan *(diubah 23 Sep 2026)*
 
-Penjelasan tidak dihapus — dipindahkan ke **Catatan**, yang hanya muncul saat
-tombolnya diketuk (§5.3). Empat tab:
+Penjelasan tidak dihapus — dipindahkan ke **Catatan** (§5.3): di HP hanya
+muncul saat tombolnya diketuk; di laptop terbuka sejak awal di kanan video
+*(25 Sep 2026)*. Empat tab:
 
 1. **Istilah (n)** — tab yang terbuka pertama. Setiap istilah Indonesia
    berdampingan dengan padanan Inggrisnya. Aturan "istilah Inggris selalu

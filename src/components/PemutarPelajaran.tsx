@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import { ANIMASI } from "@/animasi/daftar";
 import { Panggung3D } from "@/animasi/tiga-dimensi/Panggung3D";
 import { Catatan, type TabCatatan } from "./Catatan";
 import { SEMUA_ENTITAS } from "@/lib/warna";
+import { warnaTingkat } from "@/lib/tingkat";
 import { useMediaCocok } from "@/lib/jendela";
 import { aturBisu, useBisu } from "@/lib/bisu";
 import { jadwalSubtitel, potonganPada } from "@/lib/subtitel";
@@ -18,11 +19,13 @@ import { JEDA_AWAL, jam, lamaAdegan, totalDurasi, type Pelajaran } from "@/lib/t
  *
  * Nely: teks yang memanjang ke bawah memaksa menggulir dan memalingkan mata
  * dari video. Maka halaman ini tidak digulir:
- *  - satu kolom: judul satu baris → panggung → subtitel → bilah kendali;
- *  - panggung selebar yang muat dalam tinggi layar (kelas .lebar-bioskop);
+ *  - kolom video: judul satu baris → panggung → subtitel → bilah kendali;
+ *  - panggung setinggi yang muat di layar (kelas .lebar-bioskop); di laptop
+ *    selebar ¾ layar — bingkainya melebar, bukan meninggi (25 Sep 2026);
  *  - subtitel tampil sepotong-sepotong mengikuti waktu (src/lib/subtitel.ts);
- *  - istilah, ringkasan, naskah utuh, dan rujukan disimpan di Catatan: panel
- *    di samping panggung (laptop) atau lembar dari bawah (HP), hanya saat diminta.
+ *  - istilah, ringkasan, naskah utuh, dan rujukan disimpan di Catatan: di laptop
+ *    panel ¼ layar di kanan video, terbuka sejak awal; di HP lembar dari bawah,
+ *    hanya saat diminta.
  *
  * Seperti menonton YouTube (25 Sep 2026): satu garis waktu utuh yang bisa
  * diketuk dan digeser; spasi/k = putar-jeda, panah = ±5 detik, j/l = ±10 detik,
@@ -92,9 +95,15 @@ export function PemutarPelajaran({
   const bisu = useBisu();
   const pakaiSuara = adaSuara && !bisu;
 
-  const [bukaCatatan, setBukaCatatan] = useState(false);
+  /* Pilihan penonton atas Catatan; undefined = belum pernah menyentuh. Laptop:
+     panel terbuka sejak awal kecuali ditutup. HP: lembar tertutup kecuali dibuka. */
+  const [pilihanCatatan, setPilihanCatatan] = useState<boolean | undefined>(undefined);
   const [tab, setTab] = useState<TabCatatan>("istilah");
   const lebar = useMediaCocok("(min-width: 1024px)");
+  const panelTerbuka = pilihanCatatan !== false;
+  const lembarTerbuka = pilihanCatatan === true;
+  const bukaCatatan = lebar ? panelTerbuka : lembarTerbuka;
+  const warna = warnaTingkat(pelajaran.level);
 
   /* Layar penuh: API Fullscreen bila ada; bila tidak (iPhone), tiruan — pemutar
      menutup seluruh layar lewat CSS (.bioskop-penuh). */
@@ -407,7 +416,8 @@ export function PemutarPelajaran({
       setPenuh(false);
       return;
     }
-    setBukaCatatan(false);
+    /* lembar HP menutupi layar penuh; panel laptop cukup disembunyikan selama penuh */
+    if (!lebar) setPilihanCatatan(false);
     setPenuh(true);
     tampilkanKendali();
     if (document.fullscreenEnabled && el.requestFullscreen) {
@@ -442,21 +452,22 @@ export function PemutarPelajaran({
     return () => document.documentElement.removeAttribute("data-bioskop-penuh");
   }, [penuh]);
 
-  /* Esc menutup Catatan, di mana pun fokusnya. */
+  /* Esc menutup Catatan, di mana pun fokusnya — kecuali di layar penuh, tempat
+     Esc berarti keluar dari layar penuh. */
   useEffect(() => {
-    if (!bukaCatatan) return;
+    if (!bukaCatatan || penuh) return;
     const tangani = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setBukaCatatan(false);
+      if (e.key === "Escape") setPilihanCatatan(false);
     };
     window.addEventListener("keydown", tangani);
     return () => window.removeEventListener("keydown", tangani);
-  }, [bukaCatatan]);
+  }, [bukaCatatan, penuh]);
 
   /* Di HP lembar Catatan menutupi subtitel dan tombol — jadi pelajaran dijeda
      dulu. Di laptop panelnya di samping, pelajaran boleh terus berjalan. */
   function aturCatatan(buka: boolean) {
     if (buka && !lebar) setBerjalan(false);
-    setBukaCatatan(buka);
+    setPilihanCatatan(buka);
   }
 
   const lewatSebelumnya = awalAdegan[indeks] ?? 0;
@@ -565,13 +576,20 @@ export function PemutarPelajaran({
       onTab={setTab}
       indeksAdegan={indeks}
       onLompat={keAdegan}
-      onTutup={() => setBukaCatatan(false)}
+      onTutup={() => setPilihanCatatan(false)}
       wujud={wujud}
+      warnaTingkat={warna.batang}
+      fokusAwal={pilihanCatatan === true}
     />
   );
 
+  /* Panel laptop dirender sebelum ukuran layar terbaca (lebar = false di server)
+     dan disembunyikan CSS di layar kecil — jadi di laptop panel sudah ada sejak
+     gambar pertama, tanpa tata letak yang meloncat. */
+  const adaPanel = panelTerbuka && !penuh && (lebar || pilihanCatatan === undefined);
+
   return (
-    <div className="flex items-stretch justify-center gap-5">
+    <div className={`tata-menonton ${adaPanel ? "dengan-catatan" : ""}`}>
       {adaSuara && <audio ref={audioRef} preload="auto" />}
 
       <section
@@ -586,7 +604,9 @@ export function PemutarPelajaran({
         <header className="judul-bioskop mb-2.5 flex min-w-0 items-center gap-2">
           <span className="shrink-0 font-mono text-[11px] font-semibold text-teks-samar">{pelajaran.nomor}</span>
           <h1 className="min-w-0 truncate text-[16px] font-extrabold tracking-tight sm:text-[18px]">
-            {pelajaran.judul}
+            <span className="sorot-stabilo" style={{ "--warna-sorot": warna.batang } as CSSProperties}>
+              {pelajaran.judul}
+            </span>
           </h1>
           {pelajaran.draf && (
             <span
@@ -609,7 +629,7 @@ export function PemutarPelajaran({
           }}
           className="panggung-bioskop relative overflow-hidden rounded-[13px] bg-panggung"
         >
-          <div className="aspect-[800/570] w-full">
+          <div className="isi-panggung w-full">
             {pakai3D && animasi.Tiga ? (
               <Panggung3D
                 Tiga={animasi.Tiga}
@@ -813,9 +833,9 @@ export function PemutarPelajaran({
         </div>
       </section>
 
-      {/* ================= CATATAN: panel samping di laptop ================= */}
-      {bukaCatatan && lebar && !penuh && (
-        <aside aria-label="Catatan pelajaran" className="anim-masuk-geser relative w-[340px] shrink-0">
+      {/* ================= CATATAN: panel ¼ layar di kanan video (laptop) ================= */}
+      {adaPanel && (
+        <aside aria-label="Catatan pelajaran" className="anim-masuk-geser relative hidden lg:block">
           <div className="absolute inset-0">{isiCatatan("panel")}</div>
         </aside>
       )}
@@ -824,14 +844,14 @@ export function PemutarPelajaran({
           Dipasang langsung di <body>: pembungkus halaman punya animasi geser
           (transform), dan di dalamnya `fixed` akan menempel ke pembungkus itu,
           bukan ke layar. */}
-      {bukaCatatan &&
+      {lembarTerbuka &&
         !lebar &&
         !penuh &&
         createPortal(
           <>
             <div
               aria-hidden="true"
-              onClick={() => setBukaCatatan(false)}
+              onClick={() => setPilihanCatatan(false)}
               className="anim-muncul fixed inset-0 z-40 bg-black/[0.18]"
             />
             <div

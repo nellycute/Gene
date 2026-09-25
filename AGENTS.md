@@ -33,9 +33,14 @@ Pemilik project: **Nely**, lulusan bidang genetika, **tanpa latar belakang progr
 Lingkungan di komputer Nely punya tiga jebakan yang sudah pernah menghabiskan waktu.
 Jangan diulang.
 
+**25 Sep 2026: Nely sendiri MEMATIKAN Smart App Control** (agar Git bisa mengirim ke
+GitHub). Sejak itu berkas biner tidak diblokir lagi, dan Smart App Control tidak bisa
+dinyalakan kembali tanpa memasang ulang Windows. Penyelesaian di tabel ini **tetap
+dipakai** karena sudah terbukti jalan — jangan ganti perkakas hanya karena kini bisa.
+
 | Jebakan | Akibat | Penyelesaian yang sudah dipakai |
 |---|---|---|
-| **Smart App Control AKTIF** | Semua berkas biner `.node` diblokir Windows | Next.js otomatis memakai SWC versi WASM. **Jangan sarankan mematikan Smart App Control** — sekali mati tidak bisa dinyalakan lagi tanpa memasang ulang Windows. |
+| **Smart App Control AKTIF** (sampai 25 Sep 2026) | Semua berkas biner `.node` diblokir Windows | Next.js otomatis memakai SWC versi WASM. |
 | **Turbopack butuh biner asli** | `next dev` gagal total | Skrip `dev` dan `build` memakai `--webpack`. Jangan hapus tanda itu. |
 | **Tailwind v4 butuh biner asli** | Halaman error 500 | Project memakai **Tailwind v3** (JavaScript murni). Jangan naikkan ke v4. |
 | **OneDrive mengunci `node_modules`** | `npm install` gagal dengan EPERM | Project sengaja berada di `C:\Users\LENOVO\Projects\`, **di luar OneDrive**. Jangan pindahkan ke folder Documents. |
@@ -88,22 +93,25 @@ akun Nely **"Nelyta"** (paket gratis Hobby), proyek `nelyta/ruang-genetika`.
 ## Cadangan di GitHub: github.com/nellycute/Gene (25 Sep 2026)
 
 Nely meminta seluruh folder proyek disimpan di GitHub miliknya (repositori **publik**).
-Remote `origin` = `git@github.com:nellycute/Gene.git`, cabang `main`.
+Remote `origin` = `https://github.com/nellycute/Gene.git`, cabang `main`. Push pertama
+berhasil 25 Sep 2026.
 
-- **Git lewat HTTPS tidak bisa dipakai di laptop ini**: `libcurl-4.dll` milik Git for
-  Windows tidak bertanda tangan dan diblokir Smart App Control (`fatal: failed to load
-  library 'libcurl-4.dll'`). Karena itu Git memakai **SSH bawaan Windows** (bertanda
-  tangan Microsoft): `core.sshCommand` di `.git/config` menunjuk
-  `C:/Windows/System32/OpenSSH/ssh.exe -i ~/.ssh/ruang_genetika_github`.
-- Kunci `~/.ssh/ruang_genetika_github` (ed25519, tanpa kata sandi) dibuat khusus untuk
-  repositori ini. Kunci publiknya harus terdaftar sebagai **deploy key dengan izin
-  tulis** di Settings → Deploy keys repositori Gene. Mendaftarkannya = mengubah
-  pengaturan GitHub Nely, jadi perlu izin Nely. Claude tidak pernah memegang kata sandi
-  atau token GitHub.
+- Login: **Git Credential Manager** menyimpan login GitHub Nely (Nely sendiri yang login
+  lewat jendelanya, 25 Sep 2026). Claude tidak pernah memegang kata sandi atau token.
+- Shell Claude menyetel `GCM_INTERACTIVE=never`. Selama login tersimpan, `git push`
+  jalan biasa. Kalau login kedaluwarsa (`Cannot prompt because user interactivity has
+  been disabled`): beri tahu Nely lebih dulu, lalu jalankan push di latar belakang
+  dengan `$env:GCM_INTERACTIVE="always"`. Jendela login akan muncul di layarnya.
+- Sebelum Smart App Control dimatikan, HTTPS Git gagal (`libcurl-4.dll` tidak bertanda
+  tangan, diblokir). Kalau itu terulang, jalur cadangannya SSH bawaan Windows
+  (`C:\Windows\System32\OpenSSH\ssh.exe`, bertanda tangan Microsoft) + deploy key.
 - Commit dan push hanya bila Nely meminta. **Jangan pernah force-push.**
 - `.gitignore` menahan buku rujukan (`Referensi*.pdf`) dan `Gambar referensi.jpg`
   (berhak cipta) agar tidak ikut terunggah — sama seperti `.vercelignore`.
-- **Ikon aplikasi** (25 Sep 2026) digambar dari `model-bola-sel.ts` lewat
+
+## Ikon aplikasi (25 Sep 2026)
+
+- **Ikon aplikasi** digambar dari `model-bola-sel.ts` lewat
   `studio.potret()` (PNG satu bingkai, latar tembus pandang), disusun di kanvas 2D
   (latar kertas + bayangan melayang), lalu disimpan lewat halaman + rute API
   SEMENTARA yang langsung dihapus lagi. Membuat ulang: tulis lagi keduanya, jangan
@@ -147,6 +155,9 @@ itu yang menang. Intinya:
 - **Antarmuka tanpa warna** — kertas dan tinta. Tidak ada tombol berwarna, tidak ada
   aksen. Satu-satunya warna antarmuka adalah tujuh warna tingkat (`src/lib/tingkat.ts`),
   dan itu pun hanya sebagai batang 4 px, bingkai 1,5 px, label mono, titik, dan logo.
+  **25 Sep 2026:** ditambah hiasan latar samar (`LatarGenetika`) dan stabilo lembut
+  pada tulisan tebal (kelas `.sorot-*`). Warnanya tetap warna entitas (`warna.ts`,
+  lihat `entitasDariIstilah`) atau warna tingkat — tidak ada warna tanpa arti.
 - **Panggung animasi selalu kertas terang** (`--panggung`) walau mode gelap.
 - **Halaman pertama muat satu layar HP**, tanpa paragraf. Tujuh baris tingkat membuka
   di tempat. Alur: buka → pilih → tonton.
@@ -159,7 +170,11 @@ itu yang menang. Intinya:
   gambar datar" dihapus; kembaran datar hanya muncul otomatis tanpa WebGL.
 - **Layar menonton tidak pernah digulir** (§5.3 "layar bioskop"): satu baris judul →
   panggung → subtitel berpotong → kendali. Istilah, ringkasan, naskah, dan rujukan ada
-  di Catatan: panel samping di laptop, lembar dari bawah di HP.
+  di Catatan: lembar dari bawah di HP. **Laptop (25 Sep 2026): video ¾ layar + Catatan
+  ¼ di kanannya, terbuka sejak awal** (`.tata-menonton` di `globals.css`). Tinggi
+  panggung tetap dibatasi tinggi layar, jadi di laptop bingkainya melebar (maks. 2,6 : 1).
+  Layar laptop Nely diperkirakan ± 1267 × 667 px CSS (dari tangkapan layarnya: layar
+  lebar 1900-an px, skala 150%) — uji tata letak di ukuran itu.
 - **Seperti YouTube** (§5.3, 25 Sep 2026): di dalam video HANYA label bagian yang
   dibahas — jangan tambahkan nomor adegan, tombol, petunjuk, atau tulisan "memuat".
   Satu garis waktu utuh; spasi/k, panah, j/l, m, c, f; klik video (laptop) atau ketuk
@@ -193,6 +208,7 @@ src/
 │                           Panggung3D (datar hanya bila tanpa WebGL)
 ├── app/manifest.ts         aplikasi di layar HP; ikon di public/ikon/ + app/apple-icon.png
 ├── components/             Kepala, Logo, DaftarTingkat, PemutarPelajaran, Catatan, ...
+│                           LatarGenetika (hiasan latar samar, dipasang di layout.tsx)
 └── app/                    halaman
 public/suara/               DIBUAT `npm run suara` — mp3 per adegan
 alat/                       skrip Node untuk Claude (suara); bukan bagian website

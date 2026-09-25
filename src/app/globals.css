@@ -145,6 +145,91 @@
     width: min(100%, max(21rem, calc((100vh - var(--ruang-bioskop)) * 1.4035)));
     width: min(100%, max(21rem, calc((100dvh - var(--ruang-bioskop)) * 1.4035)));
   }
+  .isi-panggung {
+    aspect-ratio: 800 / 570;
+  }
+  .tata-menonton {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Laptop (Nely, 25 Sep 2026): video ¾ layar, Catatan ¼ di kanannya dan
+     terbuka sejak awal. Panggung selebar kolomnya; tingginya tetap dibatasi
+     tinggi layar (nol gulir), jadi bingkainya MELEBAR, bukan meninggi —
+     gambar 3D menyesuaikan diri, isinya tetap sebesar semula. Batas 2,6 : 1
+     menjaga panggung tidak menjadi pita tipis di layar yang sangat pendek. */
+  @media (min-width: 1024px) {
+    .tata-menonton {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+    }
+    .tata-menonton.dengan-catatan {
+      /* 312 px: empat tab Catatan + tombol tutup muat sebaris */
+      grid-template-columns: minmax(0, 3fr) minmax(312px, 1fr);
+    }
+    /* bersama Catatan: rata kiri, sejajar tombol kembali; sendirian: di tengah */
+    .tata-menonton.dengan-catatan .lebar-bioskop {
+      justify-self: start;
+    }
+    .lebar-bioskop {
+      container-type: inline-size;
+      justify-self: center;
+      width: min(100%, calc((100vh - var(--ruang-bioskop)) * 2.6));
+      width: min(100%, calc((100dvh - var(--ruang-bioskop)) * 2.6));
+    }
+    .lebar-bioskop .isi-panggung {
+      aspect-ratio: auto;
+      height: min(calc(100cqw / 1.4035), calc(100vh - var(--ruang-bioskop)));
+      height: min(calc(100cqw / 1.4035), calc(100dvh - var(--ruang-bioskop)));
+    }
+  }
+
+  /* Sorotan lembut (Nely, 25 Sep 2026): tulisan tebal diberi warna tipis
+     seperti stabilo — tidak mencolok. Warnanya tetap punya arti: warna tetap
+     entitas bila istilahnya organel atau molekul, selain itu warna tingkat.
+     Diisi lewat variabel --warna-sorot. */
+  .sorot-stabilo {
+    /* --kadar-sorot lebih tinggi untuk warna yang sangat muda (sitoplasma) */
+    background-image: linear-gradient(
+      transparent 56%,
+      color-mix(in srgb, var(--warna-sorot) var(--kadar-sorot, 30%), transparent) 56%
+    );
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    border-radius: 2px;
+    padding-inline: 2px;
+  }
+  /* Mode gelap: tulisan terang — sorotan dibuat seragam tipis agar tetap terbaca. */
+  :root.gelap .sorot-stabilo {
+    background-image: linear-gradient(transparent 56%, color-mix(in srgb, var(--warna-sorot) 35%, transparent) 56%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not(.terang) .sorot-stabilo {
+      background-image: linear-gradient(transparent 56%, color-mix(in srgb, var(--warna-sorot) 35%, transparent) 56%);
+    }
+  }
+  .sorot-tipis {
+    background: color-mix(in srgb, var(--warna-sorot) 13%, transparent);
+  }
+  .sorot-tab {
+    background: color-mix(in srgb, var(--warna-sorot) 20%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--warna-sorot) 38%, transparent);
+  }
+
+  /* Hiasan latar bernuansa genetika (Nely, 25 Sep 2026): samar, tipis, di
+     bawah semua menu. Mode gelap lebih samar lagi agar tidak berkilau. */
+  .latar-genetika {
+    opacity: 0.2;
+  }
+  :root.gelap .latar-genetika {
+    opacity: 0.13;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not(.terang) .latar-genetika {
+      opacity: 0.13;
+    }
+  }
 
   /* Layar penuh (25 Sep 2026, seperti YouTube): panggung sebesar layar,
      subtitel dan kendali melayang di bawahnya; kendali menghilang sendiri
@@ -170,6 +255,24 @@
     width: min(100vw, calc(100vh * 1.4035));
     width: min(100vw, calc(100dvh * 1.4035));
     border-radius: 0;
+  }
+  .bioskop-penuh .isi-panggung {
+    aspect-ratio: 800 / 570;
+    height: auto;
+  }
+  /* Layar mendatar: panggung memenuhi seluruh layar seperti YouTube — gambar
+     3D menyesuaikan lebarnya. Layar tegak tetap 800:570 agar kiri-kanan
+     gambar tidak terpotong. */
+  @media (orientation: landscape) {
+    .bioskop-penuh .panggung-bioskop {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+    }
+    .bioskop-penuh .isi-panggung {
+      aspect-ratio: auto;
+      height: 100%;
+    }
   }
   .bioskop-penuh .subtitel-bioskop {
     position: absolute;

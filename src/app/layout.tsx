@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Kepala } from "@/components/Kepala";
 import { Kaki } from "@/components/Kaki";
+import { LatarGenetika } from "@/components/LatarGenetika";
 
 /* Plus Jakarta Sans — huruf yang dirancang di Jakarta, sangat terbaca di layar
    kecil dan terasa hangat tanpa kehilangan kesan serius. */
@@ -79,6 +80,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: skripTema }} />
       </head>
       <body className="min-h-full flex flex-col bg-latar text-teks">
+        {/* hiasan samar di bawah semua menu (Nely, 25 Sep 2026) */}
+        <LatarGenetika />
         <a
           href="#isi-utama"
           className="tombol-tinta sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:px-4 focus:py-2"
