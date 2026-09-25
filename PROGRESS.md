@@ -5,6 +5,17 @@ membingungkan, itu kesalahan penulisnya, bukan kesalahanmu.
 
 ---
 
+## 26 September 2026 — Hiasan halaman depan sudah terbit
+
+Hasil editan hiasan dari **github.com/AryaNyoman/genetic** sudah diambil ke laptop dan
+**diterbitkan** ke https://ruang-genetika.vercel.app. Isinya: banner sambutan, pita kiri,
+pita kanan, dan latar yang melayang pelan di beranda, dengan tombol "Jeda hiasan".
+Perubahannya menyambung langsung dari versi sebelumnya, tanpa bentrok. Materi pelajaran
+tidak ikut berubah. GitHub-mu sendiri (nellycute/Gene) tetap jadi cadangan; perubahan ini
+belum dikirim ke sana.
+
+---
+
 ## 26 September 2026 — Pengiriman ke GitHub Arya
 
 Pembaruan ilustrasi dan latar bergerak sudah dikirim ke **github.com/AryaNyoman/genetic**,
