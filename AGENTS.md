@@ -87,10 +87,19 @@ akun Nely **"Nelyta"** (paket gratis Hobby), proyek `nelyta/ruang-genetika`.
 
 ## Cadangan di GitHub: github.com/nellycute/Gene (25 Sep 2026)
 
-Nely meminta seluruh folder proyek disimpan di GitHub miliknya. Remote `origin` =
-`https://github.com/nellycute/Gene.git`, cabang `main`. Login GitHub memakai akun Nely
-yang tersimpan di laptop (Git Credential Manager) — Claude tidak pernah memegang token.
+Nely meminta seluruh folder proyek disimpan di GitHub miliknya (repositori **publik**).
+Remote `origin` = `git@github.com:nellycute/Gene.git`, cabang `main`.
 
+- **Git lewat HTTPS tidak bisa dipakai di laptop ini**: `libcurl-4.dll` milik Git for
+  Windows tidak bertanda tangan dan diblokir Smart App Control (`fatal: failed to load
+  library 'libcurl-4.dll'`). Karena itu Git memakai **SSH bawaan Windows** (bertanda
+  tangan Microsoft): `core.sshCommand` di `.git/config` menunjuk
+  `C:/Windows/System32/OpenSSH/ssh.exe -i ~/.ssh/ruang_genetika_github`.
+- Kunci `~/.ssh/ruang_genetika_github` (ed25519, tanpa kata sandi) dibuat khusus untuk
+  repositori ini. Kunci publiknya harus terdaftar sebagai **deploy key dengan izin
+  tulis** di Settings → Deploy keys repositori Gene. Mendaftarkannya = mengubah
+  pengaturan GitHub Nely, jadi perlu izin Nely. Claude tidak pernah memegang kata sandi
+  atau token GitHub.
 - Commit dan push hanya bila Nely meminta. **Jangan pernah force-push.**
 - `.gitignore` menahan buku rujukan (`Referensi*.pdf`) dan `Gambar referensi.jpg`
   (berhak cipta) agar tidak ikut terunggah — sama seperti `.vercelignore`.

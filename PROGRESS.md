@@ -83,11 +83,19 @@ cukup tampil di subtitel.
    dimudakan, karena akrosom adalah kantong enzim sejenis lisosom.
 4. **Zigot 8 sel** digambar seperti gugus anggur di dalam zona.
 
-### Salinan di GitHub
+### Salinan di GitHub (tinggal satu langkah)
 
-Seluruh proyek juga kusimpan di GitHub-mu: **github.com/nellycute/Gene**. Ini
-cadangan. Kalau laptop rusak, tidak ada yang hilang. Buku dan gambar rujukanmu
-**tidak ikut diunggah**, karena milik penerbitnya.
+Seluruh proyek sudah **dikemas dan siap dikirim** ke GitHub-mu,
+**github.com/nellycute/Gene**. Salinan itu jadi cadangan: kalau laptop rusak, tidak
+ada yang hilang. Buku dan gambar rujukanmu **tidak ikut**, karena milik penerbitnya.
+Repositori Gene bersifat publik, jadi aku sudah memastikan buku-buku itu juga tidak
+pernah tersimpan di riwayat lama.
+
+Kenapa belum terkirim: jalur kirim biasa milik Git diblokir **Smart App Control**,
+penjaga keamanan Windows yang sama seperti dulu. Aku menyiapkan jalur lain yang aman,
+yaitu sebuah **"kunci" khusus yang hanya berlaku untuk repositori Gene** (bisa dihapus
+kapan saja). Kunci itu perlu didaftarkan sekali di pengaturan repositori Gene, dan
+untuk itu aku butuh izinmu.
 
 ### Yang perlu kamu periksa
 
@@ -95,6 +103,7 @@ cadangan. Kalau laptop rusak, tidak ada yang hilang. Buku dan gambar rujukanmu
    nyaman dilihat?
 2. **Website online belum berubah.** Semua perubahan ini baru ada di laptop sampai
    kamu setuju aku menerbitkannya.
+3. **Izin untuk GitHub**, lihat bagian di atas.
 
 ---
 
