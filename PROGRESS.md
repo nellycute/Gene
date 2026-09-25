@@ -7,10 +7,13 @@ membingungkan, itu kesalahan penulisnya, bukan kesalahanmu.
 
 ## 26 September 2026 — Pengiriman ke GitHub Arya
 
-Pembaruan ilustrasi dan latar bergerak disiapkan untuk dikirim ke repositori
-yang diminta: **github.com/AryaNyoman/genetic**. Pemeriksaan kode dan pembangunan
-website sebelumnya sudah lolos. Tujuan penerbitan sedang dikonfirmasi karena
-akun Vercel yang tersedia adalah akun Arya, sedangkan alamat lama milik akun Nely.
+Pembaruan ilustrasi dan latar bergerak sudah dikirim ke **github.com/AryaNyoman/genetic**,
+cabang **main** (commit pembaruan `74d2055`). Pemeriksaan kode dan pembangunan
+website sebelumnya sudah lolos. Repositori ini sekarang menjadi tujuan GitHub utama;
+alamat GitHub lama tetap disimpan sebagai cadangan.
+
+**Penerbitan ditunda sesuai permintaan pemilik.** Tidak ada perubahan pada situs
+publik dan tidak ada proyek Vercel baru yang dibuat.
 
 ---
 
