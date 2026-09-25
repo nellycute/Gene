@@ -19,6 +19,28 @@ export function usePencarianAlamat(): string {
   );
 }
 
+let hasilWebGL: boolean | undefined;
+
+/** Diperiksa sekali per halaman: membuat konteks uji, lalu segera dilepas. */
+function periksaWebGL(): boolean {
+  if (hasilWebGL === undefined) {
+    try {
+      const kanvas = document.createElement("canvas");
+      const konteks = kanvas.getContext("webgl2") ?? kanvas.getContext("webgl");
+      hasilWebGL = Boolean(konteks);
+      konteks?.getExtension("WEBGL_lose_context")?.loseContext();
+    } catch {
+      hasilWebGL = false;
+    }
+  }
+  return hasilWebGL;
+}
+
+/** Apakah peramban bisa menggambar 3D. Di server dianggap bisa. */
+export function useBisaWebGL(): boolean {
+  return useSyncExternalStore(tanpaLangganan, periksaWebGL, () => true);
+}
+
 /** Apakah sebuah media query cocok. `false` di server. */
 export function useMediaCocok(kueri: string): boolean {
   return useSyncExternalStore(

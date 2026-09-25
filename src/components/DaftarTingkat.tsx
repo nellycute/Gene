@@ -6,7 +6,6 @@ import { Lencana } from "./Lencana";
 import { usePencarianAlamat } from "@/lib/jendela";
 import type { Level } from "@/lib/kurikulum";
 import { warnaTingkat } from "@/lib/tingkat";
-import { formatDurasiRingkas } from "@/lib/tipe";
 
 /**
  * TUJUH BARIS TINGKAT (KEPUTUSAN-DESAIN.md §5.1–5.2, §5.4)
@@ -213,9 +212,7 @@ function BarisTingkat({
                     <span className="flex-1 text-[13.5px] font-medium leading-snug">
                       {b.judul}
                     </span>
-                    <span className="shrink-0 font-mono text-[10.5px] text-teks-samar">
-                      {formatDurasiRingkas(r.durasi)}
-                    </span>
+                    {/* tanpa keterangan durasi — cukup tombol putar (Nely, 25 Sep 2026) */}
                     <span
                       className="tombol-tinta grid h-[26px] w-[26px] shrink-0 place-items-center rounded-full"
                       aria-hidden="true"

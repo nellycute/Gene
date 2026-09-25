@@ -37,6 +37,9 @@ export const metadata: Metadata = {
     "materi genetika bahasa Indonesia",
   ],
   authors: [{ name: "Nely" }],
+  applicationName: "Ruang Genetika",
+  /* Dibuka dari ikon di layar utama iPhone: tampil penuh seperti aplikasi. */
+  appleWebApp: { capable: true, title: "Ruang Genetika", statusBarStyle: "default" },
   openGraph: {
     title: "Ruang Genetika",
     description:

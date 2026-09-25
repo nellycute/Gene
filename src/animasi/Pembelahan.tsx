@@ -207,7 +207,7 @@ function Mitosis({ fase }: { fase: "profase" | "metafase" | "anafase" }) {
           {EMPAT.map((k, i) => (
             <Kromosom key={i} x={PUSAT.x + [-50, 40, -30, 55][i]} y={PUSAT.y + [-60, -40, 60, 40][i]} tinggi={k.tinggi} tebal={13} warna={k.warna} putar={[-20, 25, 15, -30][i]} />
           ))}
-          <LabelBagian x={PUSAT.x - 120} y={PUSAT.y - 90} teks="selaput inti pecah" warna={SEL.membranInti.warna} arah="kiri" kecil />
+          <LabelBagian x={PUSAT.x - 120} y={PUSAT.y - 90} teks="membran inti pecah" warna={SEL.membranInti.warna} arah="kiri" kecil />
           <LabelBagian x={PUSAT.x + 125} y={PUSAT.y + 4} teks="serat gelendong" warna={GELENDONG} arah="kanan" kecil />
         </>
       )}

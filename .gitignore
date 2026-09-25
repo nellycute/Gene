@@ -36,6 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# buku dan gambar rujukan Nely — berhak cipta, hanya disimpan di laptop
+Referensi*.pdf
+Gambar referensi.jpg
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel

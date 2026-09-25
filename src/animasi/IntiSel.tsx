@@ -149,8 +149,8 @@ export function IntiSel({ tahap = "utuh" }: Props) {
       {/* label tahap */}
       {sorotSelaput && (
         <>
-          <LabelBagian x={PUSAT.x} y={PUSAT.y - RY} teks="Selaput luar" warna={SEL.membranInti.warna} />
-          <LabelBagian x={PUSAT.x - 60} y={PUSAT.y - RY + 16} teks="Selaput dalam" warna={SEL.membranInti.warna} arah="kiri" />
+          <LabelBagian x={PUSAT.x} y={PUSAT.y - RY} teks="Membran luar" warna={SEL.membranInti.warna} />
+          <LabelBagian x={PUSAT.x - 60} y={PUSAT.y - RY + 16} teks="Membran dalam" warna={SEL.membranInti.warna} arah="kiri" />
           <LabelBagian x={636} y={250} teks="RE kasar" warna={SEL.reKasar.warna} />
         </>
       )}

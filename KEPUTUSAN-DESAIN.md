@@ -6,6 +6,11 @@
 >
 > Semua keputusan di bawah ini **sudah disetujui Nely**. Kalau ada yang
 > bertentangan dengan kode yang ada sekarang, yang di bawah ini yang menang.
+>
+> **Diubah 23 September 2026** — setelah Nely meninjau website sementara, ia
+> memilih: gambar benda bergaya **3D bergaris** (§3) dan layar menonton
+> **"layar bioskop"** tanpa gulir (§5.3, §8.2, §8.3). Bagian yang berubah
+> ditandai *(diubah 23 Sep 2026)*.
 
 ---
 
@@ -15,7 +20,8 @@
 |---|---|
 | Warna halaman | Kertas krem tenang. Antarmuka **tanpa warna** — hitam tinta. Pelangi hanya sebagai penanda tingkat. |
 | Warna biologi | **Dicerahkan** dari palet lama. 5 basa nitrogen **tidak diubah**. |
-| Ilustrasi | Datar berisi di mana-mana; **3D hanya untuk 6 pelajaran** yang bentuk ruangnya memang diajarkan. |
+| Ilustrasi *(diubah 23 Sep 2026)* | Semua gambar benda (sel, organel, kromosom, DNA) **3D bergaris** seperti ilustrasi buku ajar. Diagram (Punnett, silsilah, grafik) tetap datar. |
+| Layar menonton *(diubah 23 Sep 2026)* | **Layar bioskop**: judul, panggung, subtitel, kendali — tidak pernah digulir. Tulisan panjang di **Catatan**, hanya saat diminta. |
 | Huruf | Plus Jakarta Sans (judul + isi), JetBrains Mono (deret basa & angka). |
 | Menemukan materi | 7 baris tingkat dalam satu layar; ketuk → isinya terbuka **di tempat**. |
 | Menu | Bilah atas tipis; di HP tombol tiga garis → panel turun. |
@@ -201,46 +207,53 @@ Aturan pengaman:
 
 ---
 
-## 3. Keputusan 2D atau 3D
+## 3. Keputusan 2D atau 3D *(diubah 23 Sep 2026)*
 
-### Keputusan: **campuran, dengan 3D sebagai pengecualian yang dibatasi.**
+### Keputusan: **semua gambar benda bergaya "3D bergaris".**
 
-**Aturan umum — semua ilustrasi datar berisi.** SVG datar seperti sekarang,
-ditambah gradasi lembut satu warna (terang ke gelap dalam rona yang sama) dan
-bayangan tipis. Terasa berisi, tapi warnanya tetap terbaca persis. Tambahan
-unduhan nol.
+Nely menilai gambar datar kurang hidup dan memberi tiga gambar rujukan: sel yang
+dibelah sehingga isinya terlihat, organel bervolume, warna jenuh. Ia
+membandingkan tiga contoh sel hewan terbelah — "3D lembut" (seperti render),
+"3D bergaris" (seperti ilustrasi vektor buku ajar), dan gambar datar lama — lalu
+memilih **3D bergaris**, yang paling dekat dengan `Gambar referensi.jpg`.
+Keputusan lama ("datar di mana-mana, 3D hanya di enam pelajaran") tidak berlaku lagi.
 
-**Pengecualian — 3D betulan, hanya di enam tempat:**
+**Yang digambar 3D:** semua benda yang punya bentuk — sel, organel, inti,
+kromosom, DNA, protein, gamet. **Yang tetap datar:** diagram yang memang datar —
+papan Punnett, silsilah, grafik, garis waktu, tabel kode genetik.
 
-| Pelajaran | Kenapa perlu 3D |
-|---|---|
-| 1.1 Struktur DNA: heliks ganda | Bentuk pilinnya adalah pelajarannya |
-| 0.2 Sel utuh (satu adegan penutup, bisa diputar) | Memahami sel sebagai ruang, bukan gambar |
-| 0.4 Kromosom | Bentuk tiga dimensinya menjelaskan pemadatan |
-| 1.6 Translasi / lipatan protein | Lipatan hanya masuk akal dalam ruang |
-| 4.6 NGS dan Illumina | Susunan sel alir sulit dipahami datar |
-| 6.1 CRISPR-Cas9 | Cara Cas9 mencengkeram DNA adalah soal bentuk |
+**Tidak ada gambar dari internet.** Model dibangun dari nol dengan kode (three.js).
+Gambar dan model dari Google berhak cipta, warnanya tidak sama dengan Peta Warna,
+dan bagian-bagiannya tidak bisa disorot satu per satu.
 
-**Syarat teknis untuk keenam pelajaran itu — tidak bisa ditawar:**
+**Syarat teknis — tidak bisa ditawar:**
 
-1. **Bahan gambarnya rata, tanpa kilau.** Pakai material tanpa pantulan
-   (`MeshBasicMaterial` atau `MeshToonMaterial` dengan dua tingkat), bukan
-   material mengkilap. Kilau putih adalah penyebab warna berubah.
-2. **Maksimal tiga tingkat terang** untuk satu warna: warna asli, satu tingkat
-   lebih terang, satu tingkat lebih gelap. Tidak ada yang mendekati putih atau
-   hitam.
-3. **Tanpa bayangan jatuh yang gelap.** Bayangan tipis di lantai saja.
-4. Mesin 3D **dimuat hanya saat pelajaran itu dibuka** (dynamic import), tidak
-   pernah ikut di halaman depan. Setelah sekali diunduh, tersimpan di HP.
-5. Ada tombol "Pakai gambar datar" di pelajaran 3D untuk penonton dengan HP
-   lemah, dan tampilan datar dipakai otomatis kalau perangkat menyalakan
-   "kurangi gerakan".
+1. **Bahan toon tanpa kilau, tiga tingkat terang** (`MeshToonMaterial` dengan
+   peta gradasi tiga langkah): gelap, tengah, terang. Tingkat paling terang =
+   warna asli dari `warna.ts`, jadi warnanya tetap terbaca persis.
+2. **Garis tepi gelap satu rona** — warna entitas itu sendiri yang digelapkan,
+   bukan hitam. Bagian pipih dan butiran kecil tanpa garis.
+3. **Bayangan jatuh tipis saja**, tidak pernah menghitamkan warna entitas.
+4. Mesin 3D **dimuat hanya di halaman pelajaran** (dynamic import), tidak pernah
+   ikut di halaman depan. Setelah sekali diunduh, tersimpan di HP.
+5. **Hanya 3D** *(diubah 25 Sep 2026)*. Tombol "Pakai gambar datar" dihapus atas
+   permintaan Nely — di dalam video tidak boleh ada pilihan atau tulisan selain
+   label bagian. Kembaran datar tetap dibuat, tetapi hanya muncul otomatis di
+   peramban yang sama sekali tidak bisa menggambar 3D (tanpa WebGL). "Kurangi
+   gerakan" di perangkat tetap 3D; kameranya saja yang diam.
+6. **Sorot bekerja sama seperti gambar datar:** bagian yang tidak dibahas memudar
+   kelabu tembus pandang. Kamera bergeser pelan mendekati bagian yang dibahas;
+   begitu penonton **menyeret** gambar, kamera berhenti sampai isyarat berikutnya.
+   Klik atau ketukan (putar/jeda) tidak menghentikan kamera.
 
-**Alasan tidak semua 3D:** dengan 42+ pelajaran, 3D di mana-mana berarti setiap
-pelajaran menguras kuota dan memanaskan HP kelas menengah — persis penonton
-utama situs ini. Dan cahaya 3D mengubah warna, yang menghancurkan fondasi
-ilmiah situs ini. 3D dipakai hanya ketika **bentuk ruangnya memang yang sedang
-diajarkan.**
+**Film, bukan salindia** *(24 Sep 2026)*. Nely menolak gambar yang hanya berganti
+per adegan "seperti slide show PPT". Maka setiap pelajaran Tingkat 0 kini satu
+film 3D yang terus bergerak: kamera berputar atau berayun pelan tanpa henti,
+menyelam ke skala berikutnya saat berpindah set (tubuh → jaringan → sel → inti →
+DNA), dan peristiwanya benar-benar terjadi di layar (sel membelah, kromatin
+memadat, kromosom disalin, pindah silang bertukar warna). Perubahan gambar
+dipicu **kata di narasi** (isyarat), bukan pergantian adegan — begitu kata
+"mitokondria" diucapkan, kamera menuju mitokondria.
 
 ---
 
@@ -272,8 +285,9 @@ dalam bentuk tulisan.
 
 **HP (satu layar, tanpa digulir):**
 1. Bilah atas 54 px — logo kiri, tombol tiga garis kanan.
-2. Blok sambutan: gambar sel 108×78 px di kiri (berdenyut pelan), di kanan
-   judul dua baris + satu baris keterangan.
+2. Blok sambutan: **bola sel 3D yang melayang** di kiri (84 px, laptop 104 px;
+   gambar diam 23 KB yang sama dengan ikon aplikasi, bayangannya mengecil saat
+   sel naik — 25 Sep 2026), di kanan judul dua baris + satu baris keterangan.
 3. Tujuh baris tingkat, tinggi 52 px, jarak 7 px.
 4. Satu baris kaki kecil: "Bebas dipakai mengajar · CC BY".
 
@@ -292,30 +306,63 @@ di dalam baris yang sama. Halaman tidak berpindah, posisi gulir tidak hilang.
 
 - Baris yang terbuka: bingkai 1,5 px berwarna tingkat, label mono ikut berwarna.
 - Isi: satu baris per pelajaran — nomor mono (`0.2`), judul, lalu **salah satu**:
-  - sudah siap → durasi + tombol putar bulat hitam 26 px;
+  - sudah siap → tombol putar bulat hitam 26 px, **tanpa keterangan durasi**
+    (Nely, 25 Sep 2026);
   - belum siap → tulisan "Segera" berwarna pudar, tidak bisa diketuk.
 - Di laptop isi tersusun tiga kolom; di HP satu kolom.
 - Hanya satu tingkat terbuka pada satu waktu.
 
-### 5.3 Layar menonton
+### 5.3 Layar menonton — "layar bioskop" *(diubah 23 Sep 2026)*
 
-**HP, urut dari atas:**
-1. Bilah atas: tombol kembali `← Nama Tingkat` (dengan titik warna tingkat) + tombol tiga garis.
-2. Nomor mono + judul pelajaran.
-3. **Panggung** — perbandingan 800:570, latar `--panggung`, sudut 13 px.
-   Lencana nama bagian di kiri atas (titik warna + nama), penanda
-   "Adegan 4 dari 13" di kanan atas.
-4. **Subtitel** — kartu putih tersendiri **di bawah panggung, tidak pernah
-   menimpanya.** Diagram tidak boleh tertutup teks.
-5. **Bilah kendali** — garis kemajuan terbagi per adegan (bisa diketuk untuk
-   melompat), lalu mundur / putar-jeda / maju, waktu, tombol subtitel, kecepatan.
-6. **Sedang dibahas** — titik warna + nama Indonesia + nama Inggris.
-7. Tiga laci tertutup: Pelajari lebih dalam · Daftar istilah · Rujukan.
+Nely menolak kolom teks yang memanjang ke bawah (laci di kolom kanan): menggulir
+memalingkan mata dari video. Aturannya sekarang: **layar menonton tidak pernah
+digulir**, di HP maupun laptop. Kaki halaman disembunyikan di layar ini.
 
-**Laptop:** dua kolom. Kiri (lebar 660 px): panggung, subtitel, bilah kendali.
-Kanan: judul pelajaran, kotak "Sedang dibahas" dengan keterangan satu kalimat,
-tiga laci (Daftar istilah terbuka secara bawaan), dan di paling bawah kartu
-hitam "Berikutnya" berisi pelajaran selanjutnya.
+**Urut dari atas, satu kolom (HP dan laptop sama):**
+1. Bilah atas: tombol kembali `← Nama Tingkat` (dengan titik warna tingkat).
+2. **Satu baris judul**: nomor mono + judul pelajaran (terpotong kalau kepanjangan)
+   + lencana "Draf" kalau belum ditinjau. Tanpa jumlah adegan dan durasi.
+3. **Panggung** — perbandingan 800:570, latar `--panggung`, sudut 13 px. Lebarnya
+   sebesar yang masih muat dalam tinggi layar. **Satu-satunya tulisan di dalam
+   video:** lencana kiri atas berisi bagian yang sedang dibahas (titik warna +
+   nama Indonesia + nama Inggris), tetap tampil selama bagian itu dibahas —
+   dipilih Nely 25 Sep 2026. Nomor adegan ("4/13"), tombol gambar datar,
+   petunjuk "Seret untuk memutar", dan tulisan "memuat" **dihapus** (25 Sep 2026):
+   penonton harus bisa melihat videonya penuh.
+4. **Subtitel** — kartu tersendiri **di bawah panggung, tidak pernah menimpanya.**
+   Tampil **sepotong-sepotong** (satu kalimat atau setengah kalimat, ≤ 110 huruf)
+   mengikuti waktu, seperti subtitel film.
+5. **Bilah kendali, seperti YouTube** *(25 Sep 2026)* — **satu garis waktu utuh**
+   selebar video di baris teratas (bukan lagi garis putus-putus per adegan;
+   diketuk untuk melompat, digeser untuk mencari), lalu mundur / putar-jeda /
+   maju bagian, waktu berjalan, CC, **tombol suara** (hitam = menyala), kecepatan,
+   **tombol layar penuh**, dan tombol **Catatan**.
+
+**Kendali ala YouTube** *(25 Sep 2026)*: spasi atau `k` = putar/jeda di mana pun
+di halaman (tanpa harus mengeklik pemutar dulu); panah kiri/kanan = ±5 detik;
+`j`/`l` = ±10 detik; `m` = suara; `c` = subtitel; `f` = layar penuh. Laptop: klik
+sekali di video = putar/jeda, klik dua kali = layar penuh. HP: **ketuk dua kali**
+di video = putar/jeda; satu ketukan hanya memunculkan kendali (di layar penuh).
+Menyeret video tetap memutar gambar 3D.
+
+**Layar penuh:** video sebesar layar dengan latar gelap di sekelilingnya
+(panggungnya tetap kertas); subtitel dan kendali melayang di bawah — satu-satunya
+tempat subtitel boleh menimpa video — dan kendali menghilang sendiri setelah ±2,6
+detik tanpa gerakan saat video berjalan. HP Android dimiringkan otomatis. iPhone
+tidak mengizinkan layar penuh selain untuk berkas video, jadi di sana pemutar
+menutup seluruh layar peramban.
+
+**Catatan** berisi empat tab: Istilah · Ringkasan · Naskah (seluruh narasi,
+adegan yang sedang diputar ditandai, bisa diketuk untuk melompat) · Rujukan.
+- Laptop: **panel di samping panggung** (340 px), setinggi kolom menonton;
+  panggung bergeser ke kiri, tidak ada yang tertutup; pelajaran terus berjalan.
+- HP: **lembar dari bawah** (≤ 58% tinggi layar); panggung tetap terlihat di
+  atasnya; pelajaran dijeda karena subtitel dan tombol tertutup.
+- Isi Catatan digulir di dalam kotaknya sendiri. Ditutup dengan ×, Esc, atau
+  mengetuk di luar lembar.
+
+**Berikutnya** muncul di kartu "Pelajaran selesai" di atas panggung, bersama
+tombol Putar ulang.
 
 ### 5.4 Kembali tanpa tersesat
 
@@ -340,6 +387,9 @@ perpindahan, bukan menghibur.
 | Menu ditutup | Kebalikannya | 140 ms |
 | Terus-menerus di halaman pertama | Sel membesar 1 → 1,035 → 1 | 4,5 detik, berulang |
 | Ganti adegan di panggung | Organel yang tidak dibahas meredup jadi kelabu (mekanisme `sorot` yang sudah ada) | 600 ms |
+| Ganti adegan, gambar 3D | Kamera bergeser pelan mendekati bagian yang dibahas, lalu berayun ± 11° | ± 1,5 detik; ayunan 18 detik |
+| Ganti potongan subtitel | Potongan baru muncul perlahan | 180 ms |
+| Catatan dibuka | Laptop: panel masuk dari kanan +12 px. HP: lembar naik dari bawah +24 px, latar meredup 18% | 200 ms |
 | Tombol ditekan | Mengecil ke 0,97 | 80 ms |
 | Menunggu suara | Cincin kecil berputar | 900 ms, linear |
 
@@ -391,30 +441,32 @@ kanan.
 | Nama tingkat | maksimal **4 kata** |
 | Keterangan tingkat (hanya laptop) | maksimal **10 kata**, satu baris |
 | Judul pelajaran | maksimal **8 kata** |
-| Subtitel satu adegan | maksimal **45 kata**, maksimal 3 baris di HP |
+| Subtitel satu adegan | maksimal **45 kata** (panduan menulis). Di layar tampil sepotong-sepotong ≤ 110 huruf, jadi tidak pernah lebih dari 3 baris di HP |
 | Tulisan yang terlihat di layar menonton, di luar subtitel | maksimal **25 kata** |
 
 **Tidak ada paragraf di halaman pertama.** Halaman pertama bukan tempat
 menjelaskan; halaman pertama tempat memilih.
 
-### 8.2 Ke mana penjelasan panjang disembunyikan
+### 8.2 Ke mana penjelasan panjang disembunyikan *(diubah 23 Sep 2026)*
 
-Penjelasan tidak dihapus — dipindahkan ke tiga laci tertutup di bawah pemutar,
-semuanya tertutup secara bawaan:
+Penjelasan tidak dihapus — dipindahkan ke **Catatan**, yang hanya muncul saat
+tombolnya diketuk (§5.3). Empat tab:
 
-1. **Pelajari lebih dalam** — ringkasan lengkap, hal-hal yang terlalu rinci
-   untuk narasi, dan catatan kalau ada perdebatan ilmiah.
-2. **Daftar istilah (n)** — setiap istilah Indonesia berdampingan dengan
-   padanan Inggrisnya. Aturan "istilah Inggris selalu didampingkan" dipenuhi
-   di sini dan di dalam narasi.
-3. **Rujukan (n)** — sumber ilmiah.
+1. **Istilah (n)** — tab yang terbuka pertama. Setiap istilah Indonesia
+   berdampingan dengan padanan Inggrisnya. Aturan "istilah Inggris selalu
+   didampingkan" dipenuhi di sini dan di dalam narasi.
+2. **Ringkasan** — poin kunci (dulu "Pelajari lebih dalam"), hal-hal yang terlalu
+   rinci untuk narasi, dan catatan kalau ada perdebatan ilmiah.
+3. **Naskah** — seluruh narasi pelajaran; juga tempat Nely membaca ulang naskah
+   saat meninjau.
+4. **Rujukan (n)** — sumber ilmiah, tanggal tinjauan, pengingat "bahan belajar,
+   bukan nasihat medis", dan lisensi.
 
-Di laptop, "Daftar istilah" terbuka secara bawaan karena ruangnya ada.
+### 8.3 Batas gulir *(diubah 23 Sep 2026)*
 
-### 8.3 Batas gulir
-
-Tidak ada halaman yang boleh melebihi **1,5 layar** gulir di HP. Kalau isinya
-lebih panjang dari itu, isinya harus masuk laci — bukan memanjangkan halaman.
+**Layar menonton: nol gulir.** Halaman lain tidak boleh melebihi **1,5 layar**
+gulir di HP. Kalau isinya lebih panjang dari itu, isinya harus masuk Catatan —
+bukan memanjangkan halaman.
 
 ---
 
@@ -424,15 +476,32 @@ lebih panjang dari itu, isinya harus masuk laci — bukan memanjangkan halaman.
 perpustakaan, atau angkutan umum. Narasi sudah mengisi telinga; bunyi tambahan
 hanya mengganggu. Satu-satunya suara di situs ini adalah narasi pelajaran.
 
-**Saat pelajaran dimuat:** gambar muncul **seketika** — animasinya digambar
-oleh kode, bukan diunduh. Yang ditunggu hanya berkas suara. Selama menunggu:
-adegan pertama sudah tergambar penuh, dengan cincin kecil berputar dan tulisan
-"Menyiapkan suara" di sudut kanan bawah panggung. **Tidak boleh ada layar
-kosong atau kotak abu-abu berdenyut.**
+**Tidak ada tampilan "memuat"** *(diubah 25 Sep 2026)*. Nely tidak mau ada
+tulisan seperti "Menyiapkan suara". Maka: suara adegan ini dan dua adegan
+berikutnya diunduh lebih dulu; awal kalimat boleh ditunggu paling lama 0,3 detik;
+lebih dari itu video jalan terus dan suaranya menyusul ke titik yang sama. Saat
+mesin 3D pertama kali diunduh (± 1–3 detik di HP), panggung tampil polos tanpa
+tulisan apa pun.
 
-**Kalau jaringan putus:** tampilkan kartu "Suara belum bisa dimuat" dengan dua
-tombol — "Tonton tanpa suara" (animasi + subtitel jalan penuh) dan "Coba lagi".
-Pelajaran tidak pernah gagal total. Ini penting untuk penonton berkuota terbatas.
+**Kalau jaringan putus:** tidak ada kartu peringatan. Adegan yang suaranya gagal
+dimuat tetap berjalan dengan gambar dan subtitel; adegan berikutnya mencoba
+suaranya sendiri. Pelajaran tidak pernah gagal total — penting untuk penonton
+berkuota terbatas.
+
+**Ikon aplikasi** *(25 Sep 2026)*: "Tambahkan ke layar utama" memasang ikon **bola
+sel yang melayang** — sel hewan berbentuk bola, diiris seperdelapan sehingga inti
+dan organelnya tampak, di atas bayangan lembut dan latar kertas. Digambar dari
+model 3D sendiri (`model-bola-sel.ts`), bukan gambar internet. Dibuka dari ikon
+itu, website tampil penuh seperti aplikasi (tanpa kolom alamat).
+
+**Narasi suara** *(24 Sep 2026, sementara)*: suara perempuan mesin Edge TTS
+("Gadis", bahasa Indonesia), dipilih Nely sampai ada pengisi suara. Suara,
+subtitel, dan gambar **serempak per kata**: potongan subtitel tampil saat kata
+pertamanya diucapkan, dan isyarat gambar jatuh tepat pada kata kuncinya. Lama
+adegan mengikuti rekamannya (setengah detik jeda sebelum, ± 1,8 detik hening
+sesudah). Padanan Inggris dalam kurung **tidak dibacakan** — suara Indonesia
+akan melafalkannya salah — tetapi tetap tertulis di subtitel. Pindah tab atau
+layar HP terkunci menjeda pelajaran, agar suara tidak berjalan tanpa gambarnya.
 
 **Prioritas HP di atas laptop.** Kalau ada pilihan yang menguntungkan laptop
 tapi merugikan HP, pilih yang menguntungkan HP. Sebagian besar penonton

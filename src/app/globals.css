@@ -134,6 +134,80 @@
     transform: scale(0.97);
   }
 
+  /* Layar bioskop (KEPUTUSAN-DESAIN.md §5.3): kolom menonton selebar yang
+     masih muat dalam tinggi layar, supaya panggung + subtitel + kendali
+     terlihat utuh tanpa menggulir. 1,4035 = perbandingan panggung 800:570;
+     --ruang-bioskop = tinggi bilah atas, judul, subtitel, dan kendali.
+     Baris pertama cadangan untuk peramban yang belum mengenal dvh. */
+  .lebar-bioskop {
+    /* 25 Sep 2026: + 26 px untuk garis waktu yang kini selalu sebaris sendiri */
+    --ruang-bioskop: 318px;
+    width: min(100%, max(21rem, calc((100vh - var(--ruang-bioskop)) * 1.4035)));
+    width: min(100%, max(21rem, calc((100dvh - var(--ruang-bioskop)) * 1.4035)));
+  }
+
+  /* Layar penuh (25 Sep 2026, seperti YouTube): panggung sebesar layar,
+     subtitel dan kendali melayang di bawahnya; kendali menghilang sendiri
+     saat video berjalan. Sekeliling panggung gelap — panggungnya sendiri
+     tetap kertas terang (§1.4). Kelas ini juga dipakai tiruan layar penuh
+     di iPhone, yang tidak mengizinkan layar penuh selain untuk <video>. */
+  .bioskop-penuh {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0d1116;
+  }
+  .bioskop-penuh[data-kendali="sembunyi"] {
+    cursor: none;
+  }
+  .bioskop-penuh .judul-bioskop {
+    display: none;
+  }
+  .bioskop-penuh .panggung-bioskop {
+    width: min(100vw, calc(100vh * 1.4035));
+    width: min(100vw, calc(100dvh * 1.4035));
+    border-radius: 0;
+  }
+  .bioskop-penuh .subtitel-bioskop {
+    position: absolute;
+    left: 50%;
+    /* di atas bilah kendali: garis waktu + baris tombol ± 106 px */
+    bottom: 118px;
+    width: min(92vw, 760px);
+    min-height: 0;
+    margin: 0;
+    transform: translateX(-50%);
+    background: rgb(13 17 22 / 0.8);
+    color: #ffffff;
+    box-shadow: none;
+    transition: bottom 200ms ease-out;
+  }
+  .bioskop-penuh[data-kendali="sembunyi"] .subtitel-bioskop {
+    bottom: 18px;
+  }
+  .bioskop-penuh .kendali-bioskop {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    margin: 0;
+    transition: opacity 200ms ease-out, transform 200ms ease-out;
+  }
+  .bioskop-penuh[data-kendali="sembunyi"] .kendali-bioskop {
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+  }
+
+  /* Lembar Catatan di HP: tidak pernah lebih dari 58% tinggi layar. */
+  .tinggi-lembar {
+    height: 58vh;
+    height: 58dvh;
+  }
+
   /* Deret basa DNA/RNA selalu memakai huruf monospasi agar sejajar rapi. */
   .urutan {
     font-family: var(--font-mono-kode), ui-monospace, monospace;
@@ -214,6 +288,18 @@
   }
 }
 
+/* Lembar Catatan di HP: naik dari bawah. */
+@keyframes naik-lembar {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Sel di halaman pertama: membesar 1 → 1,035 → 1, terus-menerus. */
 @keyframes denyut-sel {
   0%,
@@ -247,6 +333,9 @@
 .anim-muncul {
   animation: muncul 180ms ease-out both;
 }
+.anim-naik-lembar {
+  animation: naik-lembar 200ms ease-out both;
+}
 .anim-hilang {
   animation: hilang 140ms ease-out both;
 }
@@ -254,8 +343,47 @@
   animation: denyut-sel 4.5s ease-in-out infinite;
   transform-origin: center;
 }
+
+/* Bola sel di halaman depan melayang pelan; bayangannya mengecil saat sel naik. */
+@keyframes melayang {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes bayang-melayang {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(0.84);
+    opacity: 0.65;
+  }
+}
+.anim-melayang {
+  animation: melayang 4.2s ease-in-out infinite;
+}
+.anim-bayang-melayang {
+  animation: bayang-melayang 4.2s ease-in-out infinite;
+}
 .anim-putar {
   animation: putar 900ms linear infinite;
+}
+
+/* Tiruan layar penuh (iPhone): animasi geser pembungkus halaman meninggalkan
+   `transform`, dan di bawah transform `position: fixed` menempel ke pembungkus,
+   bukan ke layar. Selama layar penuh, transform itu dilepas dan halaman dikunci. */
+html[data-bioskop-penuh] .anim-masuk-geser {
+  animation: none;
+  transform: none;
+}
+html[data-bioskop-penuh] body {
+  overflow: hidden;
 }
 
 /* ------------------------------------------------------------------
@@ -276,7 +404,9 @@
     scroll-behavior: auto !important;
   }
 
-  .anim-denyut-sel {
+  .anim-denyut-sel,
+  .anim-melayang,
+  .anim-bayang-melayang {
     animation: none !important;
   }
 }

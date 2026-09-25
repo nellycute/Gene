@@ -1,0 +1,11 @@
+# Yang TIDAK ikut diunggah ke Vercel.
+# Buku dan gambar rujukan milik orang lain (berhak cipta) — hanya untuk bahan kerja di laptop.
+Referensi*.pdf
+Gambar referensi.jpg
+# Peluncur laptop Nely dan skrip perekam suara: tidak dipakai website.
+Buka Ruang Genetika.cmd
+alat/
+# Sisa pembangunan lokal
+.next/
+node_modules/
+*.tsbuildinfo

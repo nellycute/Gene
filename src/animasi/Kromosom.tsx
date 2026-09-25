@@ -376,8 +376,8 @@ function Kelamin() {
           laki-laki
         </Keterangan>
       </g>
-      <LabelBagian x={550} y={140} teks="X · ± 900 gen" warna={UNGU} arah="kiri" kecil />
-      <LabelBagian x={640} y={262} teks="Y · ± 60 gen" warna={TOSKA} arah="kanan" kecil />
+      <LabelBagian x={550} y={140} teks="X · ± 900–1.400 gen" warna={UNGU} arah="kiri" kecil />
+      <LabelBagian x={640} y={262} teks="Y · ± 70–200 gen" warna={TOSKA} arah="kanan" kecil />
       <Keterangan x={400} y={530} ukuran={13} warna={TINTA_SAMAR}>
         X dan Y homolog hanya di sebagian kecil ujungnya
       </Keterangan>

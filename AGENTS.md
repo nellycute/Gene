@@ -1,7 +1,11 @@
 # Ruang Genetika — panduan kerja
 
-Website edukasi genetika berbahasa Indonesia. Animasi terprogram (SVG) + narasi +
-elemen interaktif. Gratis, tanpa login, tanpa database.
+Website edukasi genetika berbahasa Indonesia. Animasi terprogram (3D bergaris dan
+SVG) + narasi + elemen interaktif. Gratis, tanpa login, tanpa database.
+
+**Urutan kerja (23 Sep 2026):** Tingkat 0 dikerjakan sampai tuntas — naskah ditinjau
+Nely, gambar gaya baru, suara, uji di HP — sebelum menyentuh Tingkat 1. Apa yang
+masih kurang di tiap pelajaran Tingkat 0 tercatat di `KURIKULUM.md`.
 
 Pemilik project: **Nely**, lulusan bidang genetika, **tanpa latar belakang programming**.
 
@@ -13,11 +17,15 @@ Pemilik project: **Nely**, lulusan bidang genetika, **tanpa latar belakang progr
    urutannya masuk akal tidak, nyaman dilihat tidak.
 2. **Naskah tidak terbit sebelum Nely memeriksa akurasinya.** Pelajaran yang belum
    ditinjau wajib diberi `draf: true` agar peringatan muncul di halaman.
+   *(25 Sep 2026: untuk Tingkat 0, Nely menyerahkan pemeriksaan akurasi kepada Claude.
+   Label draf 0.1–0.8 dicabut setelah tiap naskah dicocokkan dengan rujukannya.
+   Pelajaran baru tetap mulai dengan `draf: true`.)*
 3. **Warna entitas biologi hanya boleh diambil dari `src/lib/warna.ts`.** Jangan pernah
    menulis warna organel/molekul langsung di dalam komponen. Satu entitas = satu warna
    tetap, sama di seluruh pelajaran, selamanya.
 4. **Warna tidak pernah jadi satu-satunya penanda.** Selalu sertakan label teks.
-5. **Tidak ada gambar dari buku teks atau jurnal.** Semua diagram digambar dari nol.
+5. **Tidak ada gambar dari buku teks, jurnal, atau internet.** Semua gambar dan model
+   3D dibuat dari nol dengan kode.
 6. **Istilah teknis selalu didampingi padanan Inggris** pada kemunculan pertama.
 
 ## Keterbatasan lingkungan — BACA SEBELUM MENGUBAH PERKAKAS
@@ -37,14 +45,89 @@ berkas zip resmi ke `%LOCALAPPDATA%\Programs\nodejs`.
 
 ## Menjalankan
 
+**Nely** membuka website lewat ikon **"Ruang Genetika" di Desktop** — pintasan ke
+`Buka Ruang Genetika.cmd` di root project. Peluncur itu menyalakan `npm run dev` di
+jendela terminal yang diminimalkan, menunggu sampai port 3000 menjawab, lalu membuka
+browser. Kalau port 3000 sudah menyala, peluncur hanya membuka browser. Menutup
+jendela "Ruang Genetika" di taskbar = mematikan website. Berkas `.cmd` itu harus
+tetap berakhiran baris Windows (CRLF) dan hanya berisi huruf ASCII.
+
+**Claude:** kalau http://localhost:3000 sudah menjawab (Nely sedang menyalakannya),
+pakai server itu lewat `navigate` — jangan jalankan server kedua.
+
 ```
 npm run dev      # http://localhost:3000
 npm run build
 npx tsc --noEmit # periksa tipe
+npm run suara    # rekam narasi yang baru/berubah (Edge TTS) — lihat "Suara narasi"
 ```
 
 Kalau `node` tidak dikenali di shell baru:
 `$env:Path = "$env:LOCALAPPDATA\Programs\nodejs;$env:APPDATA\npm;$env:Path"`
+
+## Terbit di internet: https://ruang-genetika.vercel.app (24 Sep 2026)
+
+Nely meminta website bisa dibuka dari HP dan oleh orang lain. Terbit di **Vercel**,
+akun Nely **"Nelyta"** (paket gratis Hobby), proyek `nelyta/ruang-genetika`.
+
+- **Vercel tidak tersambung ke Git.** Repo ini punya remote GitHub (lihat di bawah),
+  tetapi push ke GitHub TIDAK menerbitkan apa pun. Menerbitkan ulang dari root project:
+  `$env:VERCEL_TELEMETRY_DISABLED="1"; npx --yes vercel@latest deploy --prod --yes`
+  (± 2 menit; build berjalan di server Vercel, bukan di laptop — aman dari Smart App
+  Control). Cek hasilnya tanpa cookie: `curl.exe -I https://ruang-genetika.vercel.app/`.
+- **Menerbitkan = mengubah situs publik**: lakukan hanya bila Nely meminta atau
+  menyetujuinya. Tawarkan di akhir pekerjaan ("mau kuterbitkan sekarang?").
+- Login Vercel CLI tersimpan di laptop ini (izin perangkat, 24 Sep 2026). Kalau
+  kedaluwarsa: jalankan `npx vercel login` di latar belakang, buka alamat
+  `vercel.com/oauth/device?user_code=…` dari keluarannya di browser Claude (Nely
+  sudah login di sana), cocokkan kodenya, lalu klik "Allow Access".
+- `.vercelignore` mencegah buku/gambar rujukan (berhak cipta), peluncur `.cmd`, dan
+  `alat/` ikut terunggah. Periksa ulang kalau menambah berkas besar di root.
+- Pelajaran berstatus draf tetap terlihat publik, dengan lencana "Draf" — pilihan Nely.
+
+## Cadangan di GitHub: github.com/nellycute/Gene (25 Sep 2026)
+
+Nely meminta seluruh folder proyek disimpan di GitHub miliknya. Remote `origin` =
+`https://github.com/nellycute/Gene.git`, cabang `main`. Login GitHub memakai akun Nely
+yang tersimpan di laptop (Git Credential Manager) — Claude tidak pernah memegang token.
+
+- Commit dan push hanya bila Nely meminta. **Jangan pernah force-push.**
+- `.gitignore` menahan buku rujukan (`Referensi*.pdf`) dan `Gambar referensi.jpg`
+  (berhak cipta) agar tidak ikut terunggah — sama seperti `.vercelignore`.
+- **Ikon aplikasi** (25 Sep 2026) digambar dari `model-bola-sel.ts` lewat
+  `studio.potret()` (PNG satu bingkai, latar tembus pandang), disusun di kanvas 2D
+  (latar kertas + bayangan melayang), lalu disimpan lewat halaman + rute API
+  SEMENTARA yang langsung dihapus lagi. Membuat ulang: tulis lagi keduanya, jangan
+  pakai `sharp` (biner, diblokir Smart App Control).
+
+## Suara narasi (24 Sep 2026)
+
+Narasi dibacakan **Edge TTS, suara perempuan `id-ID-GadisNeural`, laju −5%** —
+SEMENTARA, atas permintaan Nely, sampai ada pengisi suara. Komputer Nely tidak punya
+Python, jadi pustaka Python `edge-tts` tidak dipakai; protokolnya ditulis ulang di
+`alat/edge-tts.mjs` memakai WebSocket bawaan Node (tanpa paket tambahan, tanpa biner).
+
+- `npm run suara` (`alat/buat-suara.mjs`) membaca semua naskah `src/konten/*.ts`
+  (tipe dibuang dengan paket `typescript` — **jangan pakai tsx/esbuild**, biner),
+  lalu hanya merekam adegan yang narasinya baru atau berubah. Hasilnya:
+  `public/suara/<slug>/<id>.mp3` dan `src/konten/suara.json` (lama rekaman + waktu
+  tiap kata). `--semua` merekam ulang semuanya.
+- **Setiap kali narasi diubah, jalankan `npm run suara`.** Kalau lupa, adegan itu
+  tayang tanpa suara (bukan suara yang salah): `daftar-pelajaran.ts` hanya memasang
+  rekaman yang teksnya sama persis dengan narasi.
+- Padanan Inggris di dalam kurung **tidak dibacakan** (suara Indonesia melafalkannya
+  dengan ejaan Indonesia); tetap tampil di subtitel. Lafal khusus (Meiosis I → "satu",
+  2n → "dua en", p/q → "pe"/"ki", ZW → "zet we", 46,XY → "empat puluh enam, eks ye")
+  ada di daftar `LAFAL` di `buat-suara.mjs`. Padanan Inggris yang berisi angka, seperti
+  "(trisomy 21)", tidak tertangkap pola kurung otomatis — tambahkan ke `LAFAL`.
+- Pemutar: lama adegan = `JEDA_AWAL` + rekaman + `JEDA_AKHIR` (`lamaAdegan` di
+  `tipe.ts`; `durasi` di naskah hanya cadangan tanpa suara). Selama narasi terdengar,
+  **rekamanlah jamnya**; subtitel dan isyarat dijadwalkan dari waktu kata
+  (`detikNarasi` di `subtitel.ts`). Tombol suara (tombol `m`) disimpan di perangkat
+  (`src/lib/bisu.ts`). Pindah tab = jeda, agar suara dan gambar tidak berpisah.
+- Kalau Edge menolak (403) setelah Microsoft memperbarui layanannya, cocokkan
+  konstanta di `alat/edge-tts.mjs` dengan `src/edge_tts/constants.py` dan `drm.py`
+  di github.com/rany2/edge-tts.
 
 ## Desain: sumber kebenarannya KEPUTUSAN-DESAIN.md
 
@@ -58,9 +141,22 @@ itu yang menang. Intinya:
 - **Panggung animasi selalu kertas terang** (`--panggung`) walau mode gelap.
 - **Halaman pertama muat satu layar HP**, tanpa paragraf. Tujuh baris tingkat membuka
   di tempat. Alur: buka → pilih → tonton.
-- **3D hanya untuk enam pelajaran** yang bentuk ruangnya diajarkan (§3). Material
-  toon tanpa kilau, dimuat dinamis, ada tombol "Pakai gambar datar".
-- **Batas kata mengikat** (§8.1): subtitel ≤ 45 kata, judul pelajaran ≤ 8 kata, dst.
+- **Gambar benda bergaya 3D bergaris** (§3, dipilih Nely 23 Sep 2026): sel dibelah
+  seperti buah, toon tiga tingkat terang, garis tepi = warna entitas yang digelapkan.
+  Diagram (Punnett, silsilah, grafik) tetap datar. Dimuat dinamis. **Sejak 24 Sep
+  2026 seluruh Tingkat 0 berupa "film" 3D** yang bergerak terus mengikuti kalimat
+  narasi — Nely menolak tampilan yang berganti per adegan "seperti slide PPT".
+  Mesinnya `studio.ts` + `Film3D.tsx`. **Sejak 25 Sep 2026 hanya 3D**: tombol "Pakai
+  gambar datar" dihapus; kembaran datar hanya muncul otomatis tanpa WebGL.
+- **Layar menonton tidak pernah digulir** (§5.3 "layar bioskop"): satu baris judul →
+  panggung → subtitel berpotong → kendali. Istilah, ringkasan, naskah, dan rujukan ada
+  di Catatan: panel samping di laptop, lembar dari bawah di HP.
+- **Seperti YouTube** (§5.3, 25 Sep 2026): di dalam video HANYA label bagian yang
+  dibahas — jangan tambahkan nomor adegan, tombol, petunjuk, atau tulisan "memuat".
+  Satu garis waktu utuh; spasi/k, panah, j/l, m, c, f; klik video (laptop) atau ketuk
+  dua kali (HP) = putar/jeda; tombol layar penuh. Suara tidak pernah menahan video
+  lebih dari 0,3 detik.
+- **Batas kata mengikat** (§8.1): narasi ≤ 45 kata per adegan, judul pelajaran ≤ 8 kata, dst.
 - HP di atas laptop, selalu.
 
 ## Susunan berkas
@@ -70,15 +166,27 @@ src/
 ├── lib/warna.ts            SUMBER KEBENARAN warna entitas biologi (30 entitas)
 ├── lib/tingkat.ts          tujuh warna tingkat — satu-satunya warna antarmuka
 ├── lib/tipe.ts             bentuk data Pelajaran dan Adegan
-├── lib/kurikulum.ts        peta Level 0-6, RINGAN (tanpa naskah) — dipakai bilah atas
+├── lib/kurikulum.ts        peta Tingkat 0-6, RINGAN (tanpa naskah) — dipakai bilah atas
 ├── lib/daftar-pelajaran.ts pelajaran siap + naskah lengkap — hanya untuk halaman pelajaran
+├── lib/subtitel.ts         potongan subtitel + detikNarasi (kapan huruf ke-n terucap)
+├── lib/isyarat.ts          jadwal isyarat: kata di narasi → gambar berubah
 ├── lib/jendela.ts          membaca alamat/lebar layar/tema lewat useSyncExternalStore
-├── lib/tema.ts, tampilan3d.ts  pilihan penonton yang disimpan di perangkat
+├── lib/tema.ts, bisu.ts    pilihan penonton yang disimpan di perangkat
 ├── konten/                 naskah pelajaran (satu berkas per pelajaran)
-├── animasi/                komponen SVG per topik
-├── animasi/tiga-dimensi/   SelHewan3D (three.js) + Panggung3D (pemuat dinamis)
-├── components/             Kepala, Logo, DaftarTingkat, PemutarPelajaran, Laci, ...
+├── konten/suara.json       DIBUAT `npm run suara` — waktu kata tiap rekaman
+├── animasi/                komponen SVG per topik (juga kembaran datar gambar 3D)
+├── animasi/tiga-dimensi/   studio.ts (panggung, kamera, redup, pergantian set),
+│                           Film3D.tsx (pembungkus React), satu film per pelajaran
+│                           (PengantarGenetika3D, PerjalananSel3D, SelHewanPotong3D,
+│                           IntiSel3D, KromosomFilm3D, PembelahanFilm3D),
+│                           model-*.ts (benda: sel hewan, sel tumbuhan, kromosom, ...),
+│                           model-bola-sel.ts (gambar ikon aplikasi, juga di 0.1),
+│                           Panggung3D (datar hanya bila tanpa WebGL)
+├── app/manifest.ts         aplikasi di layar HP; ikon di public/ikon/ + app/apple-icon.png
+├── components/             Kepala, Logo, DaftarTingkat, PemutarPelajaran, Catatan, ...
 └── app/                    halaman
+public/suara/               DIBUAT `npm run suara` — mp3 per adegan
+alat/                       skrip Node untuk Claude (suara); bukan bagian website
 KEPUTUSAN-DESAIN.md         SUMBER KEBENARAN desain — yang menang kalau bertentangan
 KURIKULUM.md                peta seluruh materi — wilayah tinjauan Nely
 PROGRESS.md                 catatan progres untuk dibaca Nely
@@ -97,20 +205,32 @@ PROGRESS.md                 catatan progres untuk dibaca Nely
 ## Cara menambah pelajaran baru
 
 1. Buat berkas naskah di `src/konten/<nomor>-<slug>.ts` mengikuti bentuk `Pelajaran`.
-   Tiap adegan ≤ 45 kata. Isi `tahap` untuk memilih gambar yang ditampilkan.
+   Tiap adegan ≤ 45 kata. Isi `tahap` untuk memilih gambar yang ditampilkan, dan
+   `isyarat` (kata di narasi → `fokus`/`sorot`/`tahap`/`label`) agar gambar berubah
+   di tengah kalimat, tepat saat kata itu diucapkan.
 2. Kalau butuh gambar baru, buat komponen di `src/animasi/` dengan props
-   `{ tahap?, sorot? }`, lalu daftarkan kuncinya di `KunciAnimasi` (`src/lib/tipe.ts`)
-   dan di `ANIMASI` (`src/animasi/daftar.tsx`). Komponen 3D (hanya enam pelajaran §3)
-   dibungkus `next/dynamic` di daftar yang sama. Ambil semua warna dari
+   `PropsAnimasi`, lalu daftarkan kuncinya di `KunciAnimasi` (`src/lib/tipe.ts`)
+   dan di `ANIMASI` (`src/animasi/daftar.tsx`). Gambar benda dibuat sebagai film 3D
+   bergaris di `src/animasi/tiga-dimensi/` (ikuti pola `PembelahanFilm3D`/`IntiSel3D`:
+   `Film3D` + pembangun berisi beberapa set, `studio.bagian()` per entitas, sudut
+   kamera per `fokus` dengan `lihat()`), dibungkus `next/dynamic` dengan
+   `tiga: "semua"`, dan tetap punya kembaran datar. Ambil semua warna dari
    `src/lib/warna.ts`; pakai potongan bersama di `src/animasi/bagian.tsx`.
 3. **Bulatkan semua koordinat hasil cos/sin/pembagian** dengan `bulat()` dari
    `bagian.tsx` — kalau tidak, server dan browser berbeda di digit ke-13 dan React
    melempar peringatan hidrasi.
 4. Daftarkan di `src/lib/daftar-pelajaran.ts` (`PELAJARAN_SIAP`) dan isi `slug` pada
    butir yang sesuai di `src/lib/kurikulum.ts`.
-5. Biarkan `draf: true` sampai Nely selesai meninjau.
-6. Periksa tiap tahap gambar di browser: lencana panggung menutupi pojok kiri-atas
-   dan kanan-atas (± 250 × 70 satuan viewBox) — jangan taruh judul atau label di sana.
+5. Jalankan `npm run suara` — dan lagi setiap kali narasinya berubah.
+6. Biarkan `draf: true` sampai Nely selesai meninjau.
+7. Periksa tiap tahap gambar di browser: label panggung menutupi pojok kiri-atas —
+   jangan taruh judul atau label di sana.
+   Panel browser Claude yang tersembunyi menghentikan `requestAnimationFrame`, dan
+   yang tampil pun hanya ± 3 bingkai/detik — film tampak lambat, dan tangkapan layar
+   panel tersembunyi bisa basi. Buka panelnya dengan `preview_start {url}`, lompat
+   dengan mengklik garis waktu, lalu majukan film secara manual lewat
+   `window.__majukanFilm(n)` (n × 100 ms waktu film; hanya di mode dev, dipasang
+   `Film3D.tsx`, bersama `window.__studioFilm`).
 
 ## Gaya penulisan kode
 

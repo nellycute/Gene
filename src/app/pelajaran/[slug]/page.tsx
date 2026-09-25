@@ -26,9 +26,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 /**
- * Halaman menonton. Seluruh tata letaknya (judul, panggung, laci, kartu
- * berikutnya) ada di dalam PemutarPelajaran karena "Sedang dibahas" harus
- * mengikuti adegan yang sedang berjalan. Halaman ini hanya mencari datanya.
+ * Halaman menonton. Seluruh tata letaknya (judul, panggung, subtitel, kendali,
+ * Catatan) ada di dalam PemutarPelajaran karena semuanya mengikuti adegan yang
+ * sedang berjalan. Halaman ini hanya mencari datanya.
  */
 export default async function HalamanPelajaran({ params }: Props) {
   const { slug } = await params;
@@ -48,8 +48,9 @@ export default async function HalamanPelajaran({ params }: Props) {
       : undefined;
 
   return (
-    <article className="anim-masuk-geser mx-auto max-w-6xl px-4 py-4 sm:px-6 sm:py-6">
-      <PemutarPelajaran pelajaran={pelajaran} berikutnya={berikutnya} />
+    <article className="anim-masuk-geser mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4">
+      {/* key: pindah pelajaran = pemutar baru (posisi, jam, dan elemen suara mulai dari nol) */}
+      <PemutarPelajaran key={pelajaran.slug} pelajaran={pelajaran} berikutnya={berikutnya} />
     </article>
   );
 }

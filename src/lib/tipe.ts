@@ -10,20 +10,51 @@ export type Tingkat = "Dasar" | "Menengah" | "Lanjut";
 
 /** Kunci animasi yang tersedia. Daftarnya (komponen datar + 3D) ada di src/animasi/daftar.ts. */
 export type KunciAnimasi =
+  | "pengantar"
   | "sel-hewan"
   | "perbesaran"
   | "inti-sel"
   | "kromosom"
   | "pembelahan";
 
+/**
+ * Isyarat di tengah adegan: begitu `kata` tampil di subtitel, gambar ikut
+ * berubah — kamera menuju bagian lain, sorotan berganti, atau set berganti.
+ * Inilah yang membuat gambar bergerak seirama narasi, bukan berganti per slide.
+ */
+export type Isyarat = {
+  /** Potongan kalimat di narasi adegan ini (tidak peka huruf besar-kecil). */
+  kata: string;
+  /** Sudut pandang kamera yang dituju — kuncinya dimengerti komponen gambar. */
+  fokus?: string;
+  /** Ganti sorotan mulai saat ini. */
+  sorot?: string[];
+  /** Ganti set/tahap gambar mulai saat ini. */
+  tahap?: string;
+  /** Tulisan di lencana panggung, untuk benda yang tidak punya entitas warna. */
+  label?: string;
+};
+
+/**
+ * Rekaman narasi satu adegan. Dibuat oleh `npm run suara` (alat/buat-suara.mjs)
+ * dan dipasang otomatis di src/lib/daftar-pelajaran.ts — tidak ditulis tangan.
+ */
+export type SuaraAdegan = {
+  /** Alamat berkas mp3 di folder public. */
+  berkas: string;
+  /** Lama rekaman, detik. */
+  durasi: number;
+  /** Setiap kata yang diucapkan: [posisi huruf di narasi, detik mulai di rekaman]. */
+  kata: [number, number][];
+};
+
 export type Adegan = {
   /** Kunci unik di dalam pelajaran ini. */
   id: string;
 
   /**
-   * Lama adegan dalam detik.
-   * Dipakai selama narasi suara belum ada. Begitu berkas audio dipasang,
-   * lama audio yang menentukan.
+   * Lama adegan dalam detik — dipakai hanya selama adegan ini belum punya
+   * rekaman suara. Begitu ada, lama rekaman yang menentukan (lihat lamaAdegan).
    */
   durasi: number;
 
@@ -47,15 +78,23 @@ export type Adegan = {
    */
   tahap?: string;
 
+  /** Sudut pandang kamera awal adegan (gambar 3D). Kosong = diturunkan dari sorot/tahap. */
+  fokus?: string;
+
+  /** Perubahan gambar di tengah adegan, mengikuti subtitel. */
+  isyarat?: Isyarat[];
+
   /**
    * "3d" = adegan ini memakai tampilan tiga dimensi yang bisa diputar.
-   * Hanya untuk enam pelajaran yang bentuk ruangnya memang diajarkan
-   * (KEPUTUSAN-DESAIN.md §3). Mesin 3D dimuat hanya saat pelajaran dibuka.
+   * Hanya perlu untuk gambar yang belum seluruhnya 3D; gambar yang sudah dibuat
+   * ulang dalam gaya 3D bergaris memakai 3D di semua adegan (`tiga: "semua"` di
+   * src/animasi/daftar.tsx, KEPUTUSAN-DESAIN.md §3). Mesin 3D dimuat hanya saat
+   * pelajaran dibuka.
    */
   tampilan?: "3d";
 
-  /** Berkas narasi suara, relatif terhadap /public. Diisi menyusul. */
-  audio?: string;
+  /** Rekaman narasi — dipasang otomatis, jangan diisi di berkas naskah. */
+  suara?: SuaraAdegan;
 };
 
 export type Istilah = {
@@ -101,9 +140,19 @@ export type Pelajaran = {
   draf?: boolean;
 };
 
+/** Jeda sebelum suara adegan mulai — memberi waktu gambar berpindah lebih dulu. */
+export const JEDA_AWAL = 0.5;
+/** Jeda setelah rekaman habis (rekaman sendiri sudah berekor hening ± 0,9 detik). */
+export const JEDA_AKHIR = 0.9;
+
+/** Lama tayang satu adegan, detik: mengikuti rekaman suaranya bila ada. */
+export function lamaAdegan(a: Adegan): number {
+  return a.suara ? JEDA_AWAL + a.suara.durasi + JEDA_AKHIR : a.durasi;
+}
+
 /** Total durasi sebuah pelajaran dalam detik. */
 export function totalDurasi(p: Pelajaran): number {
-  return p.adegan.reduce((jumlah, a) => jumlah + a.durasi, 0);
+  return p.adegan.reduce((jumlah, a) => jumlah + lamaAdegan(a), 0);
 }
 
 /** Ubah detik jadi tulisan "6 menit" atau "4 mnt 30 dtk". */

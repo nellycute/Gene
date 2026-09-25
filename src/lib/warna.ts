@@ -60,7 +60,7 @@ export const SEL = daftar({
     nama: "Sitoplasma",
     inggris: "cytoplasm",
     warna: "#D6EDF7",
-    keterangan: "Cairan kental tempat seluruh organel mengapung dan bekerja.",
+    keterangan: "Seluruh isi sel di luar inti: cairan kental (sitosol) beserta organel di dalamnya.",
   },
   inti: {
     nama: "Inti sel",
@@ -72,7 +72,7 @@ export const SEL = daftar({
     nama: "Membran inti",
     inggris: "nuclear envelope",
     warna: "#B569F0",
-    keterangan: "Selaput ganda berpori yang membungkus inti dan menjaga isinya.",
+    keterangan: "Dua membran berpori yang membungkus inti dan menjaga isinya.",
   },
   nukleolus: {
     nama: "Nukleolus",
@@ -108,7 +108,7 @@ export const SEL = daftar({
     nama: "Retikulum endoplasma halus",
     inggris: "smooth ER",
     warna: "#2FD1B5",
-    keterangan: "Tanpa ribosom; mengurus lemak, hormon, dan penawar racun.",
+    keterangan: "Tanpa ribosom; membuat lemak dan hormon, serta menetralkan racun.",
   },
   golgi: {
     nama: "Badan Golgi",
@@ -144,19 +144,19 @@ export const SEL = daftar({
     nama: "Sentriol",
     inggris: "centriole",
     warna: "#6C4FD8",
-    keterangan: "Sepasang silinder yang menarik kromosom saat sel membelah.",
+    keterangan: "Silinder kecil dari mikrotubulus; sepasang sentriol menjadi pusat asal serat gelendong pada sel hewan.",
   },
   kloroplas: {
     nama: "Kloroplas",
     inggris: "chloroplast",
     warna: "#2EAF4B",
-    keterangan: "Khusus sel tumbuhan: mengubah cahaya matahari menjadi gula.",
+    keterangan: "Pada tumbuhan dan alga: mengubah cahaya matahari menjadi gula; punya DNA sendiri.",
   },
   dindingSel: {
     nama: "Dinding sel",
     inggris: "cell wall",
     warna: "#B79318",
-    keterangan: "Khusus sel tumbuhan: lapisan kaku di luar membran sel.",
+    keterangan: "Lapisan kaku di luar membran sel pada tumbuhan, jamur, dan kebanyakan bakteri; sel hewan tidak punya.",
   },
 });
 
