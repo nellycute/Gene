@@ -197,8 +197,9 @@ export function setGel(studio: Studio): Set3D {
         l.visible = f === "pita" || f === "contoh";
         l.position.set(gel.lajurX[0] - 1.1, yDari(l.userData.pb as number, gel.tinggi), 0.3);
       });
-      aturLabel(lJalan, f === "jalan", dt, v(6.8, 3, 1));
-      aturLabel(lBabi, f === "contoh", dt, v(7.2, 3.4, 1.2));
+      /* di kanan gel, tapi tidak terlalu jauh: di 6,8/7,2 ujung kanannya terpotong bingkai */
+      aturLabel(lJalan, f === "jalan", dt, v(5.6, 3, 1));
+      aturLabel(lBabi, f === "contoh", dt, v(6.0, 3.4, 1.2));
     },
   };
 }

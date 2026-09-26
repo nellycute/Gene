@@ -34,15 +34,22 @@ export function Film3D({ props, bangun }: { props: PropsAnimasi; bangun: Pembang
     const studio = buatStudio(el, tirai.current);
     studio.mulai(bangun(studio, () => propsRef.current));
     /* alat periksa saat pengembangan: window.__majukanFilm(20) = 20 bingkai seketika */
-    const w = window as Window & { __majukanFilm?: (n: number) => void; __studioFilm?: unknown };
+    const w = window as Window & {
+      __majukanFilm?: (n: number) => void;
+      __studioFilm?: unknown;
+      __propsFilm?: () => PropsAnimasi;
+    };
     if (process.env.NODE_ENV !== "production") {
       w.__majukanFilm = studio.majukan;
       w.__studioFilm = studio;
+      /* perekam video memeriksa bahwa film sudah membaca adegan terbaru */
+      w.__propsFilm = () => propsRef.current;
     }
     return () => {
       if (w.__majukanFilm === studio.majukan) {
         delete w.__majukanFilm;
         delete w.__studioFilm;
+        delete w.__propsFilm;
       }
       studio.buang();
     };

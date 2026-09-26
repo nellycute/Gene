@@ -347,9 +347,31 @@ export function buatStudio(el: HTMLDivElement, tirai: HTMLDivElement | null) {
     let t = Math.max(performance.now(), jamManual);
     for (let i = 0; i < n; i++) {
       t += langkahMs;
+      renderer.clear(); // lihat langkahRekam
       putaran(t);
     }
     jamManual = t;
+  };
+
+  /**
+   * Perekam video YouTube (src/app/rekam-video): detak peramban dihentikan, lalu
+   * film dimajukan tepat `ms` per bingkai. Hasil rekaman jadi sama persis berapa
+   * pun lamanya komputer menggambar satu bingkai.
+   */
+  let jamRekam: number | null = null;
+  const langkahRekam = (ms: number) => {
+    if (!putaran) return;
+    if (jamRekam === null) {
+      renderer.setAnimationLoop(null);
+      jamRekam = Math.max(performance.now(), jamManual);
+    }
+    jamRekam += ms;
+    /* OutlineEffect tidak pernah membersihkan kanvas sendiri (autoClear-nya
+       undefined); biasanya peramban mengosongkannya tiap kali tampil. Bingkai
+       yang digambar beruntun tanpa tampil akan menumpuk — bayangan lantai jadi
+       hitam pekat, benda yang bergerak berbekas. */
+    renderer.clear();
+    putaran(jamRekam);
   };
 
   /** Mulai detak gambar. `detak` dipanggil tiap bingkai sebelum menggambar. */
@@ -462,6 +484,7 @@ export function buatStudio(el: HTMLDivElement, tirai: HTMLDivElement | null) {
     aturBayangan,
     mulai,
     majukan,
+    langkahRekam,
     potret,
     buang,
     get sedangBerganti() {

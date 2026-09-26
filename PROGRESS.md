@@ -5,14 +5,38 @@ membingungkan, itu kesalahan penulisnya, bukan kesalahanmu.
 
 ---
 
+## 26 September 2026 (sore) — Terbit, tersimpan di GitHub, dan jadi video YouTube
+
+- **Website di internet sudah diperbarui**: https://ruang-genetika.vercel.app kini berisi
+  ke-48 pelajaran (Tingkat 0–6). Tingkat 1–6 tetap tampil dengan lencana **Draf**.
+- **GitHub** (github.com/nellycute/Gene) sudah menyimpan semuanya.
+- **Video untuk YouTube**: setiap pelajaran kini juga punya berkas video MP4 (layar
+  lebar 1920 × 1080, bersuara, bersubtitel) di folder **`Video YouTube`** di dalam folder
+  proyek, dipisah per tingkat. Tiap video dibuka dengan kartu judul (4 detik) dan
+  ditutup kartu "Pelajaran selesai" berisi alamat website dan judul pelajaran berikutnya.
+  Di samping tiap video ada berkas teks **"… - keterangan YouTube.txt"**: tinggal salin
+  ke kotak deskripsi YouTube. Isinya ringkasan, tautan ke website, **bab** (YouTube
+  otomatis membuat penanda bab dari daftar waktu itu), poin kunci, istilah, dan rujukan.
+- Hasilnya **48 video, total ± 143 menit, 4,8 GB**. Setiap video sudah kuputar
+  utuh oleh alat pemeriksa: tidak ada yang rusak. Saat memeriksa, kutemukan satu
+  tulisan di film 6.5 ("pendek → lebih jauh") yang terpotong di tepi kanan. Tulisan itu
+  sudah kugeser dan videonya kurekam ulang. Website di internet baru mendapat
+  perbaikan ini pada penerbitan berikutnya.
+- Video **tidak** ikut ke GitHub dan website karena ukurannya besar.
+  Simpanan satu-satunya ada di laptop ini, jadi sebaiknya kamu salin juga ke flashdisk
+  atau Google Drive.
+- Kalau nanti ada naskah yang kamu koreksi, cukup bilang pelajaran mana, dan videonya
+  akan kurekam ulang.
+
+---
+
 ## 26 September 2026 (malam) — Tingkat 2 sampai 6 lengkap
 
 Kamu meminta seluruh materi dituntaskan tanpa jeda tanya-jawab. **Tingkat 2, 3, 4, 5,
 dan 6 kini sudah jadi: 33 pelajaran, 231 adegan, ± 75 menit tayang.** Semuanya film 3D
 yang bergerak mengikuti narasi, bersuara, bersubtitel, dan punya Catatan (istilah,
 ringkasan, naskah, rujukan). Semuanya masih berlabel **Draf** sampai kamu membacanya.
-Website di internet **belum** diperbarui dan belum ada yang dikirim ke GitHub —
-keduanya menunggu izinmu.
+Website di internet dan GitHub diperbarui sore harinya atas izinmu (lihat catatan di atas).
 
 | Tingkat | Pelajaran | Isi film, singkatnya |
 |---|---|---|

@@ -113,6 +113,29 @@ berhasil 25 Sep 2026.
 - `.gitignore` menahan buku rujukan (`Referensi*.pdf`) dan `Gambar referensi.jpg`
   (berhak cipta) agar tidak ikut terunggah — sama seperti `.vercelignore`.
 
+## Video YouTube (26 Sep 2026)
+
+Nely ingin mengunggah pelajaran ke YouTube. Film website tidak punya berkas video
+(digambar langsung), jadi ada **perekam** yang hanya jalan di laptop (mode dev):
+
+- Buka `http://localhost:3000/rekam-video` di browser Claude → merekam SEMUA pelajaran
+  yang videonya belum ada, berurutan (halaman pindah sendiri). `?slug=…` = satu
+  pelajaran saja, menimpa videonya. Kemajuan: `window.__statusRekam` / judul tab.
+  Setelah naskah atau film diubah, hapus video pelajaran itu lalu rekam ulang.
+- Hasil: `Video YouTube/Tingkat N - Nama/<nomor> <judul>.mp4` (1920 × 1080, 30 fps,
+  H.264 5 Mbps + AAC) dan `… - keterangan YouTube.txt` (deskripsi, bab, poin kunci,
+  istilah, rujukan). Folder ini ditahan `.gitignore` dan `.vercelignore` (± 5 GB).
+- Susunan bingkai: kartu pembuka 4 detik → judul + panggung + lencana + subtitel
+  (seperti layar menonton) → kartu penutup 6 detik. Semua digambar di
+  `src/app/rekam-video/PerekamVideo.tsx`; berkas disimpan lewat `src/app/api/rekam-video`.
+  Keduanya ditolak di produksi dan tidak diunggah ke Vercel.
+- Film dimajukan tepat 1/30 detik per bingkai lewat `studio.langkahRekam()` — hasilnya
+  sama walau laptop lambat (± 3× lebih cepat dari lama video). `OutlineEffect` tidak
+  membersihkan kanvas sendiri; bingkai beruntun tanpa `renderer.clear()` menumpuk
+  (bayangan lantai jadi hitam). Sudah ditangani di `langkahRekam` dan `majukan`.
+- Butuh paket `mp4-muxer` (JS murni, devDependency). `ffmpeg`/`ffprobe` terpasang
+  lewat winget — hanya untuk memeriksa hasil, bukan untuk membuat video.
+
 ## Ikon aplikasi (25 Sep 2026)
 
 - **Ikon aplikasi** digambar dari `model-bola-sel.ts` lewat

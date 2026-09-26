@@ -11,3 +11,6 @@ node_modules/
 *.tsbuildinfo
 # Video YouTube hasil rekaman (besar) — bukan bagian website
 Video YouTube/
+# Perekam video YouTube — alat laptop, bukan bagian website
+src/app/rekam-video/
+src/app/api/rekam-video/
