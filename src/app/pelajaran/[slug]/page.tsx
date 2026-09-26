@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PemutarPelajaran, type Berikutnya } from "@/components/PemutarPelajaran";
+import { KunciTataLaptop } from "@/components/KunciTataLaptop";
 import { PELAJARAN_SIAP, cariPelajaran } from "@/lib/daftar-pelajaran";
 import { berikutnyaDariSlug } from "@/lib/kurikulum";
 
@@ -49,9 +50,10 @@ export default async function HalamanPelajaran({ params }: Props) {
 
   return (
     /* laptop: selebar layar — video ¾, Catatan ¼ (Nely, 25 Sep 2026) */
-    <article className="anim-masuk-geser mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4 lg:max-w-[1920px]">
+    <article className="artikel-menonton anim-masuk-geser mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4 lg:max-w-[1920px]">
       {/* key: pindah pelajaran = pemutar baru (posisi, jam, dan elemen suara mulai dari nol) */}
       <PemutarPelajaran key={pelajaran.slug} pelajaran={pelajaran} berikutnya={berikutnya} />
+      <KunciTataLaptop />
     </article>
   );
 }

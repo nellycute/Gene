@@ -5,6 +5,21 @@ membingungkan, itu kesalahan penulisnya, bukan kesalahanmu.
 
 ---
 
+## 26 September 2026 — Empat koreksi dari Nely
+
+1. **Kotak "Jeda hiasan" dihapus.** Hiasan tetap melayang pelan. Perangkat yang diatur
+   "kurangi gerakan" tetap melihat hiasan diam.
+2. **Slogan baru:** "Belajar genetika, lebih mudah."
+3. **Subtitel layar penuh tanpa kotak hitam.** Kini tulisan gelap berbingkai putih,
+   hurufnya lebih besar, dan gambar di belakangnya tetap terlihat utuh.
+4. **Layar menonton sama persis di semua laptop dan komputer.** Susunan video dan
+   Catatan dikunci seperti di laptopmu, lalu diperbesar atau diperkecil sekaligus
+   sesuai ukuran layar, seperti foto yang di-zoom. Tidak ada lagi celah di antara video
+   dan Catatan, dan zoom di browser tidak mengubah susunannya. Sisa layar yang lebih
+   lebar menjadi pinggiran berhias. Di HP tidak ada yang berubah.
+
+---
+
 ## 26 September 2026 — Hiasan halaman depan sudah terbit
 
 Hasil editan hiasan dari **github.com/AryaNyoman/genetic** sudah diambil ke laptop dan

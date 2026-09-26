@@ -381,6 +381,15 @@ sekali di video = putar/jeda, klik dua kali = layar penuh. HP: **ketuk dua kali*
 di video = putar/jeda; satu ketukan hanya memunculkan kendali (di layar penuh).
 Menyeret video tetap memutar gambar 3D.
 
+**Tata letak laptop dikunci *(26 Sep 2026)*:** Nely ingin layar menonton tampak
+PERSIS sama di semua laptop dan komputer, juga saat peramban di-zoom. Di layar
+≥ 1024 px halamannya dibekukan pada ukuran laptop Nely (1267 × 667 px CSS: video
+887 px, jarak 20 px, Catatan 312 px, panggung 349 px), lalu diperbesar/diperkecil
+sekaligus (`KunciTataLaptop.tsx`, CSS `zoom`). Sisa layar menjadi pinggiran kertas.
+
+**Subtitel layar penuh *(26 Sep 2026)*:** tanpa kotak — tinta gelap berbingkai
+putih, besar huruf mengikuti lebar layar. Kotak hitam dinilai Nely mengganggu video.
+
 **Layar penuh:** video sebesar layar — layar mendatar terisi penuh tanpa pita
 gelap *(25 Sep 2026)*, layar tegak tetap 800:570 dengan latar gelap di atas dan
 bawahnya (panggungnya tetap kertas); subtitel dan kendali melayang di bawah — satu-satunya

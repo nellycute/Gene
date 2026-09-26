@@ -316,6 +316,10 @@ export function buatStudio(el: HTMLDivElement, tirai: HTMLDivElement | null) {
     const w = el.clientWidth;
     const h = el.clientHeight;
     if (!w || !h) return;
+    /* Layar menonton laptop diperbesar lewat CSS zoom (KunciTataLaptop) —
+       kanvas ikut diperhalus agar gambar tidak buram saat diperbesar. */
+    const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio * zoom, 3));
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -323,6 +327,8 @@ export function buatStudio(el: HTMLDivElement, tirai: HTMLDivElement | null) {
   ukur();
   const pengamat = new ResizeObserver(ukur);
   pengamat.observe(el);
+  /* zoom berubah tanpa mengubah ukuran CSS, jadi ResizeObserver tidak berbunyi */
+  window.addEventListener("ubah-skala", ukur);
 
   const efek = new OutlineEffect(renderer, { defaultThickness: 0.003, defaultKeepAlive: true });
   const jam = new THREE.Timer();
@@ -413,6 +419,7 @@ export function buatStudio(el: HTMLDivElement, tirai: HTMLDivElement | null) {
   const buang = () => {
     renderer.setAnimationLoop(null);
     pengamat.disconnect();
+    window.removeEventListener("ubah-skala", ukur);
     renderer.domElement.removeEventListener("pointerdown", tekan);
     renderer.domElement.removeEventListener("pointermove", seret);
     window.removeEventListener("pointerup", lepas);

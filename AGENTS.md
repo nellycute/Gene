@@ -174,7 +174,11 @@ itu yang menang. Intinya:
   ¼ di kanannya, terbuka sejak awal** (`.tata-menonton` di `globals.css`). Tinggi
   panggung tetap dibatasi tinggi layar, jadi di laptop bingkainya melebar (maks. 2,6 : 1).
   Layar laptop Nely diperkirakan ± 1267 × 667 px CSS (dari tangkapan layarnya: layar
-  lebar 1900-an px, skala 150%) — uji tata letak di ukuran itu.
+  lebar 1900-an px, skala 150%). **26 Sep 2026: tata letak itu DIKUNCI** — di layar
+  ≥ 1024 px `KunciTataLaptop.tsx` memberi `html.tata-terkunci` dan `zoom` pada `<body>`
+  = min(lebar/1267, tinggi/667), jadi tampilannya sama persis di semua layar dan zoom
+  peramban. Ubah ukuran di kelas `.tata-terkunci` (globals.css), bukan lewat vh.
+  `studio.ts` ikut memperhalus kanvas sesuai zoom (peristiwa `ubah-skala`).
 - **Seperti YouTube** (§5.3, 25 Sep 2026): di dalam video HANYA label bagian yang
   dibahas — jangan tambahkan nomor adegan, tombol, petunjuk, atau tulisan "memuat".
   Satu garis waktu utuh; spasi/k, panah, j/l, m, c, f; klik video (laptop) atau ketuk

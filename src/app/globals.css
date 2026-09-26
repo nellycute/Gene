@@ -185,6 +185,36 @@
     }
   }
 
+  /* Tata letak terkunci (Nely, 26 Sep 2026): di laptop, layar menonton
+     dibekukan pada ukuran laptop Nely (1267 × 667 px CSS) lalu diperbesar/
+     diperkecil sekaligus lewat `zoom` di <body> (KunciTataLaptop.tsx). Karena
+     kanvasnya tetap, tidak ada lagi celah antara video dan Catatan, dan zoom
+     peramban tidak mengubah tampilannya. Panggung setinggi di laptop Nely:
+     667 − 318 (bilah atas, judul, subtitel, kendali) = 349 px. */
+  html.tata-terkunci {
+    overflow: hidden;
+  }
+  html.tata-terkunci body {
+    min-height: 0;
+  }
+  .tata-terkunci .artikel-menonton {
+    width: 1267px;
+    max-width: none;
+  }
+  .tata-terkunci .isi-kepala {
+    max-width: 1267px;
+  }
+  .tata-terkunci .lebar-bioskop {
+    width: min(100%, 907px);
+  }
+  .tata-terkunci .lebar-bioskop .isi-panggung {
+    height: 349px;
+  }
+  /* Layar penuh mengisi layar sungguhan, tanpa zoom. */
+  html[data-bioskop-penuh] body {
+    zoom: 1 !important;
+  }
+
   /* Sorotan lembut (Nely, 25 Sep 2026): tulisan tebal diberi warna tipis
      seperti stabilo — tidak mencolok. Warnanya tetap punya arti: warna tetap
      entitas bila istilahnya organel atau molekul, selain itu warna tingkat.
@@ -307,9 +337,6 @@
   body:has(.beranda) .gerak-latar-rna { animation-delay: -4s; animation-duration: 28s; }
   body:has(.beranda) .gerak-latar-organel { animation-delay: -13s; animation-duration: 32s; }
 
-  body:has(#jeda-hiasan:checked) :is(.gerak-latar, .hiasan-banner, .hiasan-sisi > div, .anim-melayang, .anim-bayang-melayang) {
-    animation-play-state: paused;
-  }
 
   /* Layar penuh (25 Sep 2026, seperti YouTube): panggung sebesar layar,
      subtitel dan kendali melayang di bawahnya; kendali menghilang sendiri
@@ -363,10 +390,27 @@
     min-height: 0;
     margin: 0;
     transform: translateX(-50%);
-    background: rgb(13 17 22 / 0.8);
-    color: #ffffff;
+    /* Tanpa kotak (Nely, 26 Sep 2026): kotak hitam menutupi video. Panggung
+       selalu kertas terang, jadi tulisannya tinta gelap berbingkai putih —
+       terbaca di atas gambar apa pun tanpa menutupinya. */
+    background: transparent;
+    color: #1b2430;
+    font-weight: 600;
     box-shadow: none;
+    text-shadow:
+      0 0 2px #fff,
+      0 0 2px #fff,
+      1.5px 1.5px 0 #fff,
+      -1.5px -1.5px 0 #fff,
+      1.5px -1.5px 0 #fff,
+      -1.5px 1.5px 0 #fff,
+      0 0 10px rgb(255 255 255 / 0.9);
     transition: bottom 200ms ease-out;
+  }
+  /* tanpa kotak, tulisan harus cukup besar untuk dibaca dari jarak layar penuh */
+  .bioskop-penuh .subtitel-bioskop p {
+    font-size: clamp(17px, 1.9vw, 30px);
+    line-height: 1.45;
   }
   .bioskop-penuh[data-kendali="sembunyi"] .subtitel-bioskop {
     bottom: 18px;
@@ -608,5 +652,4 @@ html[data-bioskop-penuh] body {
   .hiasan-sisi > div {
     animation: none !important;
   }
-  .kendali-hiasan { display: none; }
 }

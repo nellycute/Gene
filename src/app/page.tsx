@@ -37,15 +37,11 @@ export default function Beranda() {
         </div>
         <div className="teks-sambutan relative min-w-0">
           <h1 className="text-[16px] font-extrabold leading-[1.2] tracking-[-0.01em] sm:text-[26px] sm:leading-[1.15]">
-            Genetika lewat warna yang tak berubah.
+            Belajar genetika, lebih mudah.
           </h1>
           <p className="mt-1 truncate text-[12.5px] text-teks-lembut sm:mt-2 sm:text-[14px]">
             Sel sampai sequencing. Gratis.
           </p>
-          <label className="kendali-hiasan mt-2 inline-flex cursor-pointer items-center gap-1.5 text-[11px] text-teks-lembut">
-            <input id="jeda-hiasan" type="checkbox" className="h-3 w-3 accent-[var(--teks)]" />
-            Jeda hiasan
-          </label>
         </div>
       </section>
 

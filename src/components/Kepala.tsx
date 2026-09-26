@@ -78,7 +78,7 @@ export function Kepala() {
       <header className="sticky top-0 z-40 border-b border-garis bg-latar">
         {/* di layar menonton selebar isi halaman (video ¾ + Catatan ¼), agar tombol kembali sejajar dengan video */}
         <div
-          className={`relative mx-auto flex h-[54px] max-w-6xl items-center px-4 sm:h-[52px] sm:px-6 ${
+          className={`isi-kepala relative mx-auto flex h-[54px] max-w-6xl items-center px-4 sm:h-[52px] sm:px-6 ${
             slug ? "lg:max-w-[1920px]" : ""
           }`}
         >
