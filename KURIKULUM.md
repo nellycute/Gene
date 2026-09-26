@@ -10,8 +10,10 @@
 > canggih dari peta pertama menjadi **Seri Lanjutan**. Isi tiap pelajaran dan daftar
 > kekeliruan buku di bagian akhir masih menunggu tinjauannya.
 >
-> **Yang dikerjakan sekarang hanya Tingkat 0, sampai tuntas:** naskah ditinjau, gambar
-> gaya baru, suara, dan diuji di HP. Tingkat berikutnya baru dimulai setelah itu.
+> **Tingkat 0 dinyatakan selesai oleh Nely (26 Sep 2026).** Tingkat 1 dikerjakan hari yang
+> sama, lalu atas permintaan Nely ("lanjutkan seluruh materi … jangan tanya lagi")
+> **Tingkat 2–6 juga selesai pada 26 Sep 2026** — semuanya berlabel Draf sampai Nely
+> meninjau naskahnya.
 
 Label kesulitan: **Dasar** (bisa diikuti siswa SMA) · **Menengah** (mahasiswa S1 awal) ·
 **Lanjut** (S1 akhir ke atas).
@@ -65,7 +67,7 @@ T6  Populasi dan Terapan   dari satu individu ke satu populasi, lalu ke laborato
 
 ---
 
-## Tingkat 0 — Fondasi Sel `Dasar` · DIKERJAKAN SEKARANG
+## Tingkat 0 — Fondasi Sel `Dasar` · SELESAI (26 Sep 2026)
 
 **Tujuan:** penonton tahu apa yang dipelajari genetika, di mana materi genetik berada di
 dalam sel, dan bagaimana materi itu dibagi saat sel membelah.
@@ -95,87 +97,103 @@ keliru — naskahnya bisa diubah dan suaranya direkam ulang kapan saja.
 
 ---
 
-## Tingkat 1 — DNA dan Ekspresi Gen `Dasar`
+## Tingkat 1 — DNA dan Ekspresi Gen `Dasar` · ADA, DRAF (26 Sep 2026)
 
 **Tujuan:** penonton tahu bahwa DNA-lah materi genetik, bagaimana ia disusun, digandakan,
 dan dibaca sampai menjadi sifat.
 
-| # | Pelajaran | Isi pokok | Sumber |
-|---|---|---|---|
-| 1.1 | Bukti bahwa DNA materi genetik | Empat syarat materi genetik. Griffith (1928), Avery–MacLeod–McCarty (1944), Hershey–Chase (1952). | R3 7.1 |
-| 1.2 | Struktur DNA dan heliks ganda | Nukleotida (gula deoksiribosa, fosfat, basa). Purin dan pirimidin; A–T dua ikatan hidrogen, G–C tiga. Aturan Chargaff. Antiparalel 5'→3'. Sekitar 10 pasang basa per putaran (3,4 nm), diameter 2 nm. Franklin, Watson dan Crick. | R1 KB2; R2 bab 3; R3 7.2 |
-| 1.3 | RNA dan bedanya dengan DNA | Ribosa, urasil, untai tunggal; mRNA, tRNA, rRNA. | R2 bab 3; R3 7.5 |
-| 1.4 | Replikasi DNA | Semikonservatif; garpu replikasi; untai maju dan untai lambat; fragmen Okazaki. | R1 KB2; R2 bab 3 (gbr. 3.5) |
-| 1.5 | Transkripsi: dari DNA ke RNA | RNA polimerase dan promotor; pada eukariot intron dibuang, ekson disambung. | R1 KB2; R2 bab 3 (gbr. 3.6) |
-| 1.6 | Kode genetik dan translasi | 64 kodon untuk 20 asam amino; kodon mulai dan henti; ribosom, tRNA, ikatan peptida. | R2 bab 3 (gbr. 3.7–3.9, tabel 3.2) |
-| 1.7 | Dari gen ke sifat | Satu gen – satu enzim (kini: satu gen – satu polipeptida). Genotip, fenotip, lingkungan (P = G + L). Genom; satuan bp, kb, Mb. | R1 KB1–KB2 |
+**Kesepakatan dengan Nely (26 Sep 2026):**
+- Nely meninjau sendiri setiap naskah Tingkat 1. Label Draf tetap sampai ia setuju.
+- Film saja, tanpa latihan interaktif.
+- Narasi menyebut pemain utama; rincian lanjutan masuk Ringkasan.
+- 1.1 dan 1.2 dikerjakan lebih dulu sebagai contoh gaya gambar molekul, baru 1.3–1.7.
+- Usulan Claude yang dipakai:
+  - Meselson–Stahl di 1.4;
+  - tudung 5′ dan ekor poli-A di 1.5;
+  - semua enzim satu warna ungu, dibedakan dari bentuk dan labelnya;
+  - tabel kode genetik digambar datar di dalam film;
+  - contoh manusia tetap yang utama.
 
-## Tingkat 2 — Hukum Mendel `Dasar`
+| # | Pelajaran | Isi pokok | Sumber | Status |
+|---|---|---|---|---|
+| 1.1 | Bukti bahwa DNA materi genetik | Empat syarat materi genetik. Griffith (1928), Avery–MacLeod–McCarty (1944), Hershey–Chase (1952). | R3 7.1 | **Ada, Draf** (26 Sep 2026) |
+| 1.2 | Struktur DNA dan heliks ganda | Nukleotida (gula deoksiribosa, fosfat, basa). Purin dan pirimidin; A–T dua ikatan hidrogen, G–C tiga. Aturan Chargaff. Antiparalel 5'→3'. Sekitar 10 pasang basa per putaran (3,4 nm), diameter 2 nm. Franklin, Watson dan Crick. | R1 KB2; R2 bab 3; R3 7.2 | **Ada, Draf** (26 Sep 2026) |
+| 1.3 | RNA dan bedanya dengan DNA | Ribosa, urasil, untai tunggal; mRNA, tRNA, rRNA. | R2 bab 3; R3 7.5 | **Ada, Draf** (26 Sep 2026) |
+| 1.4 | Replikasi DNA | Semikonservatif (dibuktikan Meselson–Stahl, 1958); garpu replikasi; untai maju dan untai lambat; fragmen Okazaki. | R1 KB2; R2 bab 3 (gbr. 3.5) | **Ada, Draf** (26 Sep 2026) |
+| 1.5 | Transkripsi: dari DNA ke RNA | RNA polimerase dan promotor; pada eukariot tudung 5′ dan ekor poli-A dipasang, intron dibuang, ekson disambung. | R1 KB2; R2 bab 3 (gbr. 3.6) | **Ada, Draf** (26 Sep 2026) |
+| 1.6 | Kode genetik dan translasi | 64 kodon untuk 20 asam amino; kodon mulai dan henti; ribosom, tRNA, ikatan peptida. | R2 bab 3 (gbr. 3.7–3.9, tabel 3.2) | **Ada, Draf** (26 Sep 2026) |
+| 1.7 | Dari gen ke sifat | Satu gen – satu enzim (kini: satu gen – satu polipeptida). Genotip, fenotip, lingkungan (P = G + L). Genom; satuan bp, kb, Mb. | R1 KB1–KB2 | **Ada, Draf** (26 Sep 2026) |
 
-**Tujuan:** penonton bisa meramalkan hasil persilangan satu, dua, dan tiga sifat beda — dan
-tahu bahwa semuanya berakar pada meiosis (Tingkat 0).
+**Keadaan di website (26 Sep 2026):** ketujuh pelajaran Tingkat 1 lengkap: 81 adegan,
+± 28 menit tayang. Semuanya berupa film 3D bergaris yang bersuara. Semuanya masih
+**Draf** dan menunggu tinjauan Nely. Kalimat yang paling rawan tercatat di PROGRESS.md.
 
-| # | Pelajaran | Isi pokok | Sumber |
-|---|---|---|---|
-| 2.1 | Mendel, kacang ercis, dan istilah dasar | Mengapa percobaan Mendel berhasil; tujuh sifat. Gen, alel, lokus, genotip, fenotip, homozigot, heterozigot, dominan, resesif, galur murni, P–F1–F2. | R1 KB2; R3 2.1–2.2 |
-| 2.2 | Monohibrid dan Hukum Mendel I | Segregasi; F2 3 : 1 (fenotip) dan 1 : 2 : 1 (genotip). Hubungannya dengan anafase I. | R2 bab 5; R3 2.3 |
-| 2.3 | Diagram Punnett dan hukum peluang | Kaidah perkalian dan penjumlahan. | R3 2.2.1 & 3.1.5 |
-| 2.4 | Uji silang dan silang balik | Membedakan AA dari Aa; hasil 1 : 1 atau seragam. | R2 bab 5; R3 2.2.2 |
-| 2.5 | Dihibrid dan Hukum Mendel II | Asortasi bebas; 9 : 3 : 3 : 1; hubungannya dengan metafase I. | R1 KB2; R2 bab 6; R3 2.4 |
-| 2.6 | Trihibrid dan rumus cepat | 2ⁿ macam gamet, 3ⁿ genotip, (3 : 1)ⁿ fenotip. | R2 bab 6 |
-
-## Tingkat 3 — Perluasan Hukum Mendel `Menengah`
-
-Di buku ajar Indonesia bab ini biasa disebut "penyimpangan (semu) hukum Mendel". Hukum
-Mendel sebenarnya tetap berlaku; yang berubah adalah cara alel dan gen **berinteraksi**.
-*(Nama tingkat bisa diganti "Penyimpangan Hukum Mendel" kalau Nely lebih suka istilah yang
-dikenal siswa.)*
-
-| # | Pelajaran | Isi pokok | Sumber |
-|---|---|---|---|
-| 3.1 | Dominansi tidak sempurna dan kodominansi | Bunga merah × putih → merah muda (1 : 2 : 1); golongan darah MN; sapi *roan*. | R2 bab 5; R3 3.1.2 & 3.1.4 |
-| 3.2 | Alel ganda: golongan darah ABO | Iᴬ, Iᴮ, i; warna bulu kelinci (C, cᶜʰ, cʰ, c). | R1 KB2; R2 bab 7; R3 3.1.5 |
-| 3.3 | Alel letal | Tikus kuning Aʸ: rasio 2 : 1. | R3 3.1.6 |
-| 3.4 | Interaksi gen: bentuk jengger ayam | Rose, pea, walnut, single — 9 : 3 : 3 : 1 dengan fenotip baru. | R3 3.1.7 |
-| 3.5 | Epistasis, hipostasis, dan kriptomeri | Epistasis dominan 12 : 3 : 1 (labu); resesif 9 : 3 : 4; kriptomeri *Linaria* 9 : 3 : 4; gen komplementer 9 : 7. | R1 KB2; R2 bab 7; R3 3.1.8–3.1.9 |
-| 3.6 | Polimeri dan sifat poligenik | 15 : 1 (warna sekam gandum); banyak gen untuk satu sifat — jembatan ke sifat kuantitatif. | R2 bab 7; R3 3.1.3 |
-| 3.7 | Menebak interaksi dari rasionya | Ringkasan 9 : 3 : 3 : 1, 9 : 3 : 4, 12 : 3 : 1, 9 : 7, 9 : 6 : 1, 15 : 1, 13 : 3. | R3 tabel 1 |
-
-## Tingkat 4 — Kelamin dan Pautan `Menengah`
-
-| # | Pelajaran | Isi pokok | Sumber |
-|---|---|---|---|
-| 4.1 | Penentuan jenis kelamin | XY (mamalia; gen *SRY*), ZW (unggas), XO (belalang), haplodiploid (lebah), rasio X : A (*Drosophila*), suhu (penyu). | R1 KB2; R3 bab IV |
-| 4.2 | Sifat terpaut kromosom kelamin | Buta warna dan hemofilia (terpaut X); bulu lurik ayam (terpaut Z); pembawa sifat. | R1 KB2 (tabel 1.2); R3 4.2 |
-| 4.3 | Sifat dipengaruhi dan dibatasi kelamin | Kebotakan, tanduk domba, warna mahoni sapi; produksi susu, kokok ayam jantan. | R1 KB2 |
-| 4.4 | Pautan gen | Gen sekromosom diwariskan bersama; mengapa Hukum Mendel II tidak berlaku di sini. | R2 bab 8; R3 5.1 |
-| 4.5 | Pindah silang dan rekombinasi | Kiasma; gamet tipe parental dan rekombinan; pindah silang tunggal dan ganda. | R3 5.2–5.4 |
-| 4.6 | Peta kromosom | Frekuensi rekombinasi → jarak (sentimorgan); persilangan tiga titik. | R2 bab 7–8; R3 5.5 |
-| 4.7 | Membaca silsilah keluarga | Pola autosom dominan, autosom resesif, dan terpaut X pada diagram silsilah. | *tambahan — tidak ada di ketiga buku* |
-
-## Tingkat 5 — Mutasi dan Variasi `Menengah`
-
-| # | Pelajaran | Isi pokok | Sumber |
-|---|---|---|---|
-| 5.1 | Mutasi gen: jenis dan akibatnya | Substitusi (diam, salah makna, tanpa makna); insersi dan delesi (pergeseran kerangka baca); penyebab mutasi. | R1 KB2 |
-| 5.2 | Perbaikan DNA | Sel memperbaiki sebagian besar kerusakan; akibatnya kalau perbaikan gagal. | *tambahan* |
-| 5.3 | Aneuploidi dan gagal berpisah | Nulisomi, monosomi, trisomi; sindrom Down (dan kaitannya dengan usia ibu), Turner, Klinefelter. | R3 1.5.3.2 & 6.2 |
-| 5.4 | Poliploidi | Triploid (semangka tanpa biji), heksaploid (gandum roti); auto- dan alopoliploidi; kolkisin. | R3 6.2 |
-| 5.5 | Perubahan struktur kromosom | Delesi (*cri-du-chat*), duplikasi, inversi, translokasi; fusi dua kromosom pada leluhur manusia (kromosom 2). | R3 6.3 |
-| 5.6 | Penyakit genetik pada manusia dan ternak | Contoh, pola pewarisannya, uji pembawa, pencegahan lewat seleksi. | R2 bab 9 (dengan koreksi, lihat catatan) |
-
-## Tingkat 6 — Populasi dan Terapan `Lanjut`
-
-| # | Pelajaran | Isi pokok | Sumber |
-|---|---|---|---|
-| 6.1 | Frekuensi alel dan Hardy-Weinberg | p + q = 1; p² + 2pq + q² = 1; syarat keseimbangan; contoh sapi Shorthorn. | R1 KB2; R2 bab 10 |
-| 6.2 | Empat pengubah frekuensi alel | Mutasi, seleksi, migrasi, hanyutan genetik (*genetic drift*). | R1 KB2; R2 bab 10 |
-| 6.3 | Sifat kuantitatif dan heritabilitas | Kualitatif vs kuantitatif; P = G + L + (G × L); ragam; heritabilitas. | R1 KB1; R2 bab 11 |
-| 6.4 | Genetika dalam pemuliaan | Seleksi dan persilangan; heterosis; kambing Kacang × Etawa. | R1 KB1; R2 bab 1 |
-| 6.5 | Isolasi DNA, PCR, dan elektroforesis | Dari sampel sampai pita DNA di gel. | R2 bab 4 |
-| 6.6 | Sekuensing dan penanda genetik | Membaca urutan basa; penanda untuk mengukur keragaman genetik. | R2 bab 4 |
-| 6.7 | DNA dalam forensik dan keseharian | Sidik DNA, uji paternitas, identifikasi spesies. | R3 7.4 |
-
+## Tingkat 2 — Hukum Mendel `Dasar` · ADA, DRAF (26 Sep 2026)
+ **Ada, Draf** (26 Sep 2026) |
+**Tujuan:** penonton bisa meramalkan hasil persilangan satu, dua, dan tiga sifat beda — dan **Ada, Draf** (26 Sep 2026) |
+tahu bahwa semuanya berakar pada meiosis (Tingkat 0). **Ada, Draf** (26 Sep 2026) |
+ **Ada, Draf** (26 Sep 2026) |
+| # | Pelajaran | Isi pokok | Sumber | Status |
+|---|---|---|---|---|
+| 2.1 | Mendel, kacang ercis, dan istilah dasar | Mengapa percobaan Mendel berhasil; tujuh sifat. Gen, alel, lokus, genotip, fenotip, homozigot, heterozigot, dominan, resesif, galur murni, P–F1–F2. | R1 KB2; R3 2.1–2.2 | **Ada, Draf** (26 Sep 2026) |
+| 2.2 | Monohibrid dan Hukum Mendel I | Segregasi; F2 3 : 1 (fenotip) dan 1 : 2 : 1 (genotip). Hubungannya dengan anafase I. | R2 bab 5; R3 2.3 | **Ada, Draf** (26 Sep 2026) |
+| 2.3 | Diagram Punnett dan hukum peluang | Kaidah perkalian dan penjumlahan. | R3 2.2.1 & 3.1.5 | **Ada, Draf** (26 Sep 2026) |
+| 2.4 | Uji silang dan silang balik | Membedakan AA dari Aa; hasil 1 : 1 atau seragam. | R2 bab 5; R3 2.2.2 | **Ada, Draf** (26 Sep 2026) |
+| 2.5 | Dihibrid dan Hukum Mendel II | Asortasi bebas; 9 : 3 : 3 : 1; hubungannya dengan metafase I. | R1 KB2; R2 bab 6; R3 2.4 | **Ada, Draf** (26 Sep 2026) |
+| 2.6 | Trihibrid dan rumus cepat | 2ⁿ macam gamet, 3ⁿ genotip, (3 : 1)ⁿ fenotip. | R2 bab 6 | **Ada, Draf** (26 Sep 2026) |
+ **Ada, Draf** (26 Sep 2026) |
+## Tingkat 3 — Perluasan Hukum Mendel `Menengah` · ADA, DRAF (26 Sep 2026)
+ **Ada, Draf** (26 Sep 2026) |
+Di buku ajar Indonesia bab ini biasa disebut "penyimpangan (semu) hukum Mendel". Hukum **Ada, Draf** (26 Sep 2026) |
+Mendel sebenarnya tetap berlaku; yang berubah adalah cara alel dan gen **berinteraksi**. **Ada, Draf** (26 Sep 2026) |
+*(Nama tingkat bisa diganti "Penyimpangan Hukum Mendel" kalau Nely lebih suka istilah yang **Ada, Draf** (26 Sep 2026) |
+dikenal siswa.)* **Ada, Draf** (26 Sep 2026) |
+ **Ada, Draf** (26 Sep 2026) |
+| # | Pelajaran | Isi pokok | Sumber | Status |
+|---|---|---|---|---|
+| 3.1 | Dominansi tidak sempurna dan kodominansi | Bunga merah × putih → merah muda (1 : 2 : 1); golongan darah MN; sapi *roan*. | R2 bab 5; R3 3.1.2 & 3.1.4 | **Ada, Draf** (26 Sep 2026) |
+| 3.2 | Alel ganda: golongan darah ABO | Iᴬ, Iᴮ, i; warna bulu kelinci (C, cᶜʰ, cʰ, c). | R1 KB2; R2 bab 7; R3 3.1.5 | **Ada, Draf** (26 Sep 2026) |
+| 3.3 | Alel letal | Tikus kuning Aʸ: rasio 2 : 1. | R3 3.1.6 | **Ada, Draf** (26 Sep 2026) |
+| 3.4 | Interaksi gen: bentuk jengger ayam | Rose, pea, walnut, single — 9 : 3 : 3 : 1 dengan fenotip baru. | R3 3.1.7 | **Ada, Draf** (26 Sep 2026) |
+| 3.5 | Epistasis, hipostasis, dan kriptomeri | Epistasis dominan 12 : 3 : 1 (labu); resesif 9 : 3 : 4; kriptomeri *Linaria* 9 : 3 : 4; gen komplementer 9 : 7. | R1 KB2; R2 bab 7; R3 3.1.8–3.1.9 | **Ada, Draf** (26 Sep 2026) |
+| 3.6 | Polimeri dan sifat poligenik | 15 : 1 (warna sekam gandum); banyak gen untuk satu sifat — jembatan ke sifat kuantitatif. | R2 bab 7; R3 3.1.3 | **Ada, Draf** (26 Sep 2026) |
+| 3.7 | Menebak interaksi dari rasionya | Ringkasan 9 : 3 : 3 : 1, 9 : 3 : 4, 12 : 3 : 1, 9 : 7, 9 : 6 : 1, 15 : 1, 13 : 3. | R3 tabel 1 | **Ada, Draf** (26 Sep 2026) |
+ **Ada, Draf** (26 Sep 2026) |
+## Tingkat 4 — Kelamin dan Pautan `Menengah` · ADA, DRAF (26 Sep 2026)
+ **Ada, Draf** (26 Sep 2026) |
+| # | Pelajaran | Isi pokok | Sumber | Status |
+|---|---|---|---|---|
+| 4.1 | Penentuan jenis kelamin | XY (mamalia; gen *SRY*), ZW (unggas), XO (belalang), haplodiploid (lebah), rasio X : A (*Drosophila*), suhu (penyu). | R1 KB2; R3 bab IV | **Ada, Draf** (26 Sep 2026) |
+| 4.2 | Sifat terpaut kromosom kelamin | Buta warna dan hemofilia (terpaut X); bulu lurik ayam (terpaut Z); pembawa sifat. | R1 KB2 (tabel 1.2); R3 4.2 | **Ada, Draf** (26 Sep 2026) |
+| 4.3 | Sifat dipengaruhi dan dibatasi kelamin | Kebotakan, tanduk domba, warna mahoni sapi; produksi susu, kokok ayam jantan. | R1 KB2 | **Ada, Draf** (26 Sep 2026) |
+| 4.4 | Pautan gen | Gen sekromosom diwariskan bersama; mengapa Hukum Mendel II tidak berlaku di sini. | R2 bab 8; R3 5.1 | **Ada, Draf** (26 Sep 2026) |
+| 4.5 | Pindah silang dan rekombinasi | Kiasma; gamet tipe parental dan rekombinan; pindah silang tunggal dan ganda. | R3 5.2–5.4 | **Ada, Draf** (26 Sep 2026) |
+| 4.6 | Peta kromosom | Frekuensi rekombinasi → jarak (sentimorgan); persilangan tiga titik. | R2 bab 7–8; R3 5.5 | **Ada, Draf** (26 Sep 2026) |
+| 4.7 | Membaca silsilah keluarga | Pola autosom dominan, autosom resesif, dan terpaut X pada diagram silsilah. | *tambahan — tidak ada di ketiga buku* | **Ada, Draf** (26 Sep 2026) |
+ **Ada, Draf** (26 Sep 2026) |
+## Tingkat 5 — Mutasi dan Variasi `Menengah` · ADA, DRAF (26 Sep 2026)
+ **Ada, Draf** (26 Sep 2026) |
+| # | Pelajaran | Isi pokok | Sumber | Status |
+|---|---|---|---|---|
+| 5.1 | Mutasi gen: jenis dan akibatnya | Substitusi (diam, salah makna, tanpa makna); insersi dan delesi (pergeseran kerangka baca); penyebab mutasi. | R1 KB2 | **Ada, Draf** (26 Sep 2026) |
+| 5.2 | Perbaikan DNA | Sel memperbaiki sebagian besar kerusakan; akibatnya kalau perbaikan gagal. | *tambahan* | **Ada, Draf** (26 Sep 2026) |
+| 5.3 | Aneuploidi dan gagal berpisah | Nulisomi, monosomi, trisomi; sindrom Down (dan kaitannya dengan usia ibu), Turner, Klinefelter. | R3 1.5.3.2 & 6.2 | **Ada, Draf** (26 Sep 2026) |
+| 5.4 | Poliploidi | Triploid (semangka tanpa biji), heksaploid (gandum roti); auto- dan alopoliploidi; kolkisin. | R3 6.2 | **Ada, Draf** (26 Sep 2026) |
+| 5.5 | Perubahan struktur kromosom | Delesi (*cri-du-chat*), duplikasi, inversi, translokasi; fusi dua kromosom pada leluhur manusia (kromosom 2). | R3 6.3 | **Ada, Draf** (26 Sep 2026) |
+| 5.6 | Penyakit genetik pada manusia dan ternak | Contoh, pola pewarisannya, uji pembawa, pencegahan lewat seleksi. | R2 bab 9 (dengan koreksi, lihat catatan) | **Ada, Draf** (26 Sep 2026) |
+ **Ada, Draf** (26 Sep 2026) |
+## Tingkat 6 — Populasi dan Terapan `Lanjut` · ADA, DRAF (26 Sep 2026)
+ **Ada, Draf** (26 Sep 2026) |
+| # | Pelajaran | Isi pokok | Sumber | Status |
+|---|---|---|---|---|
+| 6.1 | Frekuensi alel dan Hardy-Weinberg | p + q = 1; p² + 2pq + q² = 1; syarat keseimbangan; contoh sapi Shorthorn. | R1 KB2; R2 bab 10 | **Ada, Draf** (26 Sep 2026) |
+| 6.2 | Empat pengubah frekuensi alel | Mutasi, seleksi, migrasi, hanyutan genetik (*genetic drift*). | R1 KB2; R2 bab 10 | **Ada, Draf** (26 Sep 2026) |
+| 6.3 | Sifat kuantitatif dan heritabilitas | Kualitatif vs kuantitatif; P = G + L + (G × L); ragam; heritabilitas. | R1 KB1; R2 bab 11 | **Ada, Draf** (26 Sep 2026) |
+| 6.4 | Genetika dalam pemuliaan | Seleksi dan persilangan; heterosis; kambing Kacang × Etawa. | R1 KB1; R2 bab 1 | **Ada, Draf** (26 Sep 2026) |
+| 6.5 | Isolasi DNA, PCR, dan elektroforesis | Dari sampel sampai pita DNA di gel. | R2 bab 4 | **Ada, Draf** (26 Sep 2026) |
+| 6.6 | Sekuensing dan penanda genetik | Membaca urutan basa; penanda untuk mengukur keragaman genetik. | R2 bab 4 | **Ada, Draf** (26 Sep 2026) |
+| 6.7 | DNA dalam forensik dan keseharian | Sidik DNA, uji paternitas, identifikasi spesies. | R3 7.4 | **Ada, Draf** (26 Sep 2026) |
+ **Ada, Draf** (26 Sep 2026) |
 ## Seri Lanjutan — setelah tujuh tingkat selesai *(disetujui Nely, 23 Sep 2026)*
 
 Materi dari peta pertama yang melampaui genetika dasar, disimpan supaya tidak hilang:
@@ -214,6 +232,7 @@ memeriksa ulang penilaian ini.
 | R3 | 151 | DNA bakteri berantai tunggal | Untai ganda, sirkuler |
 | R3 | 153–154 | Miescher tahun 1896; putaran heliks berulang tiap 3,4 Å | 1869; 34 Å |
 | R3 | 158 | Basa nitrogen disebut "protein dalam bentuk asam amino"; timin ditulis "tiamin" | Basa nitrogen bukan protein; timin berbeda dengan tiamin (vitamin B1) |
+| R3 | 161 | RNA "pendek dan tidak terpilin" | Untai RNA memang tunggal, tetapi bagian yang komplementer berpasangan membentuk heliks pendek (jepit rambut) |
 
 ---
 

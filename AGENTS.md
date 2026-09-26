@@ -3,9 +3,11 @@
 Website edukasi genetika berbahasa Indonesia. Animasi terprogram (3D bergaris dan
 SVG) + narasi + elemen interaktif. Gratis, tanpa login, tanpa database.
 
-**Urutan kerja (23 Sep 2026):** Tingkat 0 dikerjakan sampai tuntas — naskah ditinjau
-Nely, gambar gaya baru, suara, uji di HP — sebelum menyentuh Tingkat 1. Apa yang
-masih kurang di tiap pelajaran Tingkat 0 tercatat di `KURIKULUM.md`.
+**Urutan kerja:** Tingkat 0 dinyatakan selesai oleh Nely pada 26 Sep 2026. Pada hari
+yang sama **Tingkat 1–6 dibuat lengkap** atas permintaannya ("lanjutkan seluruh materi
+… jangan tanya lagi"): 48 pelajaran seluruhnya. Tingkat 1–6 masih **Draf** sampai Nely
+meninjau naskahnya. Pekerjaan berikutnya: perbaikan hasil tinjauan Nely, lalu Seri
+Lanjutan (lihat `KURIKULUM.md`). Status tiap pelajaran ada di `KURIKULUM.md`.
 
 Pemilik project: **Nely**, lulusan bidang genetika, **tanpa latar belakang programming**.
 
@@ -20,6 +22,8 @@ Pemilik project: **Nely**, lulusan bidang genetika, **tanpa latar belakang progr
    *(25 Sep 2026: untuk Tingkat 0, Nely menyerahkan pemeriksaan akurasi kepada Claude.
    Label draf 0.1–0.8 dicabut setelah tiap naskah dicocokkan dengan rujukannya.
    Pelajaran baru tetap mulai dengan `draf: true`.)*
+   *(26 Sep 2026: untuk Tingkat 1–6, Nely meninjau sendiri. Jangan cabut label Draf
+   Tingkat 1–6 tanpa persetujuannya.)*
 3. **Warna entitas biologi hanya boleh diambil dari `src/lib/warna.ts`.** Jangan pernah
    menulis warna organel/molekul langsung di dalam komponen. Satu entitas = satu warna
    tetap, sama di seluruh pelajaran, selamanya.
@@ -137,6 +141,19 @@ Python, jadi pustaka Python `edge-tts` tidak dipakai; protokolnya ditulis ulang 
   2n → "dua en", p/q → "pe"/"ki", ZW → "zet we", 46,XY → "empat puluh enam, eks ye")
   ada di daftar `LAFAL` di `buat-suara.mjs`. Padanan Inggris yang berisi angka, seperti
   "(trisomy 21)", tidak tertangkap pola kurung otomatis — tambahkan ke `LAFAL`.
+  Begitu pula lambang (³²P), (³⁵S), dan kurung bertanda petik seperti "(Chargaff's
+  rules)". Tanda ujung untai dibaca "5′" → "lima aksen", "3′" → "tiga aksen" (pakai
+  tanda ′ U+2032 di naskah, bukan petik biasa).
+- Tingkat 2–6 menambah lafal: genotip dieja per huruf ("Rr" → "er besar er kecil",
+  daftar tertutup `PASANGAN_ALEL`), alel tunggal huruf kecil ("alel r" → "er kecil"),
+  Iᴬ/Iᴮ/i, XᴮXᵇ/ZᴮW, XX/XY/XO, 45,X / 47,XXY, rumus Hardy-Weinberg (p = …, q = …,
+  p + q = 1, p kuadrat, 2pq), h², SRY, PCR, SNP, STR, BLAD, BSE, PRRS, "10 + 7 = 17".
+  **Menulis aturan `LAFAL` yang tumpang-tindih merusak ucapan** (dua suntingan pada
+  huruf yang sama) — beri lookahead/lookbehind seperti yang sudah ada. Periksa dulu
+  dengan `node alat/buat-suara.mjs --coba` (hanya mencetak, tidak merekam, tidak
+  menghapus apa pun): pastikan hanya adegan yang memang berubah yang muncul.
+- **Jangan menulis regex lewat `node -e` atau template string di shell** — garis
+  miring terbalik bisa hilang (`\b` menjadi karakter backspace). Pakai alat Edit.
 - Pemutar: lama adegan = `JEDA_AWAL` + rekaman + `JEDA_AKHIR` (`lamaAdegan` di
   `tipe.ts`; `durasi` di naskah hanya cadangan tanpa suara). Selama narasi terdengar,
   **rekamanlah jamnya**; subtitel dan isyarat dijadwalkan dari waktu kata
@@ -206,8 +223,30 @@ src/
 ├── animasi/tiga-dimensi/   studio.ts (panggung, kamera, redup, pergantian set),
 │                           Film3D.tsx (pembungkus React), satu film per pelajaran
 │                           (PengantarGenetika3D, PerjalananSel3D, SelHewanPotong3D,
-│                           IntiSel3D, KromosomFilm3D, PembelahanFilm3D),
+│                           IntiSel3D, KromosomFilm3D, PembelahanFilm3D,
+│                           BuktiDNA3D, StrukturDNA3D, RNA3D, Replikasi3D,
+│                           Transkripsi3D, Translasi3D, GenSifat3D),
+│                           satu film per TINGKAT untuk Tingkat 2–6, masing-masing
+│                           di foldernya: mendel/, perluasan/, kelamin/, mutasi/,
+│                           populasi/ (Mendel3D, Perluasan3D, Kelamin3D, Mutasi3D,
+│                           Populasi3D + set-*.ts + model-*.ts). `tahap` naskah =
+│                           nama set; set dibangun saat pertama dipakai
+│                           (`rangkaiSetMalas`),
+│                           rangkai-set.ts (kerangka film: set + fokus, label, panah,
+│                           buatJamTahap, rangkaiSetMalas — pakai untuk film baru),
+│                           model-hewan.ts (sapi polos/roan/belang/kaki pendek, ayam
+│                           dengan 4 jengger/lurik/Creeper/jantan, kelinci, tikus),
+│                           model-sosok.ts (orang boneka kayu; botak, kulit albino),
+│                           mendel/bantu.ts (tulis, papan berdiri, sel tembus,
+│                           homolog berhuruf, muncul, teksDatar),
+│                           perluasan/set-silang.ts (kerangka P → F1 → F2 umum),
 │                           model-*.ts (benda: sel hewan, sel tumbuhan, kromosom, ...),
+│                           model-dna.ts (heliks jadi, PUTAR KANAN — dibetulkan 26 Sep),
+│                           model-dna-rakit.ts (DNA per nukleotida: tangga ↔ heliks, 1.2),
+│                           model-mikroba.ts (bakteri, fag T2, tikus, tabung, enzim, 1.1),
+│                           model-rna.ts (nukleotida/untai RNA, tRNA L dan tegak,
+│                           ribosom, rantai protein — 1.3–1.7),
+│                           model-garpu.ts (garpu replikasi, 1.4),
 │                           model-bola-sel.ts (gambar ikon aplikasi, juga di 0.1),
 │                           Panggung3D (datar hanya bila tanpa WebGL)
 ├── app/manifest.ts         aplikasi di layar HP; ikon di public/ikon/ + app/apple-icon.png
@@ -260,6 +299,26 @@ PROGRESS.md                 catatan progres untuk dibaca Nely
    dengan mengklik garis waktu, lalu majukan film secara manual lewat
    `window.__majukanFilm(n)` (n × 100 ms waktu film; hanya di mode dev, dipasang
    `Film3D.tsx`, bersama `window.__studioFilm`).
+   Cara yang terbukti cepat (26 Sep 2026):
+   - Tekan tombol layar penuh; panggungnya menjadi lebih besar.
+   - Lompat lewat JS: kirim `pointerdown`/`pointerup` ke `[aria-label="Garis waktu"]`
+     pada x = kiri + lebar × detik/total. `setPointerCapture` perlu ditimpa dengan
+     fungsi kosong lebih dulu.
+   - Tunggu ± 150 ms, lalu `__majukanFilm(n)`.
+   - Tangkapan layar tertinggal satu bingkai: tunggu ± 1 detik dan majukan 2 bingkai
+     lagi sebelum memotret.
+   - Setelah mengubah kode film, muat ulang halaman. HMR membuat dua film bertumpuk.
+   - Tangkapan layar panel kadang "terpotong-perbesar" 1,5× (hanya 2/3 kiri-atas
+     halaman yang tampak, tulisan antarmuka ikut membesar). Itu salah tangkap panel,
+     bukan salah gambar. Jangan menyetel kamera berdasarkan tangkapan seperti itu;
+     periksa dengan `camera.position` atau muat ulang halaman lalu potret lagi.
+   - Ukuran label: kira-kira 0,024 × jarak kamera (mis. 0,5 pada jarak 20). Lebih
+     kecil dari itu tak terbaca di panggung laptop.
+   - Label yang ditaruh di depan benda lain (z lebih besar) menutupinya; letakkan label
+     induk di ATAS induk, bukan di depan kaki, bila di depannya ada keturunan.
+   - Gerakan panjang yang melewati beberapa isyarat berfokus sama: pakai
+     `buatJamTahap()` (rangkai-set.ts). Jam ini memakai `sejakFokus`, yaitu detik sejak
+     tahap+fokus mulai berlaku, sehingga tetap benar saat penonton melompat.
 
 ## Gaya penulisan kode
 

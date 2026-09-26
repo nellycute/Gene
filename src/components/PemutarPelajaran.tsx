@@ -11,7 +11,7 @@ import { warnaTingkat } from "@/lib/tingkat";
 import { useMediaCocok } from "@/lib/jendela";
 import { aturBisu, useBisu } from "@/lib/bisu";
 import { jadwalSubtitel, potonganPada } from "@/lib/subtitel";
-import { isyaratPada, jadwalIsyarat } from "@/lib/isyarat";
+import { awalFokusSama, isyaratPada, jadwalIsyarat } from "@/lib/isyarat";
 import { JEDA_AWAL, jam, lamaAdegan, totalDurasi, type Pelajaran } from "@/lib/tipe";
 
 /**
@@ -560,6 +560,7 @@ export function PemutarPelajaran({
   const tahap = isyarat?.tahap ?? sekarang.tahap;
   const fokus = isyarat?.fokus ?? sekarang.fokus;
   const sejak = waktu - (isyarat?.mulai ?? 0);
+  const sejakFokus = waktu - awalFokusSama(sekarang, jadwal, waktu);
   const kunciGambar = `${indeks}:${isyarat?.nomor ?? "-"}`;
   const entitasSorot = sorot.map((id) => SEMUA_ENTITAS[id]).filter(Boolean);
 
@@ -638,6 +639,7 @@ export function PemutarPelajaran({
                 fokus={fokus}
                 detik={posisiTotal}
                 sejak={sejak}
+                sejakFokus={sejakFokus}
                 kunci={kunciGambar}
                 datar={<Datar tahap={tahap} sorot={sorot} />}
               />

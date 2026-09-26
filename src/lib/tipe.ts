@@ -15,7 +15,19 @@ export type KunciAnimasi =
   | "perbesaran"
   | "inti-sel"
   | "kromosom"
-  | "pembelahan";
+  | "pembelahan"
+  | "bukti-dna"
+  | "struktur-dna"
+  | "rna"
+  | "replikasi"
+  | "transkripsi"
+  | "translasi"
+  | "gen-sifat"
+  | "mendel"
+  | "perluasan"
+  | "kelamin"
+  | "mutasi"
+  | "populasi";
 
 /**
  * Isyarat di tengah adegan: begitu `kata` tampil di subtitel, gambar ikut

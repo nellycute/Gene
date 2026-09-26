@@ -249,7 +249,7 @@ export const MOLEKUL = daftar({
     nama: "Rangka gula-fosfat",
     inggris: "sugar-phosphate backbone",
     warna: "#7A8899",
-    keterangan: "Tulang punggung untai DNA dan RNA tempat basa menempel.",
+    keterangan: "Tulang punggung untai DNA tempat basa menempel. Rangka RNA digambar dengan warna RNA agar kedua untai tak tertukar.",
   },
   ikatanHidrogen: {
     nama: "Ikatan hidrogen",
@@ -319,10 +319,262 @@ export const TIGA_JINGGA = [SEL.mitokondria, MOLEKUL.rna, BASA.T] as const;
  * PENCARIAN WARNA
  * ------------------------------------------------------------------ */
 
+/* ------------------------------------------------------------------ *
+ * SIFAT YANG TAMPAK (FENOTIP) — mulai Tingkat 2
+ * Warna alami makhluk percobaan pewarisan (kacang ercis Mendel, dan
+ * seterusnya). Sama di setiap pelajaran, supaya "biji kuning" di 2.2 sama
+ * dengan "biji kuning" di 2.6. Bijih kuning dekat dengan kuning asam amino;
+ * keduanya tidak pernah tampil di adegan yang sama tanpa label.
+ * ------------------------------------------------------------------ */
+
+export const SIFAT = daftar({
+  tanaman: {
+    nama: "Daun dan batang",
+    inggris: "leaf and stem",
+    warna: "#93B171",
+    keterangan: "Tubuh tanaman percobaan; hijau redup agar tidak tertukar dengan kloroplas.",
+  },
+  bijiKuning: {
+    nama: "Biji kuning",
+    inggris: "yellow seed",
+    warna: "#E6C84F",
+    keterangan: "Warna biji ercis yang dominan (alel Y).",
+  },
+  bijiHijau: {
+    nama: "Biji hijau",
+    inggris: "green seed",
+    warna: "#8DB84A",
+    keterangan: "Warna biji ercis yang resesif (yy).",
+  },
+  bungaUngu: {
+    nama: "Bunga ungu",
+    inggris: "purple flower",
+    warna: "#9E5A9C",
+    keterangan: "Warna bunga ercis yang dominan (alel P).",
+  },
+  bungaPutih: {
+    nama: "Bunga putih",
+    inggris: "white flower",
+    warna: "#F4F0E6",
+    keterangan: "Warna bunga ercis yang resesif (pp).",
+  },
+  polongHijau: {
+    nama: "Polong hijau",
+    inggris: "green pod",
+    warna: "#6FA544",
+    keterangan: "Warna polong ercis yang dominan.",
+  },
+  polongKuning: {
+    nama: "Polong kuning",
+    inggris: "yellow pod",
+    warna: "#D9C45E",
+    keterangan: "Warna polong ercis yang resesif.",
+  },
+  bungaMerah: {
+    nama: "Bunga merah",
+    inggris: "red flower",
+    warna: "#D8434E",
+    keterangan: "Bunga pukul empat (Mirabilis) homozigot merah — Tingkat 3.",
+  },
+  bungaMerahMuda: {
+    nama: "Bunga merah muda",
+    inggris: "pink flower",
+    warna: "#EFA0AE",
+    keterangan: "Heterozigot pada dominansi tidak sempurna — Tingkat 3.",
+  },
+  /* bulu hewan — satu warna bulu = satu warna tetap, apa pun hewannya */
+  buluHitam: {
+    nama: "Bulu hitam",
+    inggris: "black coat",
+    warna: "#2F2A28",
+    keterangan: "Bulu hitam: sapi Angus (dominan), tikus hitam, ujung tubuh kelinci himalaya.",
+  },
+  buluMerah: {
+    nama: "Bulu merah",
+    inggris: "red coat",
+    warna: "#8E3B2B",
+    keterangan: "Bulu merah kecokelatan: sapi Angus merah (resesif), sapi Shorthorn merah.",
+  },
+  buluPutih: {
+    nama: "Bulu putih",
+    inggris: "white coat",
+    warna: "#F2EEE6",
+    keterangan: "Bulu putih: sapi Shorthorn putih, ayam, kelinci dan tikus albino.",
+  },
+  buluKuning: {
+    nama: "Bulu kuning",
+    inggris: "yellow coat",
+    warna: "#D9A441",
+    keterangan: "Bulu tikus kuning (alel letal Aʸ) — Tingkat 3.",
+  },
+  buluAgouti: {
+    nama: "Bulu agouti",
+    inggris: "agouti coat",
+    warna: "#7F6650",
+    keterangan: "Warna liar abu-cokelat: tiap helai berpita gelap-terang (tikus, kelinci).",
+  },
+  buluChinchilla: {
+    nama: "Bulu chinchilla",
+    inggris: "chinchilla coat",
+    warna: "#A3A4A6",
+    keterangan: "Kelinci chinchilla: kelabu keperakan (alel cᶜʰ).",
+  },
+  mataAlbino: {
+    nama: "Mata albino",
+    inggris: "albino eye",
+    warna: "#C95F6B",
+    keterangan: "Mata merah muda hewan albino: pembuluh darah terlihat karena tak ada pigmen.",
+  },
+  buluMahoni: {
+    nama: "Bulu mahoni",
+    inggris: "mahogany coat",
+    warna: "#5B2A22",
+    keterangan: "Merah kecokelatan tua pada sapi Ayrshire jantan (dipengaruhi kelamin).",
+  },
+  tubuhLalat: {
+    nama: "Tubuh lalat liar",
+    inggris: "wild-type body",
+    warna: "#B39466",
+    keterangan: "Lalat buah tipe liar: tubuh abu-abu kecokelatan (b⁺).",
+  },
+  tubuhHitam: {
+    nama: "Tubuh lalat hitam",
+    inggris: "black body",
+    warna: "#2B2624",
+    keterangan: "Lalat buah mutan hitam (b), resesif.",
+  },
+  mataLalat: {
+    nama: "Mata merah lalat",
+    inggris: "red eye",
+    warna: "#B8322A",
+    keterangan: "Mata merah lalat buah tipe liar.",
+  },
+  kulitSemangka: {
+    nama: "Kulit semangka",
+    inggris: "watermelon rind",
+    warna: "#3F7F3A",
+    keterangan: "Kulit buah semangka bergaris hijau tua — Tingkat 5 (poliploidi).",
+  },
+  dagingSemangka: {
+    nama: "Daging semangka",
+    inggris: "watermelon flesh",
+    warna: "#E0555A",
+    keterangan: "Daging buah semangka yang merah.",
+  },
+  bijiSemangka: {
+    nama: "Biji semangka",
+    inggris: "watermelon seed",
+    warna: "#2B2624",
+    keterangan: "Biji semangka diploid; tidak berkembang pada semangka triploid.",
+  },
+  jengger: {
+    nama: "Jengger",
+    inggris: "comb",
+    warna: "#CF4A40",
+    keterangan: "Jengger dan pial ayam; bentuknya (rose, pea, walnut, single) yang diwariskan.",
+  },
+  labuPutih: {
+    nama: "Labu putih",
+    inggris: "white squash",
+    warna: "#ECE7D6",
+    keterangan: "Buah labu putih — alel W menghalangi pigmen (epistasis dominan).",
+  },
+  labuKuning: {
+    nama: "Labu kuning",
+    inggris: "yellow squash",
+    warna: "#E3B634",
+    keterangan: "Buah labu kuning (ww Y_).",
+  },
+  labuHijau: {
+    nama: "Labu hijau",
+    inggris: "green squash",
+    warna: "#5E8C3A",
+    keterangan: "Buah labu hijau (ww yy).",
+  },
+  gandum0: {
+    nama: "Biji gandum putih",
+    inggris: "white wheat kernel",
+    warna: "#EBDDB8",
+    keterangan: "Tanpa alel R: putih (polimeri gandum Nilsson-Ehle).",
+  },
+  gandum1: {
+    nama: "Biji gandum merah muda",
+    inggris: "light red wheat kernel",
+    warna: "#DDB285",
+    keterangan: "Satu alel R.",
+  },
+  gandum2: {
+    nama: "Biji gandum merah sedang",
+    inggris: "medium red wheat kernel",
+    warna: "#C98B5E",
+    keterangan: "Dua alel R.",
+  },
+  gandum3: {
+    nama: "Biji gandum merah",
+    inggris: "red wheat kernel",
+    warna: "#AE6641",
+    keterangan: "Tiga alel R.",
+  },
+  gandum4: {
+    nama: "Biji gandum merah tua",
+    inggris: "dark red wheat kernel",
+    warna: "#8A4429",
+    keterangan: "Empat alel R: merah paling tua.",
+  },
+});
+
+/* ------------------------------------------------------------------ *
+ * DARAH — golongan darah (Tingkat 3 ke atas)
+ * Sel darah merah netral kemerahan; antigen dibedakan warna DAN bentuk
+ * (A bulat, B kotak, M kerucut, N cincin) supaya warna bukan satu-satunya
+ * penanda. Antibodi adalah protein, jadi memakai warna protein.
+ * ------------------------------------------------------------------ */
+
+export const DARAH = daftar({
+  selDarahMerah: {
+    nama: "Sel darah merah",
+    inggris: "red blood cell",
+    warna: "#D9867C",
+    keterangan: "Cakram cekung dua sisi; antigen golongan darah menempel di permukaannya.",
+  },
+  antigenA: {
+    nama: "Antigen A",
+    inggris: "A antigen",
+    warna: "#3F6FD0",
+    keterangan: "Dibuat oleh alel Iᴬ. Digambar sebagai bulatan.",
+  },
+  antigenB: {
+    nama: "Antigen B",
+    inggris: "B antigen",
+    warna: "#E08A2E",
+    keterangan: "Dibuat oleh alel Iᴮ. Digambar sebagai kotak.",
+  },
+  antigenM: {
+    nama: "Antigen M",
+    inggris: "M antigen",
+    warna: "#2F9C8E",
+    keterangan: "Golongan darah MN (kodominan). Digambar sebagai kerucut.",
+  },
+  antigenN: {
+    nama: "Antigen N",
+    inggris: "N antigen",
+    warna: "#B8559B",
+    keterangan: "Golongan darah MN (kodominan). Digambar sebagai cincin.",
+  },
+  antibodi: {
+    nama: "Antibodi",
+    inggris: "antibody",
+    warna: "#3DA832",
+    keterangan: "Protein berbentuk Y yang mengikat antigen asing — warnanya warna protein.",
+  },
+});
+
 export const SEMUA_ENTITAS: Record<string, Entitas> = {
   ...SEL,
   ...INTI,
   ...MOLEKUL,
+  ...SIFAT,
+  ...DARAH,
   ...Object.fromEntries(
     Object.entries(BASA).map(([kode, e]) => [`basa${kode}`, e]),
   ),
@@ -416,7 +668,19 @@ export const KELOMPOK_WARNA = [
   {
     judul: "Molekul dan mesin sel",
     catatan:
-      "Dipakai mulai Level 1 ke atas. Rangka gula-fosfat dan ikatan hidrogen sengaja kelabu — keduanya rangka, bukan tokoh.",
+      "Dipakai mulai Level 1 ke atas. Rangka gula-fosfat dan ikatan hidrogen sengaja kelabu — keduanya rangka, bukan tokoh. Rangka untai RNA memakai jingga RNA, sehingga saat transkripsi untai DNA (kelabu) dan RNA (jingga) langsung terbedakan. Semua enzim memakai satu ungu dan dibedakan lewat bentuk serta labelnya.",
     isi: Object.values(MOLEKUL),
+  },
+  {
+    judul: "Sifat yang tampak",
+    catatan:
+      "Dipakai mulai Tingkat 2: warna alami biji, bunga, dan polong pada persilangan. Satu sifat = satu warna tetap di semua pelajaran pewarisan. Selalu disertai label sifat dan huruf alelnya.",
+    isi: Object.values(SIFAT),
+  },
+  {
+    judul: "Golongan darah",
+    catatan:
+      "Dipakai mulai Tingkat 3. Antigen dibedakan warna dan bentuk sekaligus: A bulat, B kotak, M kerucut, N cincin. Antibodi adalah protein dan memakai warna protein.",
+    isi: Object.values(DARAH),
   },
 ] as const;

@@ -41,3 +41,19 @@ export function isyaratPada(jadwal: IsyaratTerjadwal[], waktu: number): IsyaratT
   for (const i of jadwal) if (i.mulai <= waktu + 1e-6) aktif = i;
   return aktif;
 }
+
+/**
+ * Detik (sejak awal adegan) ketika pasangan tahap+fokus yang berlaku pada
+ * `waktu` mulai berlaku tanpa putus. Isyarat berikutnya yang memakai fokus sama
+ * tidak memutusnya. Dipakai film untuk gerakan panjang yang harus tetap benar
+ * walau penonton melompat di garis waktu.
+ */
+export function awalFokusSama(adegan: Adegan, jadwal: IsyaratTerjadwal[], waktu: number): number {
+  const kunci = (i?: Isyarat) => `${i?.tahap ?? adegan.tahap ?? ""}|${i?.fokus ?? adegan.fokus ?? ""}`;
+  const ruas: { mulai: number; kunci: string }[] = [{ mulai: 0, kunci: kunci() }];
+  for (const i of jadwal) ruas.push({ mulai: i.mulai, kunci: kunci(i) });
+  let k = 0;
+  for (let j = 0; j < ruas.length; j++) if (ruas[j].mulai <= waktu + 1e-6) k = j;
+  while (k > 0 && ruas[k - 1].kunci === ruas[k].kunci) k--;
+  return ruas[k].mulai;
+}

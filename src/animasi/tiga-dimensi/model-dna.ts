@@ -28,8 +28,11 @@ export function bangunDNA(studio: Studio, induk: THREE.Object3D, urutan: string)
   const n = huruf.length;
   const y0 = (-(n - 1) * NAIK) / 2;
 
+  /* z = −sin: sudut bertambah searah putaran sekrup kanan terhadap sumbu +y
+     yang naik — heliks PUTAR KANAN seperti DNA sungguhan (bentuk B). Versi
+     sebelum 26 Sep 2026 memakai +sin sehingga heliksnya berpilin ke kiri. */
   const titikUntai = (i: number, fase: number) =>
-    new THREE.Vector3(JARI * Math.cos(i * PUTAR + fase), y0 + i * NAIK, JARI * Math.sin(i * PUTAR + fase));
+    new THREE.Vector3(JARI * Math.cos(i * PUTAR + fase), y0 + i * NAIK, -JARI * Math.sin(i * PUTAR + fase));
 
   /* rangka gula-fosfat: dua pita spiral + manik fosfat di tiap nukleotida */
   const rangka = bagian("gulaFosfat", MOLEKUL.gulaFosfat.warna, { garis: 0.003 });

@@ -27,6 +27,8 @@ const LAJU = "-5%";
 const BERKAS_DATA = "src/konten/suara.json";
 const FOLDER_MP3 = "public/suara";
 const SEMUA = process.argv.includes("--semua");
+/** --coba: hanya tampilkan teks ucapan yang akan direkam, tanpa merekam apa pun. */
+const COBA = process.argv.includes("--coba");
 
 /* ------------------------------------------------------------------ *
  * Teks yang diucapkan
@@ -36,6 +38,11 @@ const SEMUA = process.argv.includes("--semua");
  * Pelafalan khusus. Subtitel tetap memakai tulisan aslinya; hanya suaranya
  * yang membaca versi di kanan.
  */
+/* Pasangan alel yang dikenali sebagai genotip ("Rr", "RRYY", "rryy"). Sengaja
+   daftar tertutup, supaya kata biasa seperti "ada" tidak ikut dieja. */
+const PASANGAN_ALEL = "RR|Rr|rr|YY|Yy|yy|PP|Pp|pp|DD|Dd|dd|BB|Bb|bb|AA|Aa|aa|CC|Cc|cc|WW|Ww|ww|EE|Ee|ee|LL|Ll|ll|SS|Ss|ss";
+const NAMA_HURUF = { r: "er", y: "ye", p: "pe", d: "de", b: "be", a: "a", c: "ce", i: "i", w: "we", e: "e", l: "el", m: "em", s: "es", n: "en", h: "ha", g: "ge", t: "te" };
+
 const LAFAL = [
   [/\bMeiosis II\b/g, "Meiosis dua"],
   [/\bMeiosis I\b/g, "Meiosis satu"],
@@ -53,6 +60,93 @@ const LAFAL = [
   /* notasi dan padanan Inggris yang berisi angka: cukup tampil di subtitel */
   [/\s*\(XO\)/g, ""],
   [/\s*\(trisomy 21\)/g, ""],
+  /* 1.1: lambang penanda radioaktif cukup tampil di subtitel */
+  [/\s*\([¹²³⁴⁵]+[SPN]\)/g, ""],
+  [/\bT2\b/g, "te dua"],
+  /* 1.2: kurung berisi tanda petik tidak tertangkap pola padanan Inggris */
+  [/\s*\(Chargaff's rules\)/g, ""],
+  /* 1.3 dst.: singkatan jenis RNA dieja huruf demi huruf */
+  [/\bmRNA\b/g, "em er en a"],
+  [/\btRNA\b/g, "te er en a"],
+  [/\brRNA\b/g, "er er en a"],
+  /* Tingkat 2 dst.: fase meiosis bernomor Romawi */
+  [/\b([Pp]rofase|[Mm]etafase|[Aa]nafase|[Tt]elofase) (II|I)\b/g, (m) => m.replace(/ II$/, " dua").replace(/ I$/, " satu")],
+  /* lambang persilangan */
+  [/\bF([1-3])\b/g, (m) => `ef ${["", "satu", "dua", "tiga"][+m[1]]}`],
+  [/\s:\s/g, " banding "],
+  [/\s×\s/g, " kali "],
+  [/(\d+)\/(\d+)/g, (m) => m.replace("/", " per ")],
+  /* genotip dan gamet berhuruf: huruf besar "besar", huruf kecil "kecil" —
+     "Rr" → "er besar er kecil". Hanya rangkaian huruf alel yang dikenal. */
+  [
+    new RegExp(`\\b(?:(?:${PASANGAN_ALEL})+|[Rr][Yy][Pp]?|[Rr][Pp]|[Yy][Pp])\\b`, "g"),
+    (token) =>
+      token
+        .split("")
+        .map((h) => `${NAMA_HURUF[h.toLowerCase()]} ${h === h.toUpperCase() ? "besar" : "kecil"}`)
+        .join(" "),
+  ],
+  /* alel tunggal huruf kecil yang berdiri sendiri: "alel r" → "er kecil" */
+  [/(?<=\s)[rypdb](?=[\s,.;:)—])(?! [=+]| kuadrat)/g, (h) => `${{ r: "er", y: "ye", p: "pe", d: "de", b: "be" }[h]} kecil`],
+  /* Tingkat 6: rumus Hardy-Weinberg — p dan q di sini frekuensi, bukan alel */
+  [/p² \+ 2pq \+ q² = 1/g, "pe kuadrat tambah dua pe ki tambah ki kuadrat sama dengan satu"],
+  [/\bp \+ q = 1\b/g, "pe tambah ki sama dengan satu"],
+  [/\bp = /g, "pe sama dengan "],
+  [/(?<!\+ )\bq = /g, "ki sama dengan "],
+  [/\bp kuadrat\b/g, "pe kuadrat"],
+  [/\bq kuadrat\b/g, "ki kuadrat"],
+  [/(?<=kuadrat) = /g, " sama dengan "],
+  [/\b2pq\b/g, "dua pe ki"],
+  [/\bRW\b/g, "er besar we besar"],
+  [/\bh²/g, "ha kuadrat"],
+  [/\bPCR\b/g, "pe ce er"],
+  [/\bSNP\b/g, "es en pe"],
+  [/\bSTR\b/g, "es te er"],
+  /* 1.7 */
+  [/\s*\(one gene–one enzyme\)/g, ""],
+  [/\bTYR\b/g, "te ye er"],
+  [/\bP = G \+ L\b/g, "pe sama dengan ge tambah el"],
+  /* kodon (1.6): tiga huruf basa RNA dieja satu per satu, misalnya AUG → "a u ge" */
+  [/\b[AUGC]{3}\b/g, (kodon) => kodon.split("").map((h) => ({ A: "a", U: "u", G: "ge", C: "se" })[h]).join(" ")],
+  /* Tingkat 3: alel golongan darah ABO — "IᴬIᴮ" → "i a, i be", "Iᴮi" → "i be, i kecil" */
+  [
+    /I[ᴬᴮ](?:I[ᴬᴮ]|i)?|\bii\b|(?<=\s)i(?=[\s,.;:)—])/g,
+    (token) =>
+      (token.match(/I[ᴬᴮ]|i/g) ?? [])
+        .map((b) => ({ "Iᴬ": "i a", "Iᴮ": "i be", i: "i kecil" })[b])
+        .join(", "),
+  ],
+  /* huruf alel besar yang berdiri sendiri dan tak dikenal suara Indonesia */
+  [/\b(alel|gen) C\b/g, (m) => m.replace(/C$/, "ce")],
+  [/(?<=\s)W(?=[\s,.;:)—])/g, "we"],
+  /* Tingkat 4: kromosom kelamin berhuruf ("XᴮXᵇ" → "eks be besar, eks be kecil") */
+  [
+    /[XZ][ᴮᵇᴴʰ](?:[XZ][ᴮᵇᴴʰ]|[YW])?/g,
+    (token) =>
+      (token.match(/[XZ][ᴮᵇᴴʰ]|[YW]/g) ?? [])
+        .map((b) =>
+          b.length === 1
+            ? { Y: "ye", W: "we" }[b]
+            : `${{ X: "eks", Z: "zet" }[b[0]]} ${{ "ᴮ": "be besar", "ᵇ": "be kecil", "ᴴ": "ha besar", "ʰ": "ha kecil" }[b[1]]}`,
+        )
+        .join(", "),
+  ],
+  [/(?<!memakai |46,)\bXX\b/g, "eks eks"],
+  [/(?<!memakai |46,)\bXY\b/g, "eks ye"],
+  [/(?<!\()\bXO\b(?!\))/g, "eks o"],
+  [/\bSRY\b/g, "es er ye"],
+  /* Tingkat 5: rumus kariotipe dan singkatan penyakit */
+  [/\b45,X\b/g, "empat puluh lima, eks"],
+  [/\b47,XXY\b/g, "empat puluh tujuh, eks eks ye"],
+  [/\b63,X\b/g, "enam puluh tiga, eks"],
+  [/\bBLAD\b/g, "be el a de"],
+  [/\bBSE\b/g, "be es e"],
+  [/\bPRRS\b/g, "pe er er es"],
+  [/(?<=\d) \+ (?=\d)/g, " tambah "],
+  [/(?<=\d) = (?=\d)/g, " sama dengan "],
+  /* ujung untai DNA */
+  [/5′/g, "lima aksen"],
+  [/3′/g, "tiga aksen"],
 ];
 
 /**
@@ -75,7 +169,9 @@ function susunUcapan(narasi) {
     suntingan.push({ awal: m.index, akhir: m.index + m[0].length, ganti: "" });
   }
   for (const [pola, ganti] of LAFAL) {
-    for (const m of narasi.matchAll(pola)) suntingan.push({ awal: m.index, akhir: m.index + m[0].length, ganti });
+    for (const m of narasi.matchAll(pola)) {
+      suntingan.push({ awal: m.index, akhir: m.index + m[0].length, ganti: typeof ganti === "function" ? ganti(m[0]) : ganti });
+    }
   }
   suntingan.sort((a, b) => a.awal - b.awal);
 
@@ -149,6 +245,11 @@ for (const { pelajaran } of await muatSemuaPelajaran()) {
       lama.suara === SUARA &&
       lama.laju === LAJU &&
       existsSync(join(folder, namaBerkas));
+    if (COBA) {
+      if (!masihSama) console.log(`  ? ${adegan.id}
+    ${ucapan.teks}`);
+      continue;
+    }
     if (masihSama) {
       baru.pelajaran[slug][adegan.id] = sebelumnya;
       dipakaiUlang++;
@@ -172,11 +273,15 @@ for (const { pelajaran } of await muatSemuaPelajaran()) {
     console.log(`  + ${adegan.id} — ${durasi.toFixed(1)} detik, ${kata.length} kata`);
   }
 
-  /* rekaman adegan yang sudah dihapus atau berganti nama */
+  /* rekaman adegan yang sudah dihapus atau berganti nama — TIDAK dijalankan
+     pada --coba, karena pada mode itu daftar rekaman sengaja kosong */
+  if (COBA) continue;
   for (const f of readdirSync(folder)) {
     if (!baru.pelajaran[slug][f.replace(/\.mp3$/, "")]) rmSync(join(folder, f));
   }
 }
+
+if (COBA) process.exit(0);
 
 /* folder pelajaran yang sudah tidak ada */
 for (const f of readdirSync(FOLDER_MP3)) {

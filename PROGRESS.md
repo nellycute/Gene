@@ -5,6 +5,213 @@ membingungkan, itu kesalahan penulisnya, bukan kesalahanmu.
 
 ---
 
+## 26 September 2026 (malam) — Tingkat 2 sampai 6 lengkap
+
+Kamu meminta seluruh materi dituntaskan tanpa jeda tanya-jawab. **Tingkat 2, 3, 4, 5,
+dan 6 kini sudah jadi: 33 pelajaran, 231 adegan, ± 75 menit tayang.** Semuanya film 3D
+yang bergerak mengikuti narasi, bersuara, bersubtitel, dan punya Catatan (istilah,
+ringkasan, naskah, rujukan). Semuanya masih berlabel **Draf** sampai kamu membacanya.
+Website di internet **belum** diperbarui dan belum ada yang dikirim ke GitHub —
+keduanya menunggu izinmu.
+
+| Tingkat | Pelajaran | Isi film, singkatnya |
+|---|---|---|
+| **2 · Hukum Mendel** | 6 pelajaran, 52 adegan, ± 17 menit | Kebun biara di Brno; bunga ercis yang lunasnya dibuka, benang sarinya dibuang, lalu diserbuki dengan kuas; tujuh sifat di galeri melengkung; gen, alel, lokus di kromosom; RR/Rr/rr; mengapa biji keriput (enzim pati); P → F1 → F2; tumpukan biji 5.474 : 1.850 dan grafik tujuh sifat; segregasi dan anafase I; kotak Punnett; koin bersisi R dan r; uji silang pada sapi Angus; dihibrid 9 : 3 : 3 : 1 dengan biji yang terbang ke kelompoknya; asortasi bebas di metafase I; diagram cabang delapan gamet; Punnett 8 × 8; rumus 2ⁿ dan 3ⁿ; diagram garpu. |
+| **3 · Perluasan Mendel** | 7 pelajaran, 49 adegan, ± 18 menit | Bunga pukul empat merah × putih → merah muda; golongan darah MN; sapi roan dari dekat (helai merah dan putih); golongan darah ABO, antigen dan antibodi yang menggumpalkan; empat alel kelinci; tikus kuning 2 : 1 dengan "hantu" yang tak pernah lahir; ayam Creeper dan sapi Dexter; empat bentuk jengger ayam; epistasis pada labu dan tikus, kriptomeri Linaria, gen komplementer kacang manis; gandum Nilsson-Ehle; kurva lonceng; "histogram hidup" tinggi badan; enam belas ubin yang berkumpul menurut pola rasio. |
+| **4 · Kelamin dan Pautan** | 7 pelajaran, 44 adegan, ± 14 menit | 22 pasang autosom dan XX/XY; sperma X atau Y; gen SRY; ayam ZZ/ZW; belalang, lebah, lalat buah; penyu dan suhu pasir; buta warna di Punnett; silsilah hemofilia keluarga Ratu Victoria; ayam lurik; kebotakan; domba Dorset × Suffolk; sapi Ayrshire; uji keturunan; lalat buah Morgan (965 : 944 : 206 : 185); pindah silang dan kiasma; peta Sturtevant 1913; persilangan tiga titik; empat pola silsilah. |
+| **5 · Mutasi dan Variasi** | 6 pelajaran, 40 adegan, ± 12 menit | Pita kodon: mutasi diam, salah makna, tanpa makna, pergeseran kerangka (dan kalimat "IBU DAN AYU MAU TEH" yang kacau); mutagen; perbaikan DNA (penyuntingan, salah pasang, dimer timin, patah untai ganda); gagal berpisah; trisomi 21 dan usia ibu; Turner dan Klinefelter; poliploidi, semangka tanpa biji, kolkisin, gandum roti AABBDD; delesi, duplikasi, inversi, translokasi, robertsonian 1/29 sapi; kromosom 2 manusia; talasemia; sapi Holstein dan babi; BSE dan PRRS yang bukan penyakit genetik. |
+| **6 · Populasi dan Terapan** | 7 pelajaran, 46 adegan, ± 14 menit | 100 sapi Shorthorn yang berkumpul menurut warna; p + q = 1; Punnett seluruh populasi; hanyutan genetik (garis yang hilang atau tetap) dan leher botol; kawin sedarah; P = G + L dan G × L; ragam dan heritabilitas; respon seleksi; heterosis; kambing Peranakan Etawa; sapi Bali dan Madura; isolasi DNA; PCR langkah demi langkah; elektroforesis gel (sapi, babi, sampel daging); Sanger, sekuensing generasi baru; mikrosatelit dan SNP; sidik DNA; uji paternitas; barcode DNA; penutup tujuh tingkat. |
+
+### Keputusan kecil yang kuambil (boleh kamu ubah)
+
+1. **Warna baru di Peta Warna.** Karena sifat yang tampak kini jadi tokoh utama, warna
+   berikut kutambahkan dan dipakai sama di semua pelajaran:
+   - bulu hewan: hitam, merah, putih, kuning, agouti, chinchilla, mahoni; mata albino;
+   - jengger ayam; labu putih/kuning/hijau; lima tingkat merah biji gandum;
+   - tubuh lalat buah (liar dan hitam), mata merah lalat; kulit, daging, dan biji semangka;
+   - kelompok baru **Golongan darah**: sel darah merah, antigen A (bulat), B (kotak),
+     M (kerucut), N (cincin), dan antibodi (berwarna protein).
+2. **Bulu lurik** dan **belang** (sapi Ayrshire, Holstein) digambar sebagai pola dari
+   warna-warna di atas, bukan warna baru.
+3. **Kebotakan** memakai model klasik satu gen seperti di buku ajar; di Ringkasan
+   kutulis bahwa kenyataannya poligenik.
+4. **Koreksi buku rujukan** yang sudah tercatat tetap diikuti: roan dari merah × putih
+   (bukan merah × merah), jengger R_P_ = walnut, kerdil = dd, dan BSE/PRRS bukan
+   penyakit genetik.
+5. **Hemofilia keluarga Ratu Victoria** ternyata hemofilia B (penelitian DNA 2009);
+   di narasi kutulis "hemofilia" saja, rinciannya di Ringkasan.
+
+### Yang paling perlu kamu periksa
+
+- **Angka dan data:** 5.474 : 1.850 dan data tujuh sifat Mendel; 556 biji dihibrid;
+  965 : 944 : 206 : 185 dan 17% pada lalat buah; peta Sturtevant (0; 1,0; 30,7; 33,7;
+  57,6 cM); ± 8% laki-laki buta warna (keturunan Eropa); Sindrom Down ± 1/1.500 (ibu
+  20 tahun) dan ± 1/100 (40 tahun); pembawa talasemia 3–10% di Indonesia; heritabilitas
+  sapi (bobot sapih 0,2–0,3; susu ± 0,3; kesuburan ± 0,05).
+- **Istilah Indonesia:** lungkang gen, hanyutan genetik, leher botol, depresi silang
+  dalam, kriptomeri, polimeri, sentimorgan, gagal berpisah, pergeseran kerangka baca,
+  mutasi diam / salah makna / tanpa makna, uji keturunan.
+- **Contoh ternak Indonesia:** kambing Peranakan Etawa, sapi Bali, sapi Madura, badak
+  jawa (untuk leher botol).
+- **Pelajaran yang menyentuh penyakit** (buta warna, hemofilia, trisomi 21, talasemia,
+  kanker) sudah diberi pengingat "bahan belajar, bukan nasihat medis".
+
+### Kejadian yang perlu kuakui
+
+Saat menyiapkan suara Tingkat 2, sebuah perintah uji coba milikku keliru menghapus
+berkas suara. Suara Tingkat 0 kupulihkan dari cadangan GitHub, dan suara Tingkat 1
+kurekam ulang dengan suara yang sama. Kesalahannya sudah kuperbaiki di alatnya, jadi
+tidak akan terulang. Hasil akhirnya tidak berubah, tetapi kamu perlu tahu.
+
+---
+
+## 26 September 2026 (lanjutan) — Tingkat 1 lengkap: 1.3 sampai 1.7
+
+Kamu meminta Tingkat 1 dituntaskan. Kelima pelajaran sisanya kini sudah jadi. Semuanya
+berupa film 3D yang bergerak mengikuti narasi, lengkap dengan suara, subtitel, dan
+Catatan. **Seluruh Tingkat 1 kini 7 pelajaran, 81 adegan, ± 28 menit.** Semuanya
+masih berlabel **Draf** sampai kamu membaca dan menyatakannya benar.
+
+| Pelajaran | Yang terjadi di layar |
+|---|---|
+| **1.3 RNA** (10 adegan) | Nukleotida DNA dan RNA berdampingan: ribosa dengan gugus OH, dan timin dengan gugus metilnya. Seutas RNA melipat menjadi jepit rambut dengan pasangan G–C dan A–U. Lalu mRNA, tRNA berbentuk L, dan ribosom; mRNA keluar dari inti lewat pori menuju ribosom; dan dogma sentral. |
+| **1.4 Replikasi DNA** (12 adegan) | Tiga kemungkinan model; percobaan **Meselson–Stahl** dengan tiga tabung yang pitanya muncul generasi demi generasi; lalu garpu replikasi lengkap. Helikase membuka heliks, primer RNA jingga, DNA polimerase, untai maju yang bersambung, fragmen Okazaki, primer diganti, ligase menyambung celah, satu basa salah pasang diperbaiki, dan dua DNA anak memisah. |
+| **1.5 Transkripsi** (11 adegan) | RNA polimerase ungu tembus pandang menempel di promotor, membuka gelembung, lalu bergerak menyusuri gen. RNA jingga tumbuh berpasangan dengan untai cetakan lalu menjuntai keluar, sampai polimerase terlepas di terminator. Setelah itu pra-mRNA diberi **tudung 5′** dan **ekor poli-A**, intron dipotong spliseosom, ekson disambung, dan ada contoh penyambungan alternatif. Ditutup dengan bakteri, tempat ribosom sudah bekerja saat transkripsi masih berjalan. |
+| **1.6 Kode genetik dan translasi** (12 adegan) | Kubus 4 → 16 → 64, **roda kode genetik** yang kugambar sendiri, dan kerangka baca yang benar lalu bergeser. Ribosom membaca mRNA dari AUG sampai UGA: tRNA masuk, ikatan peptida terbentuk, ribosom bergeser, dan rantai Met-Ala-Ser-Glu-Thr-Phe-Gly memanjang. Faktor pelepas masuk, ribosom terurai, rantai melipat menjadi protein, lalu polisom. |
+| **1.7 Dari gen ke sifat** (12 adegan) | Jalur arginin Beadle–Tatum: pada mutan, enzim kedua rusak dan ornitin menumpuk. Hemoglobin α α β β. Sel pigmen normal dan albino. Kodon **GAG → GUG** pada anemia sel sabit, dengan sel darah merah yang menjadi sabit. **Kucing Siam** yang ujung tubuhnya gelap, dua sapi sama dengan pakan berbeda (P = G + L), genom di dalam inti, dan skala bp → kb → Mb. |
+
+### Keputusan kecil yang kuambil (boleh kamu ubah)
+
+1. **Rangka RNA berwarna jingga**, sedangkan rangka DNA kelabu, supaya saat transkripsi
+   kedua untai langsung terbedakan. Sudah kucatat di halaman Peta Warna.
+2. **Semua enzim memakai satu warna ungu**, sesuai usulan yang kamu setujui. Helikase,
+   primase, polimerase, ligase, spliseosom, dan tirosinase dibedakan dari bentuk dan
+   labelnya.
+3. **Untai baru di replikasi** berwarna kelabu muda. Bahannya sama dengan untai lama,
+   jadi warnanya dibuat serona.
+4. **tRNA di dalam ribosom digambar tegak**, bukan huruf L, supaya tiga tRNA muat dan
+   pasangannya dengan kodon terlihat jelas. Bentuk L-nya ditunjukkan di 1.3 dan 1.6, dan
+   hal ini disebutkan di Ringkasan.
+5. **Tikus, kucing, sapi, sel darah merah, melanin, dan jamur** memakai warna netral,
+   karena tidak ada di Peta Warna.
+
+### Yang paling perlu kamu periksa
+
+- **Angka:**
+  - ± 6,4 miliar pasang basa per sel;
+  - puluhan ribu titik asal replikasi pada manusia;
+  - kesalahan replikasi ± 1 per miliar;
+  - fragmen Okazaki 100–200 nukleotida pada eukariot;
+  - ekor poli-A ± 200 adenin;
+  - tRNA 70–90 nukleotida;
+  - genom manusia ± 3,1 miliar pasang basa dan ± 20.000 gen;
+  - gen β-globin ± 1,6 kb, E. coli ± 4,6 Mb.
+- **Istilah Indonesia:**
+  - untai maju / untai lambat;
+  - untai cetakan / untai pengode;
+  - RNA duta / RNA transfer / RNA ribosom;
+  - tudung 5′;
+  - penyambungan (splicing);
+  - degeneratif;
+  - faktor pelepas.
+
+  Kalau di kampus biasa dipakai istilah lain, bilang saja.
+- **Contoh penyakit** (albinisme, anemia sel sabit) hanya dipakai sebagai contoh
+  mekanisme. Pengingat "bahan belajar, bukan nasihat medis" ada di Ringkasan dan Rujukan.
+- **Lafal:**
+  - kodon dieja per huruf ("a u ge");
+  - "mRNA" dibaca "em er en a";
+  - "TYR" dibaca "te ye er".
+
+### Perbaikan tambahan
+
+- Kalau penonton melompat ke tengah adegan di garis waktu, gerakan panjang seperti ribosom
+  yang bekerja atau untai yang tumbuh kini langsung berada di posisi yang benar. Gerakan itu
+  tidak lagi mengulang dari awal di tengah kalimat.
+
+**Website online belum berubah.** Tingkat 1 baru ada di laptop sampai kamu setuju aku
+menerbitkannya.
+
+---
+
+## 26 September 2026 — Tingkat 1 dimulai: pelajaran 1.1 dan 1.2
+
+Sesuai kesepakatan kita, aku membuat **dua pelajaran pertama Tingkat 1 sampai lengkap**:
+film 3D, suara, subtitel, dan Catatan. Keduanya **berlabel "Draf"** sampai kamu
+membaca dan menyatakannya benar. Pelajaran 1.3–1.7 baru kumulai setelah kamu
+menilai gaya gambar molekulnya.
+
+### 1.1 Bukti bahwa DNA materi genetik (12 adegan, ± 4,5 menit)
+
+- **Protein atau DNA?** Rantai asam amino di satu alas, DNA di alas lain.
+- **Empat syarat materi genetik**, masing-masing bergerak: urutan basa, salinan yang
+  meluncur keluar, protein yang memanjang, dan satu pasangan basa yang berganti.
+- **Griffith (1928):** bakteri galur S berkapsul dan galur R. Empat tikus, dan hasilnya
+  muncul satu per satu. Tikus yang mati berbaring miring. Lalu potongan DNA dari S mati
+  masuk ke R, R berkapsul, dan keturunannya ikut menjadi S.
+- **Avery, MacLeod, McCarty (1944):** tiga tabung dan tiga enzim ungu. Hanya molekul
+  sasaran tiap enzim yang hancur. Di cawan depan tampak hasilnya: "S muncul" atau "hanya R".
+- **Hershey dan Chase (1952):** virus T2 di atas bakteri E. coli, lalu penanda ³⁵S dan ³²P.
+  Virus menyuntikkan DNA, selubungnya terlepas di blender, dan sentrifus memisahkan pelet
+  dari cairan. Terakhir, fag baru keluar dari bakteri.
+
+### 1.2 Struktur DNA dan heliks ganda (12 adegan, ± 4,5 menit)
+
+Satu molekul DNA yang **dirakit di depan penonton**:
+
+1. Dimulai dari heliks utuh, lalu kamera menyelam ke **satu nukleotida**: fosfat, gula
+   segi lima, dan basa.
+2. **Empat basa** berjajar. Purin (A, G) bercincin ganda, pirimidin (C, T) bercincin
+   tunggal.
+3. Nukleotida bersambung menjadi **satu untai**, dengan tanda **5′ dan 3′** di ujungnya.
+4. Untai pasangan datang dari samping. **A–T diikat 2 garis, G–C diikat 3 garis.**
+5. Perbandingan lebar anak tangga: purin + pirimidin pas, dua purin bertabrakan, dua
+   pirimidin tidak bersentuhan.
+6. **Aturan Chargaff** dalam batang warna, untuk manusia dan E. coli.
+7. **Pola difraksi sinar-X** berbentuk X. Pola ini kugambar sendiri, bukan salinan foto.
+   Di sampingnya ada model heliks ganda.
+8. Tangga yang tadinya mendatar **berdiri dan berpilin ke kanan** menjadi heliks.
+   Setelah itu diukur (2 nm, 0,34 nm, 3,4 nm), lalu dibuka seperti ritsleting.
+
+### Perbaikan pada Tingkat 0
+
+Saat membuat 1.2, aku menemukan bahwa **model DNA di Tingkat 0 berpilin ke kiri**.
+DNA sungguhan berpilin ke kanan. Kesalahan ini sudah kubetulkan, dan otomatis ikut
+berlaku di 0.1, 0.2, dan 0.5. Narasinya tidak berubah.
+
+### Yang perlu kamu periksa
+
+**Kalimat yang paling rawan** (buka tab Naskah di Catatan):
+
+- **1.1:**
+  - tahun 1928, 1944, dan 1952;
+  - di Ringkasan: galur R dari tipe II dan S dari tipe III pada percobaan Griffith;
+  - "sebagian besar belerang radioaktif tertinggal di cairan";
+  - "fosfat hampir tidak ada di protein".
+- **1.2:**
+  - angka Chargaff (manusia A 31%, T 29%, G 20%, C 20%; E. coli A 25%, T 24%, G 26%,
+    C 26%). Angka ini dibulatkan dari tabel yang lazim dikutip buku ajar;
+  - Chargaff tahun 1950 dan foto sinar-X tahun 1952;
+  - ukuran 2 nm, 0,34 nm, sekitar 10 pasang basa, dan 3,4 nm per putaran.
+- **Lafal:** "5′" dibacakan "lima aksen", "3′" dibacakan "tiga aksen". Kalau kamu lebih
+  biasa mendengar "lima prima", bilang saja.
+
+**Penyederhanaan gambar yang perlu kamu tahu:**
+
+- Selama DNA masih berupa tangga, basanya menghadap penonton dan anak tangganya lebih
+  renggang, seperti diagram buku. Saat dipilin, basa berputar mendatar dan merapat ke
+  0,34 nm, seperti aslinya.
+- Tanda radioaktif digambar sebagai **bintang tinta yang berkelip**, karena radioaktivitas
+  tidak punya warna di Peta Warna.
+- Tikus, kapsul bakteri, kaca, dan cairan memakai warna netral, supaya tidak tertukar
+  dengan warna biologi.
+- DNA di dalam kepala virus digambar sebagai gulungan pegas.
+
+**Website online belum berubah.** Pelajaran baru ini baru ada di laptop sampai kamu
+setuju aku menerbitkannya.
+
+---
+
 ## 26 September 2026 — Empat koreksi dari Nely
 
 1. **Kotak "Jeda hiasan" dihapus.** Hiasan tetap melayang pelan. Perangkat yang diatur

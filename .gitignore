@@ -45,3 +45,6 @@ Gambar referensi.jpg
 next-env.d.ts
 
 .vercel
+
+# video YouTube hasil rekaman — besar (GB), hanya disimpan di laptop
+/Video YouTube/
